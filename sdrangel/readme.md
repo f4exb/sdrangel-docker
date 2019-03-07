@@ -34,7 +34,7 @@ As an indication it takes ~36mn to build the `vanilla` image on a laptop with co
   - Use the `build_server24.sh` script to produce the `sdrangel/bionic:server24` image
   - Use the `run.sh` script with options `-t server24` to run the image
 
-<h2>Additional options to the run.sh command<h2>
+<h2>Additional options to the run.sh command</h2>
 
 You may specify extra options for port mapping between the host and the container:
 

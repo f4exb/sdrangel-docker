@@ -4,6 +4,12 @@
 
 &#9888; This is still experimental and not guaranteed to work in all environments.
 
+[SDRangel](https://github.com/f4exb/sdrangel) is  is an Open Source Qt5 / OpenGL 3.0+ SDR and signal analyzer frontend to various hardware. It also supports remote and terminal (no GUI) operation and can be controlled or control other pieces of software with a REST API.
+
+[SDRangelCli](https://github.com/f4exb/sdrangelcli) is a browser based client application to control SDRangel in remote mode using its REST API. There is no Dockerfile for it yet.
+
+Eventually Docker compose will be used to fire up the entire SDRangel and SDRangelCli ecosystem.
+
 **Check the discussion group** [here](https://groups.io/g/sdrangel)
 
 <h2>Install Docker</h2>
