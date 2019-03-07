@@ -46,6 +46,10 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 # End of get options
 
+# ensure xhost permissions for GUI operation
+if [ ! -z "$gui_opts" ]; then
+    xhost +si:localuser:${USER}
+fi
 # Start of launching script
 USER_UID=$(id -u)
 docker run -it --rm --privileged \

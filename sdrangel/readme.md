@@ -4,9 +4,13 @@
 
 Docker 18.09 or later is required. A single Dockerfile is used to build all images thanks to the BuildKit feature of Docker build.
 
+For GUI operation on Linux hosts the xhost command should be available in the system. This is available in almost distributions as either the `xhost` package or with `xhost` in the package name. e.g `xhost` in Ubuntu, `xorg-xhost` in Arch.
+
 Because SDRangel uses OpenGL this can make it possibly more difficult to run it properly on some hosts and operating systems.  In any case it is assumed that the rendering takes place on the hardware of the host running Docker. For example running on a Linux host with a NVidia graphics card will require to build and run a `linux_nvidia` version of the base image.
 
 In Windows with Virtualbox it is possible to use XMing for the X display that seems to be able to run OpenGL apps without hassles. In which case the display variable should be `DISPLAY=10.0.2.2:0`.
+
+As an indication it takes ~36mn to build the `vanilla` image on a laptop with core i7-5700HQ at 2.7 GHz. Note that this also depends on the speed of your network connection as many packages are being downloaded from the Ubuntu archive and also repositories cloned from Github.
 
 <h2>Images</h2>
 
@@ -30,7 +34,7 @@ In Windows with Virtualbox it is possible to use XMing for the X display that se
   - Use the `build_server24.sh` script to produce the `sdrangel/bionic:server24` image
   - Use the `run.sh` script with options `-t server24` to run the image
 
-<h2>Additional options to the run.sh command<h3>
+<h2>Additional options to the run.sh command<h2>
 
 You may specify extra options for port mapping between the host and the container:
 
