@@ -2,7 +2,7 @@
 
 <h1>Running SDRangel in a Docker container</h1>
 
-&#9888; This is highly experimental and may be subject to large changes. Do not expect it to work in all cases.
+&#9888; This is still experimental and not guaranteed to work in all environments.
 
 **Check the discussion group** [here](https://groups.io/g/sdrangel)
 
