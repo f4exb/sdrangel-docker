@@ -17,7 +17,7 @@ EOF
 }
 
 udp_conn=""
-api_port="8091"
+api_port="-p 8091:8091"
 ssh_port=""
 image_tag=""
 gui_opts=""

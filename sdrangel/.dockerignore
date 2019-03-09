@@ -3,3 +3,4 @@ Dockerfile
 NVIDIA-Linux*
 build_*.sh
 run.sh
+readme.md

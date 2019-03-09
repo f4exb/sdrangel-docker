@@ -6,9 +6,9 @@
 
 [SDRangel](https://github.com/f4exb/sdrangel) is  is an Open Source Qt5 / OpenGL 3.0+ SDR and signal analyzer frontend to various hardware. It also supports remote and terminal (no GUI) operation and can be controlled or control other pieces of software with a REST API.
 
-[SDRangelCli](https://github.com/f4exb/sdrangelcli) is a browser based client application to control SDRangel in remote mode using its REST API. There is no Dockerfile for it yet.
+[SDRangelCli](https://github.com/f4exb/sdrangelcli) is a browser based client application to control SDRangel in remote mode using its REST API.
 
-Eventually Docker compose will be used to fire up the entire SDRangel and SDRangelCli ecosystem.
+Eventually Docker compose could be used to fire up the entire SDRangel and SDRangelCli ecosystem.
 
 **Check the discussion group** [here](https://groups.io/g/sdrangel)
 
@@ -19,10 +19,12 @@ This is of course the first step. Please check the [Docker related page](https:/
 <h3>Windows</h3>
 
 In Windows you have two options:
-  - Install with Hyper-V: Hyper-V is a bare-metal type hypervisor where the Windows O/S itself runs in a VM. The catch is that it requires Windows 10 Pro version and a special set up. This is required to install _Docker Desktop for Windows_ In this configuration a docker instance runs in its own VM
-  - Install with Oracle Virtualbox: Virtualbox is a hosted type hypervisor that sits on the top of the Windows O/S so it puts an extra layer on the stack but may be available on more flavors of Windows. In this case you will install Docker in a Linux O/S Virtualbox VM for example Ubuntu 18.04 and therefore you will have to follow Linux instructions.
+  - Install with Hyper-V: Hyper-V is a bare-metal type hypervisor where the Windows O/S itself runs in a VM. The catch is that it does not work Windows 10 Home version and requires a special set up. This is required to install _Docker Desktop for Windows_. straigtforward to use.
+  - Install with Oracle Virtualbox: Virtualbox is a hosted type hypervisor that sits on the top of the Windows O/S so it puts an extra layer on the stack but is available for more flavors of Windows. In this case you will install Docker in a Linux O/S Virtualbox VM for example Ubuntu 18.04 and therefore you will have to follow Linux instructions.
 
 See [this discussion](https://www.nakivo.com/blog/hyper-v-virtualbox-one-choose-infrastructure/) about the difference between Hyper-V and Virtualbox.
+
+After a little bit of experimentation Hyper-V and Docker Desktop for Windows is not an option for SDRangel as it has too many issues with X-Server connection, sound and USB.
 
 <h2>Get familiar with Docker</h2>
 
@@ -31,3 +33,7 @@ Although a set of shell scripts are there to help you build images and run conta
 <h2>SDRangel section</h2>
 
 The files contained in the `sdrangel` directory are used to build and run SDRangel images. Please check the readme inside this folder for further information
+
+<h2>SDRangelCli section</h2>
+
+The files contained in the `sdrangelcli` directory are used to build and run SDRangelCli images. Please check the readme inside this folder for further information
