@@ -1,0 +1,1251 @@
+ * Starting OpenBSD Secure Shell server sshd       [80G [74G[ OK ]
+ * Starting system message bus dbus       [80G [74G[ OK ]
+ * Starting Avahi mDNS/DNS-SD Daemon avahi-daemon       [80G [74G[ OK ]
+2019-03-10 20:00:06.013 (I) SDRangelSrv 4.5.0 Qt 5.9.5 64b x86_64 Ubuntu 18.04.1 LTS DSP Rx:16b Tx:16b PID 70
+2019-03-10 20:00:06.014 (I) MainSettings::MainSettings: settings file: format: 0 location: /home/sdr/.config/f4exb/SDRangelSrv.conf
+2019-03-10 20:00:06.014 (D) AudioDeviceManager::AudioDeviceManager: scan input devices
+2019-03-10 20:00:06.052 (D) AudioDeviceManager::AudioDeviceManager: input device #0: default
+2019-03-10 20:00:06.052 (D) AudioDeviceManager::AudioDeviceManager: input device #1: pulse
+2019-03-10 20:00:06.052 (D) AudioDeviceManager::AudioDeviceManager: input device #2: sysdefault:CARD=PCH
+2019-03-10 20:00:06.052 (D) AudioDeviceManager::AudioDeviceManager: input device #3: front:CARD=PCH,DEV=0
+2019-03-10 20:00:06.052 (D) AudioDeviceManager::AudioDeviceManager: input device #4: dmix:CARD=PCH,DEV=0
+2019-03-10 20:00:06.052 (D) AudioDeviceManager::AudioDeviceManager: input device #5: dsnoop:CARD=PCH,DEV=0
+2019-03-10 20:00:06.053 (D) AudioDeviceManager::AudioDeviceManager: input device #6: hw:CARD=PCH,DEV=0
+2019-03-10 20:00:06.053 (D) AudioDeviceManager::AudioDeviceManager: input device #7: plughw:CARD=PCH,DEV=0
+2019-03-10 20:00:06.053 (D) AudioDeviceManager::AudioDeviceManager: input device #8: alsa_input.pci-0000_00_1f.3.analog-stereo
+2019-03-10 20:00:06.053 (D) AudioDeviceManager::AudioDeviceManager: input device #9: alsa_output.pci-0000_00_1f.3.analog-stereo.monitor
+2019-03-10 20:00:06.053 (D) AudioDeviceManager::AudioDeviceManager: input device #10: fcdv1op.monitor
+2019-03-10 20:00:06.053 (D) AudioDeviceManager::AudioDeviceManager: scan output devices
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #0: default
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #1: pulse
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #2: sysdefault:CARD=PCH
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #3: front:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #4: surround21:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #5: surround40:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #6: surround41:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #7: surround50:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #8: surround51:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #9: surround71:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #10: iec958:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #11: dmix:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #12: dmix:CARD=PCH,DEV=1
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #13: dsnoop:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #14: dsnoop:CARD=PCH,DEV=1
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #15: hw:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #16: hw:CARD=PCH,DEV=1
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #17: plughw:CARD=PCH,DEV=0
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #18: plughw:CARD=PCH,DEV=1
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #19: alsa_output.pci-0000_00_1f.3.analog-stereo
+2019-03-10 20:00:06.148 (D) AudioDeviceManager::AudioDeviceManager: output device #20: fcdv1op
+2019-03-10 20:00:06.148 (D) MainCore::MainCore: start
+2019-03-10 20:00:06.148 (D) PluginManager::loadPlugins:  /opt/install/sdrangel/bin/../lib/pluginssrv , /opt/install/sdrangel/bin/pluginssrv
+2019-03-10 20:00:06.148 (D) PluginManager::loadPluginsDir: fileName:  libdemodamsrv.so
+2019-03-10 20:00:06.149 (I) PluginManager::loadPluginsDir: loaded plugin libdemodamsrv.so
+2019-03-10 20:00:06.149 (D) PluginManager::loadPluginsDir: fileName:  libdemodbfmsrv.so
+2019-03-10 20:00:06.149 (I) PluginManager::loadPluginsDir: loaded plugin libdemodbfmsrv.so
+2019-03-10 20:00:06.149 (D) PluginManager::loadPluginsDir: fileName:  libdemoddsdsrv.so
+2019-03-10 20:00:06.150 (I) PluginManager::loadPluginsDir: loaded plugin libdemoddsdsrv.so
+2019-03-10 20:00:06.150 (D) PluginManager::loadPluginsDir: fileName:  libdemodnfmsrv.so
+2019-03-10 20:00:06.150 (I) PluginManager::loadPluginsDir: loaded plugin libdemodnfmsrv.so
+2019-03-10 20:00:06.150 (D) PluginManager::loadPluginsDir: fileName:  libdemodssbsrv.so
+2019-03-10 20:00:06.150 (I) PluginManager::loadPluginsDir: loaded plugin libdemodssbsrv.so
+2019-03-10 20:00:06.150 (D) PluginManager::loadPluginsDir: fileName:  libdemodwfmsrv.so
+2019-03-10 20:00:06.151 (I) PluginManager::loadPluginsDir: loaded plugin libdemodwfmsrv.so
+2019-03-10 20:00:06.151 (D) PluginManager::loadPluginsDir: fileName:  libremotesinksrv.so
+2019-03-10 20:00:06.151 (I) PluginManager::loadPluginsDir: loaded plugin libremotesinksrv.so
+2019-03-10 20:00:06.151 (D) PluginManager::loadPluginsDir: fileName:  libudpsinksrv.so
+2019-03-10 20:00:06.151 (I) PluginManager::loadPluginsDir: loaded plugin libudpsinksrv.so
+2019-03-10 20:00:06.151 (D) PluginManager::loadPluginsDir: fileName:  libmodamsrv.so
+2019-03-10 20:00:06.152 (I) PluginManager::loadPluginsDir: loaded plugin libmodamsrv.so
+2019-03-10 20:00:06.152 (D) PluginManager::loadPluginsDir: fileName:  libmodatvsrv.so
+2019-03-10 20:00:06.228 (I) PluginManager::loadPluginsDir: loaded plugin libmodatvsrv.so
+2019-03-10 20:00:06.229 (D) PluginManager::loadPluginsDir: fileName:  libmodnfmsrv.so
+2019-03-10 20:00:06.229 (I) PluginManager::loadPluginsDir: loaded plugin libmodnfmsrv.so
+2019-03-10 20:00:06.229 (D) PluginManager::loadPluginsDir: fileName:  libmodssbsrv.so
+2019-03-10 20:00:06.229 (I) PluginManager::loadPluginsDir: loaded plugin libmodssbsrv.so
+2019-03-10 20:00:06.229 (D) PluginManager::loadPluginsDir: fileName:  libmodwfmsrv.so
+2019-03-10 20:00:06.230 (I) PluginManager::loadPluginsDir: loaded plugin libmodwfmsrv.so
+2019-03-10 20:00:06.230 (D) PluginManager::loadPluginsDir: fileName:  libremotesourcesrv.so
+2019-03-10 20:00:06.230 (I) PluginManager::loadPluginsDir: loaded plugin libremotesourcesrv.so
+2019-03-10 20:00:06.230 (D) PluginManager::loadPluginsDir: fileName:  libudpsourcesrv.so
+2019-03-10 20:00:06.230 (I) PluginManager::loadPluginsDir: loaded plugin libudpsourcesrv.so
+2019-03-10 20:00:06.230 (D) PluginManager::loadPluginsDir: fileName:  liboutputbladerf1srv.so
+2019-03-10 20:00:06.231 (I) PluginManager::loadPluginsDir: loaded plugin liboutputbladerf1srv.so
+2019-03-10 20:00:06.231 (D) PluginManager::loadPluginsDir: fileName:  liboutputbladerf2srv.so
+2019-03-10 20:00:06.231 (I) PluginManager::loadPluginsDir: loaded plugin liboutputbladerf2srv.so
+2019-03-10 20:00:06.231 (D) PluginManager::loadPluginsDir: fileName:  liboutputfilesinksrv.so
+2019-03-10 20:00:06.231 (I) PluginManager::loadPluginsDir: loaded plugin liboutputfilesinksrv.so
+2019-03-10 20:00:06.231 (D) PluginManager::loadPluginsDir: fileName:  liboutputhackrfsrv.so
+2019-03-10 20:00:06.232 (I) PluginManager::loadPluginsDir: loaded plugin liboutputhackrfsrv.so
+2019-03-10 20:00:06.232 (D) PluginManager::loadPluginsDir: fileName:  liboutputlimesdrsrv.so
+2019-03-10 20:00:06.233 (I) PluginManager::loadPluginsDir: loaded plugin liboutputlimesdrsrv.so
+2019-03-10 20:00:06.233 (D) PluginManager::loadPluginsDir: fileName:  liboutputplutosdrsrv.so
+2019-03-10 20:00:06.233 (I) PluginManager::loadPluginsDir: loaded plugin liboutputplutosdrsrv.so
+2019-03-10 20:00:06.233 (D) PluginManager::loadPluginsDir: fileName:  liboutputremotesrv.so
+2019-03-10 20:00:06.233 (I) PluginManager::loadPluginsDir: loaded plugin liboutputremotesrv.so
+2019-03-10 20:00:06.234 (D) PluginManager::loadPluginsDir: fileName:  liboutputsoapysdrsrv.so
+2019-03-10 20:00:06.234 (I) PluginManager::loadPluginsDir: loaded plugin liboutputsoapysdrsrv.so
+2019-03-10 20:00:06.234 (D) PluginManager::loadPluginsDir: fileName:  liboutputxtrxsrv.so
+2019-03-10 20:00:06.235 (I) PluginManager::loadPluginsDir: loaded plugin liboutputxtrxsrv.so
+2019-03-10 20:00:06.235 (D) PluginManager::loadPluginsDir: fileName:  libinputairspyhfsrv.so
+2019-03-10 20:00:06.235 (I) PluginManager::loadPluginsDir: loaded plugin libinputairspyhfsrv.so
+2019-03-10 20:00:06.235 (D) PluginManager::loadPluginsDir: fileName:  libinputairspysrv.so
+2019-03-10 20:00:06.236 (I) PluginManager::loadPluginsDir: loaded plugin libinputairspysrv.so
+2019-03-10 20:00:06.236 (D) PluginManager::loadPluginsDir: fileName:  libinputbladerf1srv.so
+2019-03-10 20:00:06.236 (I) PluginManager::loadPluginsDir: loaded plugin libinputbladerf1srv.so
+2019-03-10 20:00:06.236 (D) PluginManager::loadPluginsDir: fileName:  libinputbladerf2srv.so
+2019-03-10 20:00:06.236 (I) PluginManager::loadPluginsDir: loaded plugin libinputbladerf2srv.so
+2019-03-10 20:00:06.236 (D) PluginManager::loadPluginsDir: fileName:  libinputfcdproplussrv.so
+2019-03-10 20:00:06.237 (I) PluginManager::loadPluginsDir: loaded plugin libinputfcdproplussrv.so
+2019-03-10 20:00:06.237 (D) PluginManager::loadPluginsDir: fileName:  libinputfcdprosrv.so
+2019-03-10 20:00:06.237 (I) PluginManager::loadPluginsDir: loaded plugin libinputfcdprosrv.so
+2019-03-10 20:00:06.237 (D) PluginManager::loadPluginsDir: fileName:  libinputfilesourcesrv.so
+2019-03-10 20:00:06.237 (I) PluginManager::loadPluginsDir: loaded plugin libinputfilesourcesrv.so
+2019-03-10 20:00:06.237 (D) PluginManager::loadPluginsDir: fileName:  libinputhackrfsrv.so
+2019-03-10 20:00:06.238 (I) PluginManager::loadPluginsDir: loaded plugin libinputhackrfsrv.so
+2019-03-10 20:00:06.238 (D) PluginManager::loadPluginsDir: fileName:  libinputlimesdrsrv.so
+2019-03-10 20:00:06.238 (I) PluginManager::loadPluginsDir: loaded plugin libinputlimesdrsrv.so
+2019-03-10 20:00:06.238 (D) PluginManager::loadPluginsDir: fileName:  libinputplutosdrsrv.so
+2019-03-10 20:00:06.238 (I) PluginManager::loadPluginsDir: loaded plugin libinputplutosdrsrv.so
+2019-03-10 20:00:06.238 (D) PluginManager::loadPluginsDir: fileName:  libinputremotesrv.so
+2019-03-10 20:00:06.239 (I) PluginManager::loadPluginsDir: loaded plugin libinputremotesrv.so
+2019-03-10 20:00:06.239 (D) PluginManager::loadPluginsDir: fileName:  libinputrtlsdrsrv.so
+2019-03-10 20:00:06.239 (I) PluginManager::loadPluginsDir: loaded plugin libinputrtlsdrsrv.so
+2019-03-10 20:00:06.239 (D) PluginManager::loadPluginsDir: fileName:  libinputsdrplaysrv.so
+2019-03-10 20:00:06.239 (I) PluginManager::loadPluginsDir: loaded plugin libinputsdrplaysrv.so
+2019-03-10 20:00:06.239 (D) PluginManager::loadPluginsDir: fileName:  libinputsoapysdrsrv.so
+2019-03-10 20:00:06.240 (I) PluginManager::loadPluginsDir: loaded plugin libinputsoapysdrsrv.so
+2019-03-10 20:00:06.240 (D) PluginManager::loadPluginsDir: fileName:  libinputtestsourcesrv.so
+2019-03-10 20:00:06.240 (I) PluginManager::loadPluginsDir: loaded plugin libinputtestsourcesrv.so
+2019-03-10 20:00:06.240 (D) PluginManager::loadPluginsDir: fileName:  libinputxtrxsrv.so
+2019-03-10 20:00:06.240 (I) PluginManager::loadPluginsDir: loaded plugin libinputxtrxsrv.so
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  AM Demodulator  with channel name  "sdrangel.channel.amdemod"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  AM Modulator  with channel name  "sdrangel.channeltx.modam"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  ATV Modulator  with channel name  "sdrangel.channeltx.modatv"
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  Airspy Input  with source name  sdrangel.samplesource.airspy
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  AirspyHF Input  with source name  sdrangel.samplesource.airspyhf
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  BladeRF1 Input  with source name  sdrangel.samplesource.bladerf1input
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  BladeRF1 Output  with sink name  sdrangel.samplesource.bladerf1output
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  BladeRF2 Input  with source name  sdrangel.samplesource.bladerf2input
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  BladeRF2 Output  with sink name  sdrangel.samplesink.bladerf2output
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  Broadcast FM Demodulator  with channel name  "sdrangel.channel.bfm"
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  DSD Demodulator  with channel name  "sdrangel.channel.dsddemod"
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  File sink output  with sink name  sdrangel.samplesink.filesink
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  File source input  with source name  sdrangel.samplesource.filesource
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  FunCube Pro Input  with source name  sdrangel.samplesource.fcdpro
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  FunCube Pro+ Input  with source name  sdrangel.samplesource.fcdproplus
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  HackRF Input  with source name  sdrangel.samplesource.hackrf
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  HackRF Output  with sink name  sdrangel.samplesource.hackrfoutput
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  LimeSDR Input  with source name  sdrangel.samplesource.limesdr
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  LimeSDR Output  with sink name  sdrangel.samplesink.limesdr
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  NFM Demodulator  with channel name  "sdrangel.channel.nfmdemod"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  NFM Modulator  with channel name  "sdrangel.channeltx.modnfm"
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  PlutoSDR Input  with source name  sdrangel.samplesource.plutosdr
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  PlutoSDR Output  with sink name  sdrangel.samplesink.plutosdr
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  RTL-SDR Input  with source name  sdrangel.samplesource.rtlsdr
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  Remote channel sink  with channel name  "sdrangel.channel.remotesink"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  Remote channel source  with channel name  "sdrangel.channeltx.remotesource"
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  Remote device input  with source name  sdrangel.samplesource.remoteinput
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  Remote device output  with sink name  sdrangel.samplesink.remoteoutput
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  SDRPlay RSP1 Input  with source name  sdrangel.samplesource.sdrplay
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  SSB Demodulator  with channel name  "sdrangel.channel.ssbdemod"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  SSB Modulator  with channel name  "sdrangel.channeltx.modssb"
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  SoapySDR Input  with source name  sdrangel.samplesource.soapysdrinput
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  SoapySDR Output  with sink name  sdrangel.samplesink.soapysdroutput
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  Test Source input  with source name  sdrangel.samplesource.testsource
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  UDP Channel Sink  with channel name  "sdrangel.channel.udpsink"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  UDP Channel Source  with channel name  "sdrangel.channeltx.udpsource"
+2019-03-10 20:00:06.241 (D) PluginManager::registerRxChannel  WFM Demodulator  with channel name  "sdrangel.channel.wfmdemod"
+2019-03-10 20:00:06.241 (D) PluginManager::registerTxChannel  WFM Modulator  with channel name  "sdrangel.channeltx.modwfm"
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSource  XTRX Input  with source name  sdrangel.samplesource.xtrx
+2019-03-10 20:00:06.241 (D) PluginManager::registerSampleSink  XTRX Output  with sink name  sdrangel.samplesink.xtrx
+2019-03-10 20:00:06.244 (D) AirspyPlugin::enumSampleSources: enumerated 0 Airspy devices AIRSPY_ERROR_NOT_FOUND
+2019-03-10 20:00:06.244 (D) AirspyPlugin::enumSampleSources: airspy_exit: AIRSPY_SUCCESS
+2019-03-10 20:00:06.248 (D) AirspyHFPlugin::enumSampleSources: enumerated Airspy HF device #0
+2019-03-10 20:00:06.260 (D) HackRFPlugin::enumSampleSources: try to enumerate HackRF device #0
+2019-03-10 20:00:06.260 (D) HackRFPlugin::enumSampleSources: enumerated HackRF device #0
+2019-03-10 20:00:06.268 (D) DeviceLimeSDRParams::open: serial: LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66 type: 1
+Reference clock 40.00 MHz
+2019-03-10 20:00:06.849 (D) DeviceLimeSDRParams::open:  1  Rx channels for device  LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66
+2019-03-10 20:00:06.849 (D) DeviceLimeSDRParams::open:  1  Tx channels for device  LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66
+2019-03-10 20:00:06.850 (D) LimeSDRInputPlugin::enumSampleSources: device #0 channel 0: LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66
+ERROR: Unable to find host: Name or service not known
+2019-03-10 20:00:11.870 (D) DeviceSoapySDRScan::scan: Lib Version: v0.7.0-g6d21756e
+2019-03-10 20:00:11.870 (D) DeviceSoapySDRScan::scan: API Version: v0.7.0
+2019-03-10 20:00:11.870 (D) DeviceSoapySDRScan::scan: ABI Version: v0.7
+2019-03-10 20:00:11.870 (D) DeviceSoapySDRScan::scan: Install root: /opt/install/SoapySDR
+2019-03-10 20:00:11.870 (D) DeviceSoapySDRScan::scan: loaded module: /opt/install/SoapySDR/lib/SoapySDR/modules0.7/libLMS7Support.so
+2019-03-10 20:00:11.870 (D) DeviceSoapySDRScan::scan: loaded module: /opt/install/SoapySDR/lib/SoapySDR/modules0.7/libremoteSupport.so
+2019-03-10 20:00:11.871 (D) DeviceSoapySDRScan::scan: loaded module: /opt/install/SoapySDR/lib/SoapySDR/modules0.7/libsdrPlaySupport.so
+2019-03-10 20:00:11.871 (D) DeviceSoapySDRScan::scan: driver: lime
+2019-03-10 20:00:11.872 (D) DeviceSoapySDRScan::scan: lime #0 LimeSDR Mini [USB 3.0] 1D3AC6E32E7C66
+[INFO] Make connection: 'LimeSDR Mini [USB 3.0] 1D3AC6E32E7C66'
+[INFO] Reference clock 40.00 MHz
+[INFO] Device name: LimeSDR-Mini
+[INFO] Reference: 40 MHz
+[INFO] LMS7002M calibration values caching Disable
+2019-03-10 20:00:12.633 (D) DeviceSoapySDRScan::scan: lime #0 driver=FT601 hardware=LimeSDR-Mini #Rx=1 #Tx=1
+2019-03-10 20:00:12.676 (D) DeviceSoapySDRScan::scan: driver: remote
+2019-03-10 20:00:12.781 (D) DeviceSoapySDRScan::scan: driver: sdrplay
+2019-03-10 20:00:12.789 (D) SoapySDRInputPlugin::enumSampleSources: 1 SoapySDR devices. Enumerate these with Rx channel(s):
+2019-03-10 20:00:12.789 (D) SoapySDRInputPlugin::enumSampleSources: device #0 (LimeSDR Mini [USB 3.0] 1D3AC6E32E7C66) serial lime-0 channel 0
+20:00:12.789175 [0;32mWARN:   xtrxllpciev0_discovery:243 [PCIE] XTRX PCIe driver isn't loaded
+[0m2019-03-10 20:00:12.798 (D) HackRFOutputPlugin::enumSampleSinks: try to enumerate HackRF device #0
+2019-03-10 20:00:12.798 (D) HackRFOutputPlugin::enumSampleSinks: enumerated HackRF device #0
+2019-03-10 20:00:12.799 (D) DeviceLimeSDRParams::open: serial: LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66 type: 1
+[INFO] Reference clock 40.00 MHz
+2019-03-10 20:00:13.380 (D) DeviceLimeSDRParams::open:  1  Rx channels for device  LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66
+2019-03-10 20:00:13.380 (D) DeviceLimeSDRParams::open:  1  Tx channels for device  LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66
+2019-03-10 20:00:13.381 (D) LimeSDROutputPlugin::enumSampleSources: device #0 channel 0: LimeSDR Mini, media=USB 3.0, module=FT601, addr=24607:1027, serial=1D3AC6E32E7C66
+ERROR: Unable to find host: Name or service not known
+2019-03-10 20:00:18.391 (D) SoapySDROutputPlugin::enumSampleSinks: 1 SoapySDR devices. Enumerate these with Tx channel(s):
+2019-03-10 20:00:18.391 (D) SoapySDROutputPlugin::enumSampleSinks: device #0 (LimeSDR Mini [USB 3.0] 1D3AC6E32E7C66) serial lime-0 channel 0
+20:00:18.391406 [0;32mWARN:   xtrxllpciev0_discovery:243 [PCIE] XTRX PCIe driver isn't loaded
+[0m2019-03-10 20:00:18.394 (D) MainCore::loadSettings
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::deserialize
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioInputInfos:  name:  "System default device"  sampleRate:  48000  volume:  0.15
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioInputInfos:  name:  "alsa_input.pci-0000_00_1b.0.analog-stereo"  sampleRate:  8000  volume:  0.05
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioInputInfos:  name:  "alsa_input.pci-0000_00_1f.3.analog-stereo"  sampleRate:  48000  volume:  0.15
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioOutputInfos:  name:  "System default device"  sampleRate:  8000  udpAddress:  "192.168.0.38"  udpPort:  9998  copyToUDP:  true  udpUseRTP:  true  udpChannelMode:  2  udpChannelCodec:  5  decimationFactor:  1
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioOutputInfos:  name:  "alsa_output.pci-0000_00_1f.3.analog-stereo"  sampleRate:  48000  udpAddress:  "192.168.1.3"  udpPort:  9998  copyToUDP:  false  udpUseRTP:  true  udpChannelMode:  0  udpChannelCodec:  0  decimationFactor:  1
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioOutputInfos:  name:  "fcdv1op"  sampleRate:  8000  udpAddress:  "192.168.0.38"  udpPort:  9998  copyToUDP:  false  udpUseRTP:  true  udpChannelMode:  2  udpChannelCodec:  2  decimationFactor:  1
+2019-03-10 20:00:18.395 (D) AudioDeviceManager::debugAudioOutputInfos:  name:  "fldgv1op"  sampleRate:  8000  udpAddress:  "127.0.0.1"  udpPort:  9998  copyToUDP:  false  udpUseRTP:  false  udpChannelMode:  0  udpChannelCodec:  0  decimationFactor:  1
+2019-03-10 20:00:18.405 (D) MainCore::MainCore: registered resource file /opt/install/sdrangel/bin/sdrbase.rcc
+2019-03-10 20:00:18.405 (D) StaticFileController: docroot=:/webapi, encoding=UTF-8, maxAge=60000
+2019-03-10 20:00:18.405 (D) StaticFileController: cache timeout=60000, size=1000000
+2019-03-10 20:00:18.405 (D) HttpListener: Listening on port 8091
+2019-03-10 20:00:18.405 (I) WebAPIServer::start: starting web API server at http://172.22.0.3:8091
+2019-03-10 20:00:18.405 (D) MainCore::MainCore: end
+2019-03-10 20:00:20.472 (D) HttpConnectionHandler (0x56247f9a4310): constructed
+2019-03-10 20:00:20.473 (D) HttpConnectionHandler (0x56247f9a4310): received request from 172.22.0.1 (GET) /sdrangel
+2019-03-10 20:00:25.169 (D) HttpConnectionHandler (0x56247f9a4310): received request from 172.22.0.1 (OPTIONS) /sdrangel/deviceset
+2019-03-10 20:00:25.169 (D) WebAPIRequestMapper::service: method OPTIONS: assume pre-flight
+2019-03-10 20:00:25.170 (D) HttpConnectionHandler (0x56247f9a4310): received request from 172.22.0.1 (POST) /sdrangel/deviceset
+2019-03-10 20:00:25.171 (D) MainCore::handleMessages: message: MainCore::MsgAddDeviceSet
+2019-03-10 20:00:25.171 (D) DSPDeviceSourceEngine::start
+2019-03-10 20:00:25.171 (D) DSPDeviceSourceEngine::setSourceSequence: seq: 0
+2019-03-10 20:00:25.171 (D) DSPDeviceSourceEngine::run
+2019-03-10 20:00:25.171 (D) FileSourceInput::FileSourceInput: device source engine: 0x5624800fc590
+2019-03-10 20:00:25.171 (D) FileSourceInput::FileSourceInput: device source engine message queue: 0x5624800fc5a8
+2019-03-10 20:00:25.171 (D) FileSourceInput::FileSourceInput: device source: 0x0
+2019-03-10 20:00:25.174 (D) DSPDeviceSourceEngine::setSource
+2019-03-10 20:00:25.174 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPSetSource
+2019-03-10 20:00:25.174 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:25.174 (D) DSPDeviceSourceEngine::handleSetSource: set 
+2019-03-10 20:00:25.625 (D) HttpConnectionHandler (0x56247f9cdcd0): constructed
+2019-03-10 20:00:25.626 (D) HttpConnectionHandler (0x56247f9cdcd0): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:00:33.042 (D) HttpConnectionHandler (0x56247f9a1eb0): constructed
+2019-03-10 20:00:33.042 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (PUT) /sdrangel/deviceset/0/device
+2019-03-10 20:00:33.042 (D) MainCore::handleMessages: message: MainCore::MsgSetDevice
+2019-03-10 20:00:33.042 (D) MainCore::changeSampleSource: deviceSet at 0
+2019-03-10 20:00:33.043 (D) DeviceSourceAPI::saveSourceSettings: not a source preset
+2019-03-10 20:00:33.043 (D) DSPDeviceSourceEngine::stopAcquistion
+2019-03-10 20:00:33.043 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionStop
+2019-03-10 20:00:33.043 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:33.043 (D) FileSourceInput::stop
+2019-03-10 20:00:33.043 (D) DSPDeviceSourceEngine::setSourceSequence: seq: 0
+2019-03-10 20:00:33.043 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+2019-03-10 20:00:33.049 (D) AirspyHFInput::openDevice: opened Airspy HF with serial c852a98040c73f93
+2019-03-10 20:00:33.049 (D) AirspyHFInput::openDevice: 1 sample rates for Airspy HF
+2019-03-10 20:00:33.049 (D) AirspyHFInput::openDevice: obtained Airspy HF sample rates
+2019-03-10 20:00:33.049 (D) AirspyHFInput::openDevice: sampleRates[0] = 768000 Hz
+2019-03-10 20:00:33.049 (D) DSPDeviceSourceEngine::addSink:  FileRecord
+2019-03-10 20:00:33.049 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddBasebandSampleSink
+2019-03-10 20:00:33.049 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  0  m_centerFrequency:  0
+2019-03-10 20:00:33.049 (D) DSPDeviceSourceEngine::setSource
+2019-03-10 20:00:33.049 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPSetSource
+2019-03-10 20:00:33.049 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:33.049 (D) DSPDeviceSourceEngine::handleSetSource: set AirspyHF
+2019-03-10 20:00:33.050 (D) DeviceSourceAPI::loadSourceSettings: Loading preset [default | no name] is not a source preset
+2019-03-10 20:00:33.050 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (PATCH) /sdrangel/preset
+2019-03-10 20:00:33.050 (D) MainCore::handleMessages: message: MainCore::MsgLoadPreset
+2019-03-10 20:00:33.050 (D) MainCore::loadPresetSettings: preset [OM144 | Rept + Simplex + DV]
+2019-03-10 20:00:33.050 (D) DeviceSourceAPI::loadSourceSettings: Loading preset [OM144 | Rept + Simplex + DV]
+2019-03-10 20:00:33.050 (D) Preset::findBestSourceConfig: serial matched (exact): id: sdrangel.samplesource.airspyhf ser: c852a98040c73f93
+2019-03-10 20:00:33.050 (D) DeviceSourceAPI::loadSourceSettings: center frequency: 145480000 Hz
+2019-03-10 20:00:33.050 (D) DeviceSourceAPI::loadSourceSettings: deserializing source sdrangel.samplesource.airspyhf[0]: c852a98040c73f93
+2019-03-10 20:00:33.050 (D) MsgConfigureAirspyHF::handleMessage: MsgConfigureAirspyHF
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings:   m_centerFrequency:  7150000  m_devSampleRateIndex:  0  m_log2Decim:  0  m_LOppmTenths:  26  m_bandIndex:  1  m_transverterDeltaFrequency:  0  m_transverterMode:  false  m_fileRecordName:  ""  m_useDSP:  false  m_useAGC:  false  m_agcHigh:  false  m_useLNA:  false  m_attenuatorSteps:  0  m_useReverseAPI:  false  m_reverseAPIAddress:  "127.0.0.1"  m_reverseAPIPort:  8888  m_reverseAPIDeviceIndex:  0  m_dcBlock:  true  m_iqCorrection:  false
+2019-03-10 20:00:33.050 (D) DSPDeviceSourceEngine::configureCorrections
+2019-03-10 20:00:33.050 (D) DSPDeviceSourceEngine::handleInputMessages: message: DSPConfigureCorrection
+2019-03-10 20:00:33.050 (D) AirspyHFInput::setDeviceCenterFrequency: frequency set to 60000000 Hz
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings: center freq:  7150000  Hz  device center freq:  7150000  Hz  device sample rate:  768000 Hz  Actual sample rate:  768000 Hz  img:  7150000 Hz
+2019-03-10 20:00:33.050 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings: set AGC to 0
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings: set AGC to low
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings: set DSP to 0
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings: set LNA to 0
+2019-03-10 20:00:33.050 (D) AirspyHFInput::applySettings: set attenuator to 0 dB
+2019-03-10 20:00:33.050 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  7150000
+2019-03-10 20:00:33.051 (D) MsgConfigureAirspyHF::handleMessage: MsgConfigureAirspyHF
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: message: DSPSignalNotification
+2019-03-10 20:00:33.051 (D) AirspyHFInput::applySettings:   m_centerFrequency:  145480000  m_devSampleRateIndex:  0  m_log2Decim:  0  m_LOppmTenths:  26  m_bandIndex:  1  m_transverterDeltaFrequency:  0  m_transverterMode:  false  m_fileRecordName:  ""  m_useDSP:  false  m_useAGC:  false  m_agcHigh:  false  m_useLNA:  false  m_attenuatorSteps:  0  m_useReverseAPI:  false  m_reverseAPIAddress:  "127.0.0.1"  m_reverseAPIPort:  8888  m_reverseAPIDeviceIndex:  0  m_dcBlock:  true  m_iqCorrection:  false
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: DSPSignalNotification:  m_sampleRate:  768000  m_centerFrequency:  7150000
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: forward message to  FileRecord
+2019-03-10 20:00:33.051 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  7150000
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: DSPSignalNotification: guiMessageQueue: 0x0
+2019-03-10 20:00:33.051 (D) AirspyHFInput::setDeviceCenterFrequency: frequency set to 145480000 Hz
+2019-03-10 20:00:33.051 (D) AirspyHFInput::applySettings: center freq:  145480000  Hz  device center freq:  145480000  Hz  device sample rate:  768000 Hz  Actual sample rate:  768000 Hz  img:  145480000 Hz
+2019-03-10 20:00:33.051 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:00:33.051 (D) DeviceSet::loadChannelSettings: Loading preset [OM144 | Rept + Simplex + DV]
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: message: DSPSignalNotification
+2019-03-10 20:00:33.051 (D) DeviceSet::loadChannelSettings: 9 channel(s) in preset
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: DSPSignalNotification:  m_sampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:00:33.051 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: forward message to  FileRecord
+2019-03-10 20:00:33.051 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:00:33.051 (D) DSPDeviceSourceEngine::handleInputMessages: DSPSignalNotification: guiMessageQueue: 0x0
+2019-03-10 20:00:33.051 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.051 (D) AudioDeviceManager::addAudioSink: -1: 0x5624802c20b8
+2019-03-10 20:00:33.051 (W) AudioOutput::start: using system default device alsa_output.pci-0000_00_1f.3.analog-stereo
+2019-03-10 20:00:33.051 (I) AudioOutput::start: audio format OK
+2019-03-10 20:00:33.051 (D) AudioOpus::AudioOpus: libopus version libopus 1.1.2
+2019-03-10 20:00:33.051 (D) RTPSink::RTPSink: initialized transmitter: No error
+2019-03-10 20:00:33.051 (D) RTPSink::RTPSink: created transmitter: No error
+2019-03-10 20:00:33.051 (D) RTPPacketBuilder::CreateNewSSRC: timestamp: 2099999382
+2019-03-10 20:00:33.051 (D) RTPSink::RTPSink: created session: No error
+2019-03-10 20:00:33.051 (D) RTPSink::setPayloadInformation: payloadType: 0 sampleRate: 8000
+2019-03-10 20:00:33.051 (D) RTPSink::setPayloadInformation: timestamp unit set to 0.000125: No error
+2019-03-10 20:00:33.051 (D) RTPSink::setPayloadInformation: set default mark to false: No error
+2019-03-10 20:00:33.051 (D) RTPSink::setPayloadInformation: set default timestamp increment to 160: No error
+2019-03-10 20:00:33.051 (D) RTPSink::setPayloadInformation: set maximum packet size to 660 bytes: No error
+2019-03-10 20:00:33.052 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.052 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.052 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.052 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.052 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.052 (D) AudioDeviceManager::addAudioSink: -1: 0x5624802c20b8
+2019-03-10 20:00:33.052 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.053 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.053 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x56248011a1e0
+2019-03-10 20:00:33.053 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x56248011a1e0)
+2019-03-10 20:00:33.053 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.053 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.053 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.053 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.053 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.053 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.053 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.053 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.053 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.053 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  -280000
+2019-03-10 20:00:33.053 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.053 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  -280000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -79  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.053 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.053 (D) AudioDeviceManager::addAudioSink: -1: 0x5624802c20b8
+2019-03-10 20:00:33.053 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.dsddemod] from config [sdrangel.channel.dsddemod]
+DSDDstar::reset_header_strings
+DSDDecoder::resetFrameSync: symbol 0 (0)
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.053 (D) AudioDeviceManager::addAudioSink: -1: 0x562480490480
+2019-03-10 20:00:33.053 (D) AudioDeviceManager::addAudioSink: -1: 0x5624804904b8
+2019-03-10 20:00:33.053 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.054 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.054 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.054 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_fmDeviation:  3500  m_demodGain:  1  m_volume:  2  m_baudRate:  4800  m_squelchGate 5  m_squelch:  -40  m_audioMute:  false  m_enableCosineFiltering:  false  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  false  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.054 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.054 (D) AudioDeviceManager::addAudioSink: -1: 0x562480490480
+2019-03-10 20:00:33.054 (D) AudioDeviceManager::addAudioSink: -1: 0x5624804904b8
+2019-03-10 20:00:33.054 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))"
+2019-03-10 20:00:33.054 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.054 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.054 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x5624803857c0)
+2019-03-10 20:00:33.054 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))
+2019-03-10 20:00:33.054 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.054 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.054 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.054 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.dsddemod]
+2019-03-10 20:00:33.054 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.054 (D) DSDDemod::handleMessage: MsgChannelizerNotification: inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.054 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.054 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.054 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.054 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.054 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.054 (D) DSDDemod::handleMessage: MsgConfigureDSDDemod: m_rfBandwidth
+2019-03-10 20:00:33.055 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  -154900  m_rfBandwidth:  12500  m_fmDeviation:  7500  m_demodGain:  1  m_volume:  3  m_baudRate:  4800  m_squelchGate 1  m_squelch:  -61  m_audioMute:  false  m_enableCosineFiltering:  true  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  false  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.055 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.055 (D) AudioDeviceManager::addAudioSink: -1: 0x562480490480
+2019-03-10 20:00:33.055 (D) AudioDeviceManager::addAudioSink: -1: 0x5624804904b8
+2019-03-10 20:00:33.055 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.055 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.055 (D) AudioDeviceManager::addAudioSink: -1: 0x5624805ed308
+2019-03-10 20:00:33.055 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.055 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.055 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.055 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.055 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.055 (D) AudioDeviceManager::addAudioSink: -1: 0x5624805ed308
+2019-03-10 20:00:33.055 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.055 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.056 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x562480381fe0
+2019-03-10 20:00:33.056 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480381fe0)
+2019-03-10 20:00:33.056 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.056 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.056 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.056 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.056 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.056 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.056 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.056 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.056 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.056 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  -55000
+2019-03-10 20:00:33.056 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.056 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  -55000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -70  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.056 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.056 (D) AudioDeviceManager::addAudioSink: -1: 0x5624805ed308
+2019-03-10 20:00:33.056 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.056 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.056 (D) AudioDeviceManager::addAudioSink: -1: 0x562480763758
+2019-03-10 20:00:33.056 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.056 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.056 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.056 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.056 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.056 (D) AudioDeviceManager::addAudioSink: -1: 0x562480763758
+2019-03-10 20:00:33.056 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.057 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.057 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x562480763840
+2019-03-10 20:00:33.057 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480763840)
+2019-03-10 20:00:33.057 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.057 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.057 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.057 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.057 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.057 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.057 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.057 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.057 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.057 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  20000
+2019-03-10 20:00:33.057 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.057 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  20000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -80  m_ctcssIndex:  3  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.057 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.057 (D) AudioDeviceManager::addAudioSink: -1: 0x562480763758
+2019-03-10 20:00:33.057 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.057 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.057 (D) AudioDeviceManager::addAudioSink: -1: 0x5624808d5228
+2019-03-10 20:00:33.057 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.057 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.057 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.057 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.057 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.057 (D) AudioDeviceManager::addAudioSink: -1: 0x5624808d5228
+2019-03-10 20:00:33.057 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.058 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.058 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x5624805e8f90
+2019-03-10 20:00:33.058 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x5624805e8f90)
+2019-03-10 20:00:33.058 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.058 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.058 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.058 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.058 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.058 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.058 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.058 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.058 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.058 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  70000
+2019-03-10 20:00:33.058 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.058 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  70000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -80  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.058 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.058 (D) AudioDeviceManager::addAudioSink: -1: 0x5624808d5228
+2019-03-10 20:00:33.058 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.058 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.058 (D) AudioDeviceManager::addAudioSink: -1: 0x562480a4f9c8
+2019-03-10 20:00:33.058 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.058 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.058 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.058 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.058 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.058 (D) AudioDeviceManager::addAudioSink: -1: 0x562480a4f9c8
+2019-03-10 20:00:33.059 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.059 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.059 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x562480a4fd70
+2019-03-10 20:00:33.059 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480a4fd70)
+2019-03-10 20:00:33.059 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.059 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.059 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.059 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.059 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.059 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.059 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.059 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.059 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.059 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  145000
+2019-03-10 20:00:33.059 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.059 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  145000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -80  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.059 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.059 (D) AudioDeviceManager::addAudioSink: -1: 0x562480a4f9c8
+2019-03-10 20:00:33.059 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.059 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.059 (D) AudioDeviceManager::addAudioSink: -1: 0x562480bc1578
+2019-03-10 20:00:33.059 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.059 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.059 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.060 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.060 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.060 (D) AudioDeviceManager::addAudioSink: -1: 0x562480bc1578
+2019-03-10 20:00:33.060 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.060 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.060 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x562480bc10b0
+2019-03-10 20:00:33.060 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480bc10b0)
+2019-03-10 20:00:33.060 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.060 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.060 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.060 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.060 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.060 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.060 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.060 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.060 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.060 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  195000
+2019-03-10 20:00:33.060 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.060 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  195000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -80  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.060 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.060 (D) AudioDeviceManager::addAudioSink: -1: 0x562480bc1578
+2019-03-10 20:00:33.061 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.061 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.061 (D) AudioDeviceManager::addAudioSink: -1: 0x562480bc4fb8
+2019-03-10 20:00:33.061 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.061 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.061 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.061 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.061 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.061 (D) AudioDeviceManager::addAudioSink: -1: 0x562480bc4fb8
+2019-03-10 20:00:33.061 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.061 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.061 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x562480bc35d0
+2019-03-10 20:00:33.061 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480bc35d0)
+2019-03-10 20:00:33.061 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.061 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.061 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.061 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.061 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.061 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.061 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.061 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.061 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.061 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  245000
+2019-03-10 20:00:33.061 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.061 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  245000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -80  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.061 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.062 (D) AudioDeviceManager::addAudioSink: -1: 0x562480bc4fb8
+2019-03-10 20:00:33.062 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.062 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.062 (D) AudioDeviceManager::addAudioSink: -1: 0x562480eadc18
+2019-03-10 20:00:33.062 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.062 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.062 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.062 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.062 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.062 (D) AudioDeviceManager::addAudioSink: -1: 0x562480eadc18
+2019-03-10 20:00:33.062 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.062 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.062 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x562480eadd00
+2019-03-10 20:00:33.062 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480eadd00)
+2019-03-10 20:00:33.062 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.062 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.062 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:00:33.062 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:00:33.062 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.062 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:00:33.062 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.062 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.062 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.062 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  270000
+2019-03-10 20:00:33.062 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.063 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  270000  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  5000  m_volume:  2  m_squelchGate:  30  m_deltaSquelch:  false  m_squelch:  -80  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.063 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.063 (D) AudioDeviceManager::addAudioSink: -1: 0x562480eadc18
+2019-03-10 20:00:33.063 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (POST) /sdrangel/deviceset
+2019-03-10 20:00:33.063 (D) MainCore::handleMessages: message: MainCore::MsgAddDeviceSet
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::start
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::setSourceSequence: seq: 0
+2019-03-10 20:00:33.063 (D) FileSourceInput::FileSourceInput: device source engine: 0x56248112b7b0
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::run
+2019-03-10 20:00:33.063 (D) FileSourceInput::FileSourceInput: device source engine message queue: 0x56248112b7c8
+2019-03-10 20:00:33.063 (D) FileSourceInput::FileSourceInput: device source: 0x0
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::setSource
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPSetSource
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:33.063 (D) DSPDeviceSourceEngine::handleSetSource: set 
+2019-03-10 20:00:33.063 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+2019-03-10 20:00:33.064 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (PUT) /sdrangel/deviceset/1/device
+2019-03-10 20:00:33.064 (D) MainCore::handleMessages: message: MainCore::MsgSetDevice
+2019-03-10 20:00:33.064 (D) MainCore::changeSampleSource: deviceSet at 1
+2019-03-10 20:00:33.064 (D) DeviceSourceAPI::saveSourceSettings: not a source preset
+2019-03-10 20:00:33.064 (D) DSPDeviceSourceEngine::stopAcquistion
+2019-03-10 20:00:33.064 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionStop
+2019-03-10 20:00:33.064 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:33.064 (D) FileSourceInput::stop
+2019-03-10 20:00:33.064 (D) DSPDeviceSourceEngine::setSourceSequence: seq: 0
+2019-03-10 20:00:33.065 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+gf256_ctx::gf256_init_: initialized
+2019-03-10 20:00:33.066 (D) DSPDeviceSourceEngine::addSink:  FileRecord
+2019-03-10 20:00:33.066 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddBasebandSampleSink
+2019-03-10 20:00:33.066 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  0  m_centerFrequency:  0
+2019-03-10 20:00:33.066 (D) DSPDeviceSourceEngine::setSource
+2019-03-10 20:00:33.066 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPSetSource
+2019-03-10 20:00:33.066 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:33.066 (D) DSPDeviceSourceEngine::handleSetSource: set 
+2019-03-10 20:00:33.066 (D) DeviceSourceAPI::loadSourceSettings: Loading preset [default | no name] is not a source preset
+2019-03-10 20:00:33.067 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (PATCH) /sdrangel/preset
+2019-03-10 20:00:33.067 (D) MainCore::handleMessages: message: MainCore::MsgLoadPreset
+2019-03-10 20:00:33.067 (D) MainCore::loadPresetSettings: preset [PRO400 | PM nice low remote]
+2019-03-10 20:00:33.067 (D) DeviceSourceAPI::loadSourceSettings: Loading preset [PRO400 | PM nice low remote]
+2019-03-10 20:00:33.067 (D) Preset::findBestSourceConfig: serial matched (exact): id: sdrangel.samplesource.remoteinput ser: 
+2019-03-10 20:00:33.067 (D) DeviceSourceAPI::loadSourceSettings: center frequency: 463750000 Hz
+2019-03-10 20:00:33.067 (D) DeviceSourceAPI::loadSourceSettings: deserializing source sdrangel.samplesource.remoteinput[0]: 
+2019-03-10 20:00:33.067 (D) RemoteInput::handleMessage: RemoteInput::MsgConfigureRemoteInput
+2019-03-10 20:00:33.067 (D) DSPDeviceSourceEngine::configureCorrections
+2019-03-10 20:00:33.067 (D) RemoteInput::applySettings: corrections: DC block: true IQ imbalance: false
+2019-03-10 20:00:33.067 (D) DSPDeviceSourceEngine::handleInputMessages: message: DSPConfigureCorrection
+2019-03-10 20:00:33.067 (D) RemoteInputUDPHandler::configureUDPLink: 172.17.0.2:9094
+2019-03-10 20:00:33.067 (D) RemoteInputUDPHandler::stop
+2019-03-10 20:00:33.067 (D) RemoteInputUDPHandler::start
+2019-03-10 20:00:33.067 (W) RemoteInputUDPHandler::start: cannot bind data port 9094
+2019-03-10 20:00:33.067 (D) RemoteInput::applySettings:   m_dataAddress:  "172.17.0.2"  m_dataPort:  9094  m_apiAddress:  "192.168.0.24"  m_apiPort:  8091  m_remoteAddress:  "127.0.0.1"
+2019-03-10 20:00:33.067 (D) DeviceSet::loadChannelSettings: Loading preset [PRO400 | PM nice low remote]
+2019-03-10 20:00:33.067 (D) DeviceSet::loadChannelSettings: 4 channel(s) in preset
+2019-03-10 20:00:33.067 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.dsddemod] from config [sdrangel.channel.dsddemod]
+2019-03-10 20:00:33.067 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+DSDDstar::reset_header_strings
+DSDDecoder::resetFrameSync: symbol 0 (0)
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.067 (D) AudioDeviceManager::addAudioSink: -1: 0x56248112eb90
+2019-03-10 20:00:33.067 (D) AudioDeviceManager::addAudioSink: -1: 0x56248112ebc8
+2019-03-10 20:00:33.067 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.067 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.067 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.067 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_fmDeviation:  3500  m_demodGain:  1  m_volume:  2  m_baudRate:  4800  m_squelchGate 5  m_squelch:  -40  m_audioMute:  false  m_enableCosineFiltering:  false  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  false  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.068 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.068 (D) AudioDeviceManager::addAudioSink: -1: 0x56248112eb90
+2019-03-10 20:00:33.068 (D) AudioDeviceManager::addAudioSink: -1: 0x56248112ebc8
+2019-03-10 20:00:33.068 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))"
+2019-03-10 20:00:33.068 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.068 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.068 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562481029100)
+2019-03-10 20:00:33.068 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))
+2019-03-10 20:00:33.068 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.068 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:00:33.068 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:00:33.068 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.dsddemod]
+2019-03-10 20:00:33.068 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.068 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.068 (D) DSDDemod::handleMessage: MsgConfigureDSDDemod: m_rfBandwidth
+2019-03-10 20:00:33.068 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  -40500  m_rfBandwidth:  5600  m_fmDeviation:  2600  m_demodGain:  1  m_volume:  2  m_baudRate:  2400  m_squelchGate 1  m_squelch:  -35  m_audioMute:  false  m_enableCosineFiltering:  true  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  true  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.068 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.050000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.068 (D) AudioDeviceManager::addAudioSink: -1: 0x56248112eb90
+2019-03-10 20:00:33.068 (D) AudioDeviceManager::addAudioSink: -1: 0x56248112ebc8
+2019-03-10 20:00:33.068 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.dsddemod] from config [sdrangel.channel.dsddemod]
+DSDDstar::reset_header_strings
+DSDDecoder::resetFrameSync: symbol 0 (0)
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.069 (D) AudioDeviceManager::addAudioSink: -1: 0x562481391ed0
+2019-03-10 20:00:33.069 (D) AudioDeviceManager::addAudioSink: -1: 0x562481391f08
+2019-03-10 20:00:33.069 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.069 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.069 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.069 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_fmDeviation:  3500  m_demodGain:  1  m_volume:  2  m_baudRate:  4800  m_squelchGate 5  m_squelch:  -40  m_audioMute:  false  m_enableCosineFiltering:  false  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  false  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.069 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.069 (D) AudioDeviceManager::addAudioSink: -1: 0x562481391ed0
+2019-03-10 20:00:33.069 (D) AudioDeviceManager::addAudioSink: -1: 0x562481391f08
+2019-03-10 20:00:33.069 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))"
+2019-03-10 20:00:33.069 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.069 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.069 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562481024700)
+2019-03-10 20:00:33.069 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))
+2019-03-10 20:00:33.069 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.069 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:00:33.069 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:00:33.069 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.dsddemod]
+2019-03-10 20:00:33.069 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.070 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.070 (D) DSDDemod::handleMessage: MsgConfigureDSDDemod: m_rfBandwidth
+2019-03-10 20:00:33.070 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  -34250  m_rfBandwidth:  5600  m_fmDeviation:  2600  m_demodGain:  1  m_volume:  2  m_baudRate:  2400  m_squelchGate 5  m_squelch:  -40  m_audioMute:  false  m_enableCosineFiltering:  true  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  false  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.070 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.050000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.070 (D) AudioDeviceManager::addAudioSink: -1: 0x562481391ed0
+2019-03-10 20:00:33.070 (D) AudioDeviceManager::addAudioSink: -1: 0x562481391f08
+2019-03-10 20:00:33.070 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.dsddemod] from config [sdrangel.channel.dsddemod]
+DSDDstar::reset_header_strings
+DSDDecoder::resetFrameSync: symbol 0 (0)
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.070 (D) AudioDeviceManager::addAudioSink: -1: 0x5624815f3780
+2019-03-10 20:00:33.070 (D) AudioDeviceManager::addAudioSink: -1: 0x5624815f37b8
+2019-03-10 20:00:33.070 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.070 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.070 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.070 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_fmDeviation:  3500  m_demodGain:  1  m_volume:  2  m_baudRate:  4800  m_squelchGate 5  m_squelch:  -40  m_audioMute:  false  m_enableCosineFiltering:  false  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  false  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.070 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.100000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.070 (D) AudioDeviceManager::addAudioSink: -1: 0x5624815f3780
+2019-03-10 20:00:33.070 (D) AudioDeviceManager::addAudioSink: -1: 0x5624815f37b8
+2019-03-10 20:00:33.070 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))"
+2019-03-10 20:00:33.071 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.071 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.071 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x562480eb27e0)
+2019-03-10 20:00:33.071 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(DSDDemod))
+2019-03-10 20:00:33.071 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.071 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:00:33.071 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:00:33.071 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.dsddemod]
+2019-03-10 20:00:33.071 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.071 (D) DSDDemod::handleMessage
+2019-03-10 20:00:33.071 (D) DSDDemod::handleMessage: MsgConfigureDSDDemod: m_rfBandwidth
+2019-03-10 20:00:33.071 (D) DSDDemod::applySettings:   m_inputFrequencyOffset:  9500  m_rfBandwidth:  5600  m_fmDeviation:  2600  m_demodGain:  1  m_volume:  2  m_baudRate:  2400  m_squelchGate 5  m_squelch:  -40  m_audioMute:  false  m_enableCosineFiltering:  true  m_syncOrConstellation:  false  m_slot1On:  true  m_slot2On:  false  m_tdmaStereo:  false  m_pllLock:  true  m_highPassFilter:  true  m_audioDeviceName:  "System default device"  m_traceLengthMutliplier:  6  m_traceStroke:  100  m_traceDecay:  200  force:  true
+2019-03-10 20:00:33.071 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+PhaseLock::configure: freq: 0.050000 bandwidth: 0.003000 minsignal: 0.250000, m_lock_delay: 333
+2019-03-10 20:00:33.071 (D) AudioDeviceManager::addAudioSink: -1: 0x5624815f3780
+2019-03-10 20:00:33.071 (D) AudioDeviceManager::addAudioSink: -1: 0x5624815f37b8
+2019-03-10 20:00:33.071 (D) DeviceSet::loadChannelSettings: creating new channel [sdrangel.channel.nfmdemod] from config [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.071 (D) NFMDemod::NFMDemod
+2019-03-10 20:00:33.071 (D) AudioDeviceManager::addAudioSink: -1: 0x5624814eabc8
+2019-03-10 20:00:33.071 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:00:33.071 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:00:33.071 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.071 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  0  m_rfBandwidth:  12500  m_afBandwidth:  3000  m_fmDeviation:  2000  m_volume:  1  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.071 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.071 (D) AudioDeviceManager::addAudioSink: -1: 0x5624814eabc8
+2019-03-10 20:00:33.071 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink:  "ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))"
+2019-03-10 20:00:33.072 (D) DownChannelizer::handleMessage: MsgThreadedSink: forwarded to demod
+2019-03-10 20:00:33.072 (D) NFMDemod::handleMessage: BasebandSampleSink::MsgThreadedSink: 0x5624814f0fd0
+2019-03-10 20:00:33.072 (D) ThreadedBasebandSampleSink::ThreadedBasebandSampleSink: thread:  QThread(0x56247f989e10)  m_thread:  QThread(0x5624814f0fd0)
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::addThreadedSink:  ThreadedBasebandSampleSink(DownChannelizer(NFMDemod))
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAddThreadedBasebandSampleSink
+2019-03-10 20:00:33.072 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:00:33.072 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:00:33.072 (D) DeviceSet::loadChannelSettings: deserializing channel [sdrangel.channel.nfmdemod]
+2019-03-10 20:00:33.072 (D) NFMDemod::handleMessage: MsgConfigureChannelizer:  sampleRate:  8000  centerFrequency:  37900
+2019-03-10 20:00:33.072 (D) NFMDemod::handleMessage: MsgConfigureNFMDemod
+2019-03-10 20:00:33.072 (D) NFMDemod::applySettings:  m_inputFrequencyOffset:  37900  m_rfBandwidth:  10000  m_afBandwidth:  3000  m_fmDeviation:  4000  m_volume:  2  m_squelchGate:  5  m_deltaSquelch:  false  m_squelch:  -30  m_ctcssIndex:  0  m_ctcssOn:  false  m_audioMute:  false  m_audioDeviceName:  "System default device"  m_useReverseAPI:  false  force:  true
+2019-03-10 20:00:33.072 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:00:33.072 (D) AudioDeviceManager::addAudioSink: -1: 0x5624814eabc8
+2019-03-10 20:00:33.072 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (POST) /sdrangel/deviceset
+2019-03-10 20:00:33.072 (D) MainCore::handleMessages: message: MainCore::MsgAddDeviceSet
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::start
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::setSourceSequence: seq: 0
+2019-03-10 20:00:33.072 (D) FileSourceInput::FileSourceInput: device source engine: 0x5624819d6d10
+2019-03-10 20:00:33.072 (D) FileSourceInput::FileSourceInput: device source engine message queue: 0x5624819d6d28
+2019-03-10 20:00:33.072 (D) FileSourceInput::FileSourceInput: device source: 0x0
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::run
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::setSource
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPSetSource
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:00:33.072 (D) DSPDeviceSourceEngine::handleSetSource: set 
+2019-03-10 20:00:33.073 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+2019-03-10 20:00:33.073 (D) HttpConnectionHandler (0x56247f9a1eb0): received request from 172.22.0.1 (PUT) /sdrangel/deviceset/2/device
+2019-03-10 20:00:33.074 (D) HttpConnectionHandler (0x56247f9a1eb0): disconnected
+2019-03-10 20:00:34.989 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:00:34.990 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:00:35.480 (D) HttpConnectionHandlerPool: Removed connection handler (0x56247f9a1eb0), pool size is now 2
+2019-03-10 20:00:35.480 (D) HttpConnectionHandler (0x56247f9a1eb0): destroyed
+2019-03-10 20:00:35.989 (D) HttpConnectionHandler (0x56247f9cdcd0): read timeout occured
+2019-03-10 20:00:35.990 (D) HttpConnectionHandler (0x56247f9cdcd0): disconnected
+2019-03-10 20:00:36.479 (D) HttpConnectionHandlerPool: Removed connection handler (0x56247f9cdcd0), pool size is now 1
+2019-03-10 20:00:36.479 (D) HttpConnectionHandler (0x56247f9cdcd0): destroyed
+2019-03-10 20:00:56.682 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:01:00.267 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (POST) /sdrangel/deviceset/0/device/run
+2019-03-10 20:01:00.267 (D) AirspyHFInput::handleMessage: MsgStartStop:  start
+2019-03-10 20:01:00.267 (D) DSPDeviceSourceEngine::initAcquisition
+2019-03-10 20:01:00.268 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionInit
+2019-03-10 20:01:00.268 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:01:00.268 (D) DSPDeviceSourceEngine::gotoInit:   m_deviceDescription:  AirspyHF  sampleRate:  768000  centerFrequency:  145480000
+2019-03-10 20:01:00.268 (D) DSPDeviceSourceEngine::gotoInit: initializing  FileRecord
+2019-03-10 20:01:00.268 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:01:00.268 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.268 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.268 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.268 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:00.268 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.268 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.269 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.269 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.269 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.269 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.269 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.269 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.269 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.269 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.269 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.269 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.269 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.269 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.269 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.269 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.270 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.270 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.270 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.270 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.270 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.270 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.270 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.270 (D) DSPDeviceSourceEngine::startAcquisition
+2019-03-10 20:01:00.271 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionStart
+2019-03-10 20:01:00.271 (D) DSPDeviceSourceEngine::gotoRunning
+2019-03-10 20:01:00.271 (D) DSPDeviceSourceEngine::gotoRunning:  AirspyHF  started
+2019-03-10 20:01:00.273 (D) AirspyHFInput::applySettings:   m_centerFrequency:  145480000  m_devSampleRateIndex:  0  m_log2Decim:  0  m_LOppmTenths:  26  m_bandIndex:  1  m_transverterDeltaFrequency:  0  m_transverterMode:  false  m_fileRecordName:  ""  m_useDSP:  false  m_useAGC:  false  m_agcHigh:  false  m_useLNA:  false  m_attenuatorSteps:  0  m_useReverseAPI:  false  m_reverseAPIAddress:  "127.0.0.1"  m_reverseAPIPort:  8888  m_reverseAPIDeviceIndex:  0  m_dcBlock:  true  m_iqCorrection:  false
+2019-03-10 20:01:00.273 (D) DSPDeviceSourceEngine::configureCorrections
+2019-03-10 20:01:00.273 (D) AirspyHFInput::applySettings: sample rate set to index: 0 (768000 S/s)
+2019-03-10 20:01:00.273 (D) AirspyInput: set decimation to  1
+2019-03-10 20:01:00.273 (D) AirspyHFInput::applySettings: LO ppm correction set to 2.600000
+2019-03-10 20:01:00.273 (D) AirspyHFInput::setDeviceCenterFrequency: frequency set to 145480000 Hz
+2019-03-10 20:01:00.273 (D) AirspyHFInput::applySettings: center freq:  145480000  Hz  device center freq:  145480000  Hz  device sample rate:  768000 Hz  Actual sample rate:  768000 Hz  img:  145480000 Hz
+2019-03-10 20:01:00.273 (D) AirspyHFInput::applySettings: set AGC to 0
+2019-03-10 20:01:00.274 (D) AirspyHFInput::applySettings: set AGC to low
+2019-03-10 20:01:00.274 (D) AirspyHFInput::applySettings: set DSP to 0
+2019-03-10 20:01:00.274 (D) AirspyHFInput::applySettings: set LNA to 0
+2019-03-10 20:01:00.274 (D) AirspyHFInput::applySettings: set attenuator to 0 dB
+2019-03-10 20:01:00.274 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:01:00.274 (D) AirspyHFInput::startInput: started
+2019-03-10 20:01:00.275 (D) DSPDeviceSourceEngine::gotoRunning: starting  FileRecord
+2019-03-10 20:01:00.275 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.275 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.275 (D) DownChannelizer::start: thread:  0x56248011a1e0  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.275 (D) NFMDemod::start
+2019-03-10 20:01:00.275 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  -280000
+2019-03-10 20:01:00.275 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.275 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 2000
+2019-03-10 20:01:00.275 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.275 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.276 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:00.276 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.276 (D) DownChannelizer::start: thread:  0x5624803857c0  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.276 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.276 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.276 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.276 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.276 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.277 (D) DownChannelizer::start: thread:  0x562480381fe0  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.277 (D) NFMDemod::start
+2019-03-10 20:01:00.277 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.277 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.277 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.277 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  -55000
+2019-03-10 20:01:00.277 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.277 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.277 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= -1000
+2019-03-10 20:01:00.277 (D) DownChannelizer::start: thread:  0x562480763840  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.277 (D) NFMDemod::start
+2019-03-10 20:01:00.277 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.278 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.278 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.278 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  20000
+2019-03-10 20:01:00.278 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.278 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.278 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 2000
+2019-03-10 20:01:00.278 (D) DownChannelizer::start: thread:  0x5624805e8f90  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.278 (D) NFMDemod::start
+2019-03-10 20:01:00.278 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.278 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.278 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.278 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  70000
+2019-03-10 20:01:00.279 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.279 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.279 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= -2000
+2019-03-10 20:01:00.279 (D) DownChannelizer::start: thread:  0x562480a4fd70  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.279 (D) NFMDemod::start
+2019-03-10 20:01:00.279 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.279 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  145000
+2019-03-10 20:01:00.279 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.279 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.279 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 1000
+2019-03-10 20:01:00.279 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.280 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.280 (D) DownChannelizer::start: thread:  0x562480bc10b0  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.280 (D) NFMDemod::start
+2019-03-10 20:01:00.280 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.280 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  195000
+2019-03-10 20:01:00.280 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.280 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.280 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 24000 , fc= 3000
+2019-03-10 20:01:00.280 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.280 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.281 (D) DownChannelizer::start: thread:  0x562480bc35d0  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.281 (D) NFMDemod::start
+2019-03-10 20:01:00.281 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  245000
+2019-03-10 20:01:00.281 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.281 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= -1000
+2019-03-10 20:01:00.281 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.281 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.281 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.281 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:00.281 (D) DownChannelizer::start: thread:  0x562480eadd00  m_inputSampleRate:  768000  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:00.282 (D) NFMDemod::start
+2019-03-10 20:01:00.282 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  270000
+2019-03-10 20:01:00.282 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.282 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 0
+2019-03-10 20:01:00.282 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.282 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.282 (D) DSPDeviceSourceEngine::gotoRunning:input message queue pending:  2
+2019-03-10 20:01:00.282 (D) DSPDeviceSourceEngine::handleInputMessages: message: DSPConfigureCorrection
+2019-03-10 20:01:00.282 (D) DSPDeviceSourceEngine::handleInputMessages: message: DSPSignalNotification
+2019-03-10 20:01:00.282 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.283 (D) DSPDeviceSourceEngine::handleInputMessages: DSPSignalNotification:  m_sampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:01:00.283 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.283 (D) DSPDeviceSourceEngine::handleInputMessages: forward message to  FileRecord
+2019-03-10 20:01:00.283 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.283 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000  m_centerFrequency:  145480000
+2019-03-10 20:01:00.283 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  2000
+2019-03-10 20:01:00.283 (D) NCO freq: -2000.000000 phase inc -682
+2019-03-10 20:01:00.283 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.283 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.284 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.284 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 2000
+2019-03-10 20:01:00.284 (D) DSDDemod::handleMessage
+2019-03-10 20:01:00.284 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:00.284 (D) DSDDemod::handleMessage: MsgChannelizerNotification: inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.284 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.284 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.284 (D) DownChannelizer::applyConfiguration in= 768000 , req= 0 , out= 768000 , fc= 0
+2019-03-10 20:01:00.284 (D) DSDDemod::handleMessage
+2019-03-10 20:01:00.284 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.284 (D) DSDDemod::handleMessage
+2019-03-10 20:01:00.285 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.285 (D) DSDDemod::handleMessage: MsgChannelizerNotification: inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.285 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= -1000
+2019-03-10 20:01:00.285 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.285 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.285 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.285 (D) DSDDemod::handleMessage
+2019-03-10 20:01:00.285 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 2000
+2019-03-10 20:01:00.285 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.285 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.285 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.285 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.286 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.286 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  -1000
+2019-03-10 20:01:00.286 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= -2000
+2019-03-10 20:01:00.286 (D) NCO freq: 1000.000000 phase inc 341
+2019-03-10 20:01:00.286 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.286 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.286 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.286 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 1000
+2019-03-10 20:01:00.286 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.286 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.286 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.286 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 24000 , fc= 3000
+2019-03-10 20:01:00.287 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  -1000
+2019-03-10 20:01:00.287 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.287 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.287 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.287 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= -1000
+2019-03-10 20:01:00.287 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.287 (D) DSPDeviceSourceEngine::handleSourceMessages: forward message to ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:00.287 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  768000
+2019-03-10 20:01:00.287 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.287 (D) DownChannelizer::applyConfiguration in= 768000 , req= 8000 , out= 12000 , fc= 0
+2019-03-10 20:01:00.287 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  2000
+2019-03-10 20:01:00.287 (D) DSPDeviceSourceEngine::handleInputMessages: DSPSignalNotification: guiMessageQueue: 0x0
+2019-03-10 20:01:00.288 (D) NCO freq: -2000.000000 phase inc -682
+2019-03-10 20:01:00.288 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.288 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.288 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  2000
+2019-03-10 20:01:00.288 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.288 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.288 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.288 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  -2000
+2019-03-10 20:01:00.288 (D) NCO freq: 2000.000000 phase inc 682
+2019-03-10 20:01:00.288 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.289 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.289 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  -2000
+2019-03-10 20:01:00.289 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.289 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.289 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.289 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  1000
+2019-03-10 20:01:00.289 (D) NCO freq: -1000.000000 phase inc -341
+2019-03-10 20:01:00.289 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.289 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.289 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  1000
+2019-03-10 20:01:00.290 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.290 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.290 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.290 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  24000  inputFrequencyOffset:  3000
+2019-03-10 20:01:00.290 (D) NCO freq: -3000.000000 phase inc -512
+2019-03-10 20:01:00.290 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.290 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.290 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  24000  inputFrequencyOffset:  3000
+2019-03-10 20:01:00.290 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.290 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.290 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.290 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  -1000
+2019-03-10 20:01:00.291 (D) NCO freq: 1000.000000 phase inc 341
+2019-03-10 20:01:00.291 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.291 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.291 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  -1000
+2019-03-10 20:01:00.291 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.291 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  768000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.291 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.291 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.291 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:00.291 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:00.292 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.292 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  0
+2019-03-10 20:01:00.292 (D) NFMDemod::handleMessage: DownChannelizer::MsgChannelizerNotification
+2019-03-10 20:01:00.292 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  12000  inputFrequencyOffset:  2000
+2019-03-10 20:01:03.281 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:01:07.971 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1
+2019-03-10 20:01:08.001 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/settings
+2019-03-10 20:01:17.979 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:01:17.979 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:01:28.930 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:01:34.220 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (POST) /sdrangel/deviceset/1/device/run
+2019-03-10 20:01:34.220 (D) RemoteInput::handleMessage: MsgStartStop:  start
+2019-03-10 20:01:34.220 (D) DSPDeviceSourceEngine::initAcquisition
+2019-03-10 20:01:34.220 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionInit
+2019-03-10 20:01:34.220 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:01:34.220 (D) DSPDeviceSourceEngine::gotoInit:   m_deviceDescription:    sampleRate:  0  centerFrequency:  0
+2019-03-10 20:01:34.220 (D) DSPDeviceSourceEngine::gotoInit: initializing  FileRecord
+2019-03-10 20:01:34.220 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  0  m_centerFrequency:  0
+2019-03-10 20:01:34.220 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:34.221 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:01:34.221 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:01:34.221 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:34.221 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:01:34.221 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:01:34.221 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:34.221 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:01:34.221 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:01:34.221 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:34.221 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:01:34.221 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:01:34.221 (D) DSPDeviceSourceEngine::startAcquisition
+2019-03-10 20:01:34.222 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionStart
+2019-03-10 20:01:34.222 (D) DSPDeviceSourceEngine::gotoRunning
+2019-03-10 20:01:34.222 (D) DSPDeviceSourceEngine::gotoRunning:    started
+2019-03-10 20:01:34.222 (D) RemoteInput::start
+2019-03-10 20:01:34.222 (D) RemoteInputUDPHandler::start
+2019-03-10 20:01:34.222 (D) DSPDeviceSourceEngine::gotoRunning: starting  FileRecord
+2019-03-10 20:01:34.222 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:34.222 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:34.222 (D) DownChannelizer::start: thread:  0x562481029100  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:34.222 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:01:34.222 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:34.222 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:34.223 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:34.223 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:34.223 (D) DownChannelizer::start: thread:  0x562481024700  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:34.223 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:01:34.223 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:34.223 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:34.223 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:01:34.223 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:34.224 (D) DownChannelizer::start: thread:  0x562480eb27e0  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:34.224 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:01:34.224 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:34.224 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:34.224 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:01:34.224 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:01:34.224 (D) DownChannelizer::start: thread:  0x5624814f0fd0  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:01:34.224 (D) NFMDemod::start
+2019-03-10 20:01:34.224 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:01:34.225 (D) DownChannelizer::handleMessage: DSPConfigureChannelizer:  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  37900
+2019-03-10 20:01:34.225 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:01:34.225 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:01:34.225 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:01:34.225 (D) DSPDeviceSourceEngine::gotoRunning:input message queue pending:  0
+2019-03-10 20:01:34.226 (D) DSDDemod::handleMessage
+2019-03-10 20:01:34.226 (D) DSDDemod::handleMessage
+2019-03-10 20:01:34.226 (D) DSDDemod::handleMessage
+2019-03-10 20:01:37.238 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:01:46.980 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:01:46.980 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:01:48.500 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1
+2019-03-10 20:01:48.516 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/settings
+2019-03-10 20:01:58.989 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:01:58.989 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:02:02.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:03.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:04.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:05.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:06.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:07.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:08.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:09.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:10.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:11.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:12.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:13.226 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:14.226 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:15.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:16.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:17.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:18.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:19.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:20.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:21.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:22.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:23.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:24.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:25.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:26.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:27.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:28.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:29.226 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:30.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:31.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:32.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:33.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:34.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:35.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:36.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:37.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:38.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:39.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:40.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:41.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:42.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:43.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:44.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:45.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:46.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:47.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:48.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:49.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:50.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:51.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:52.226 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:53.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:54.226 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:55.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:56.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:57.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:58.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:02:59.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:00.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:01.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:02.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:03.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:04.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:05.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:06.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:07.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:08.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:09.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:10.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:11.984 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:12.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:13.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:14.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:15.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:16.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:17.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:18.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:19.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:20.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:21.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:22.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:23.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:24.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:25.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:26.984 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:27.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:28.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:29.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:30.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:31.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:32.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:33.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:34.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:35.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:36.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:37.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:38.982 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:39.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:40.983 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:41.830 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:42.224 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:43.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:44.225 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:03:53.987 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:03:53.987 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:05:06.268 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:05:07.267 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/deviceset/1/device/report
+2019-03-10 20:05:16.982 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:05:16.982 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:09:15.738 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:09:20.010 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (OPTIONS) /sdrangel/deviceset/1/device/run
+2019-03-10 20:09:20.010 (D) WebAPIRequestMapper::service: method OPTIONS: assume pre-flight
+2019-03-10 20:09:20.021 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (DELETE) /sdrangel/deviceset/1/device/run
+2019-03-10 20:09:20.021 (D) RemoteInput::handleMessage: MsgStartStop:  stop
+2019-03-10 20:09:20.021 (D) DSPDeviceSourceEngine::stopAcquistion
+2019-03-10 20:09:20.021 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionStop
+2019-03-10 20:09:20.021 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:09:20.022 (D) ThreadedBasebandSampleSink::stop
+2019-03-10 20:09:20.022 (D) ThreadedBasebandSampleSink::stop
+2019-03-10 20:09:20.022 (D) ThreadedBasebandSampleSink::stop
+2019-03-10 20:09:20.022 (D) ThreadedBasebandSampleSink::stop
+2019-03-10 20:09:20.022 (D) NFMDemod::stop
+2019-03-10 20:09:20.022 (D) RemoteInput::stop
+2019-03-10 20:09:20.023 (D) RemoteInputUDPHandler::stop
+2019-03-10 20:09:20.023 (D) DC offset:0.000000,0.000000
+2019-03-10 20:09:23.029 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:09:25.311 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (POST) /sdrangel/deviceset/1/device/run
+2019-03-10 20:09:25.311 (D) RemoteInput::handleMessage: MsgStartStop:  start
+2019-03-10 20:09:25.311 (D) DSPDeviceSourceEngine::initAcquisition
+2019-03-10 20:09:25.311 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionInit
+2019-03-10 20:09:25.311 (D) DSPDeviceSourceEngine::gotoIdle
+2019-03-10 20:09:25.311 (D) DSPDeviceSourceEngine::gotoInit:   m_deviceDescription:    sampleRate:  0  centerFrequency:  0
+2019-03-10 20:09:25.311 (D) DSPDeviceSourceEngine::gotoInit: initializing  FileRecord
+2019-03-10 20:09:25.312 (D) FileRecord::handleMessage: DSPSignalNotification: m_inputSampleRate:  0  m_centerFrequency:  0
+2019-03-10 20:09:25.312 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:09:25.312 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:09:25.312 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:09:25.312 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:09:25.312 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:09:25.312 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:09:25.312 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:09:25.312 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:09:25.312 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:09:25.312 (D) DSPDeviceSourceEngine::gotoInit: initializing ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:09:25.312 (D) DownChannelizer::handleMessage: DSPSignalNotification: m_inputSampleRate:  0
+2019-03-10 20:09:25.312 (D) DownChannelizer::applyConfiguration: m_inputSampleRate=0 aborting
+2019-03-10 20:09:25.312 (D) DSPDeviceSourceEngine::startAcquisition
+2019-03-10 20:09:25.313 (D) DSPDeviceSourceEngine::handleSynchronousMessages:  DSPAcquisitionStart
+2019-03-10 20:09:25.313 (D) DSPDeviceSourceEngine::gotoRunning
+2019-03-10 20:09:25.313 (D) DSPDeviceSourceEngine::gotoRunning:    started
+2019-03-10 20:09:25.313 (D) RemoteInput::start
+2019-03-10 20:09:25.313 (D) RemoteInputUDPHandler::start
+2019-03-10 20:09:25.313 (W) QObject: Cannot create children for a parent that is in a different thread.
+(Parent is RemoteInputUDPHandler(0x7f38130df010), parent's thread is QThread(0x56247f989e10), current thread is DSPDeviceSourceEngine(0x56248112b7b0)
+2019-03-10 20:09:25.313 (W) RemoteInputUDPHandler::start: cannot bind data port 9094
+2019-03-10 20:09:25.313 (D) DSPDeviceSourceEngine::gotoRunning: starting  FileRecord
+2019-03-10 20:09:25.313 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:09:25.313 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:09:25.313 (D) DownChannelizer::start: thread:  0x562481029100  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:09:25.314 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:09:25.314 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:09:25.314 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:09:25.314 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:09:25.314 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:09:25.314 (D) DownChannelizer::start: thread:  0x562481024700  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:09:25.314 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:09:25.314 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:09:25.314 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:09:25.315 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(DSDDemod) )
+2019-03-10 20:09:25.315 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:09:25.315 (D) DownChannelizer::start: thread:  0x562480eb27e0  m_inputSampleRate:  0  m_requestedOutputSampleRate:  0  m_requestedCenterFrequency:  0
+2019-03-10 20:09:25.315 (D) DSDDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:09:25.315 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:09:25.315 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:09:25.315 (D) DSPDeviceSourceEngine::gotoRunning: starting ThreadedSampleSink( DownChannelizer(NFMDemod) )
+2019-03-10 20:09:25.315 (D) ThreadedBasebandSampleSink::start
+2019-03-10 20:09:25.315 (D) DownChannelizer::start: thread:  0x5624814f0fd0  m_inputSampleRate:  0  m_requestedOutputSampleRate:  8000  m_requestedCenterFrequency:  37900
+2019-03-10 20:09:25.315 (D) NFMDemod::start
+2019-03-10 20:09:25.316 (D) NFMDemod::applyChannelSettings:  inputSampleRate:  48000  inputFrequencyOffset:  0
+2019-03-10 20:09:25.316 (D) NCO freq: 0.000000 phase inc 0
+2019-03-10 20:09:25.316 (D) Interpolator::createPolyphaseLowPass: ntaps: 72
+2019-03-10 20:09:25.316 (D) DSPDeviceSourceEngine::gotoRunning:input message queue pending:  0
+2019-03-10 20:09:25.316 (D) DSDDemod::handleMessage
+2019-03-10 20:09:25.316 (D) DSDDemod::handleMessage
+2019-03-10 20:09:25.316 (D) DSDDemod::handleMessage
+2019-03-10 20:09:28.321 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel
+2019-03-10 20:09:37.989 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:09:37.989 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
+2019-03-10 20:09:45.807 (D) HttpConnectionHandler (0x56247f9a4310): received request from 192.168.1.3 (GET) /sdrangel/devices
+2019-03-10 20:09:55.989 (D) HttpConnectionHandler (0x56247f9a4310): read timeout occured
+2019-03-10 20:09:55.989 (D) HttpConnectionHandler (0x56247f9a4310): disconnected
