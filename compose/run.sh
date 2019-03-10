@@ -8,9 +8,9 @@ show_help() {
   Usage: ${0##*/} [-g] -t version [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
   Run SDRangel in a Docker container.
   -g         Run a GUI variant (server if unset)
-  -n         Container name suffix (default 1)
-  -r         Number of Rx bits for server version (default 16)
   -t version Docker GUI image tag version
+  -r         Number of Rx bits for server version (default 16)
+  -n         Container name suffix (default 1)
   -w port    Web client port map to 8080 (default 8080)
   -s port    SSH port map to 22 (default 50022).
   -a port    API port map to 8091 (default 8091).
@@ -38,9 +38,9 @@ while getopts "h?gt:r:w:s:a:u:" opt; do
         ;;
     t)  image_tag=${OPTARG}
         ;;
-    n)  name_suffix=${OPTARG}
-        ;;
     r)  rx_bits=${OPTARG}
+        ;;
+    n)  name_suffix=${OPTARG}
         ;;
     w)  web_port=${OPTARG}
         ;;
