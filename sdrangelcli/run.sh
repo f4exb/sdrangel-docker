@@ -16,7 +16,7 @@ EOF
 http_port="-p 8080:8080"
 image_tag="latest"
 
-while getopts "h?gs:a:u:t:" opt; do
+while getopts "h?gp:t:" opt; do
     case "$opt" in
     h|\?)
         show_help
