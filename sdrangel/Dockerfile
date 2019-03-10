@@ -111,7 +111,7 @@ RUN git clone https://github.com/szechyjs/mbelib.git \
 FROM base AS serialdv
 RUN git clone https://github.com/f4exb/serialDV.git \
     && cd serialDV \
-    && git reset --hard f106b23 \
+    && git reset --hard c58676a \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. \
     && make -j4 install
@@ -205,7 +205,7 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 FROM base AS limesdr
 RUN git clone https://github.com/myriadrf/LimeSuite.git \
     && cd LimeSuite \
-    && git reset --hard 59d51d5 \
+    && git reset --hard 025ffa1a \
     && mkdir builddir; cd builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. \
     && make -j4 install
@@ -315,7 +315,7 @@ FROM base AS sdrangel_clone
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/sdrangel.git \
     && cd sdrangel \
-    && git reset --hard v4.5.0 \
+    && git reset --hard f76ed4a \
     && mkdir build
 
 # Create a base image for all GUIs
