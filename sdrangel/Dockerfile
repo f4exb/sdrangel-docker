@@ -111,7 +111,7 @@ RUN git clone https://github.com/szechyjs/mbelib.git \
 FROM base AS serialdv
 RUN git clone https://github.com/f4exb/serialDV.git \
     && cd serialDV \
-    && git reset --hard 06caac6 \
+    && git reset --hard f106b23 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. \
     && make -j4 install
