@@ -24,9 +24,8 @@ You can of course install Docker on Windows in two ways:
 
 But in fact **running SDRangel in a Docker container in Windows is a no-no** in both cases...
 
-In Virtualbox building images is impossible due to network instability. Some apt-get will break at some point.
-
-In Hyper-V there are too many issues with X-Server connection, sound and USB.
+  - In Virtualbox building images is impossible due to network instability. Some apt-get will break at some point.
+  - In Hyper-V there are too many issues with X-Server connection, sound and USB.
 
 <h2>Get familiar with Docker</h2>
 
