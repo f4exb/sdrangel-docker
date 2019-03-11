@@ -68,6 +68,10 @@ The files contained in the `sdrangel` directory are used to build and run SDRang
 
 The files contained in the `sdrangelcli` directory are used to build and run SDRangelCli images. Please check the readme inside this folder for further information
 
+<h2>WSJT-X section</h2>
+
+Due to possible delay in the audio when running SDRangel in a container WSJT-X may fail to decode. This container compiles WSJT-X and the `libfakedate` library to tweak system time in the container. This is and all in one package for your convenience it is also possible to use `libfakedate` in the host without impacting the system clock.
+
 <h2>Compose section</h2>
 
 The files contained in the `compose` directory are used to set up and run Docker Compose stacks. Please check the readme inside this folder for further information
