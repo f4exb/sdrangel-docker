@@ -70,7 +70,11 @@ The files contained in the `sdrangelcli` directory are used to build and run SDR
 
 <h2>WSJT-X section</h2>
 
-Due to possible delay in the audio when running SDRangel in a container WSJT-X may fail to decode. This container compiles WSJT-X and the `libfakedate` library to tweak system time in the container. This is and all in one package for your convenience it is also possible to use `libfakedate` in the host without impacting the system clock.
+Due to possible delay in the audio when running SDRangel in a container WSJT-X may fail to decode.
+
+The files contained in the `wsjtx` directory are used to build and run an image where WSJT-X and the `libfaketime` library are compiled. `libfaketime` is used to change system time as WSJT-X sees it.
+
+Note that this is only for your convenience. It is also possible to use `libfaketime` with WSJT-X in the host without impacting the system clock.
 
 <h2>Compose section</h2>
 
