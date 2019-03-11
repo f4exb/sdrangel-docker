@@ -2,7 +2,7 @@
 
 <h1>Running SDRangel in a Docker container</h1>
 
-&#9888; This is still experimental and not guaranteed to work in all environments.
+&#9888; This is still experimental.
 
 [SDRangel](https://github.com/f4exb/sdrangel) is  is an Open Source Qt5 / OpenGL 3.0+ SDR and signal analyzer frontend to various hardware. It also supports remote and terminal (no GUI) operation and can be controlled or control other pieces of software with a REST API.
 
@@ -14,17 +14,19 @@ Eventually Docker compose could be used to fire up the entire SDRangel and SDRan
 
 <h2>Install Docker</h2>
 
-This is of course the first step. Please check the [Docker related page](https://docs.docker.com/install/) and follow instructions for your system.
+This is of course the first step. Please check the [Docker related page](https://docs.docker.com/install/) and follow instructions for your distribution.
 
-<h3>Windows</h3>
+<h3>Note on Windows</h3>
 
-In Windows you have two options:
-  - Install with Hyper-V: Hyper-V is a bare-metal type hypervisor where the Windows O/S itself runs in a VM. The catch is that it does not work Windows 10 Home version and requires a special set up. This is required to install _Docker Desktop for Windows_. straigtforward to use.
-  - Install with Oracle Virtualbox: Virtualbox is a hosted type hypervisor that sits on the top of the Windows O/S so it puts an extra layer on the stack but is available for more flavors of Windows. In this case you will install Docker in a Linux O/S Virtualbox VM for example Ubuntu 18.04 and therefore you will have to follow Linux instructions.
+You can of course install Docker on Windows in two ways:
+  - Install with Hyper-V
+  - Install with Oracle Virtualbox
 
-See [this discussion](https://www.nakivo.com/blog/hyper-v-virtualbox-one-choose-infrastructure/) about the difference between Hyper-V and Virtualbox.
+But in fact **running SDRangel in a Docker container in Windows is a no-no** in both cases...
 
-After a little bit of experimentation Hyper-V and Docker Desktop for Windows is not an option for SDRangel as it has too many issues with X-Server connection, sound and USB.
+In Virtualbox building images is impossible due to network instability. Some apt-get will break at some point.
+
+In Hyper-V there are too many issues with X-Server connection, sound and USB.
 
 <h2>Get familiar with Docker</h2>
 
@@ -38,19 +40,15 @@ Optionnally you can install a GUI tool to manage and monitor Docker images and c
 
 Kitematic is a GUI application to monitor and configure containers live. You can check the [home page here](https://kitematic.com/). Although flagged as "legacy" in Docekr documentation it still alive on Github.
 
-For Linux you can check the [Github repository](https://github.com/docker/kitematic) where a .deb package is available. Arch users will find a package in the AUR.
-
-FYI in Windows/DD4W the download page is directly accessible from the menu opened by right clicking on the tray whale icon. Then follow instructions... However Windows/Hyper-V is not a viable solution as emntioned previously.
+You can check the [Github repository](https://github.com/docker/kitematic) where a .deb package is available. Arch users will find a package in the AUR.
 
 <h3>Portainer</h3>
 
-Kitematic may not be completely functional in Linux. Then Portainer can be a good alternative or complement. Moreover Portainer has a richer functionality like showing the subnet to which a container belongs.
+Kitematic may not be completely functional. Then Portainer can be a good alternative or complement. Moreover Portainer has a richer functionality like showing the subnet to which a container belongs.
 
 Portainer is a web application that is simply started as a container itself. It is started with this Docker command:
 
-Linux: `docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer`
-
-Windows: `docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v C:\ProgramData\Portainer:/data portainer/portainer`
+`docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer`
 
 Then you simply open a browser page at: [http://localhost:9000](http://localhost:9000). You can use a different port on the host by changing the port mapping in the Docker run command.
 

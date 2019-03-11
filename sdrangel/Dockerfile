@@ -337,7 +337,7 @@ COPY restart_gui.sh /home/sdr/restart.sh
 WORKDIR /home/sdr
 ENTRYPOINT ["/start.sh"]
 
-# The final "linux_nvidia" GUI version for running in Linux hosts with NVidia GPU
+# The final "linux_nvidia" GUI version for running with NVidia GPU
 FROM gui AS linux_nvidia
 RUN sudo apt-get update && sudo apt-get install -y mesa-utils binutils kmod
 # install nvidia driver
