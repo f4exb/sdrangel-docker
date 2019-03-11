@@ -14,7 +14,7 @@ Here for your convenience we will provide ways to create a container with WSJT-X
 
 <h2>Build image</h2>
 
-A `wsjtx/bionic:libfakedate` image is created by running `./build.sh`
+A `wsjtx/bionic:libfaketime` image is created by running `./build.sh`
 
 <h2>Run image</h2>
 
@@ -26,5 +26,5 @@ A `WSJT-X.ini` file is created in your home directory that will allow settings t
 
 You can use the following options:
 
-  - `-t version`: image version if different from `libfakedate`
+  - `-t version`: image version if different from `libfaketime`
   - `-d delay`: delay in seconds (defaut `4`)
