@@ -6,7 +6,7 @@ When running SDRangel in a container some significant delay is introduced in the
 
 The [libfaketime](https://github.com/wolfcw/libfaketime) library can tweak the clock as a program sees it by capturing the system calls for time and introducing a delay without affecting your system clock in any way.
 
-To do the magic it uses LD_PRELOAD trick and therefore will work in Linux only. You can try it from the command line if you have cloned and built `libfaketime` in say `/opt/build/libfaketime` and installed WSJT-X in `/opt/install/wsjtx`:
+To do the magic it uses LD_PRELOAD trick. You can try it from the command line if you have cloned and built `libfaketime` in say `/opt/build/libfaketime` and installed WSJT-X in `/opt/install/wsjtx`:
 
 <pre><code>LD_PRELOAD=/opt/build/libfaketime/src/libfaketime.so.1 FAKETIME="-4s" /opt/install/wsjtx/bin/wsjtx</code></pre>
 

@@ -5,7 +5,7 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 show_help() {
   cat << EOF
   Usage: ${0##*/} [-t version] [-p port] [-h]
-  Run SDRangel client in a Docker container.
+  Run WSKT-X with clock adjustment in a Docker container.
   -t version Docker image tag version (default libfaketime)
   -d delay   delay in seconds (default 4)
   -h         Print this help.
