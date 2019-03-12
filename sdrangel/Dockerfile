@@ -55,6 +55,10 @@ RUN sudo apt-get update && sudo apt-get -y install \
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
+    libpython2.7 libpython2.7-dev
+RUN sudo apt-get update && sudo apt-get -y install \
+    libpython3-dev libpython3.6-dev librdmacm1
+RUN sudo apt-get update && sudo apt-get -y install \
     libboost-all-dev
 
 # Install base build packages dependencies - the rest
