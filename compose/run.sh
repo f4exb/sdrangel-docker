@@ -6,9 +6,10 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 show_help() {
   cat << EOF
   Usage: ${0##*/} [-g] -t version [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
-  Run SDRangel in a Docker container.
+  Run SDRangel and SDRangelCli in a Docker compose stack.
   -g         Run a GUI variant (server if unset)
   -t version Docker GUI image tag version
+  -c name    Docker compose stack name (default compose)
   -r         Number of Rx bits for server version (default 16)
   -n         Container name suffix (default 1)
   -w port    Web client port map to 8080 (default 8080)
@@ -21,6 +22,7 @@ EOF
 
 image_tag=""
 name_suffix="1"
+stack_name=""
 rx_bits="16"
 web_port="8080"
 ssh_port="50022"
@@ -28,7 +30,7 @@ api_port="8091"
 udp_port="9090"
 run_gui=0
 
-while getopts "h?gt:r:w:s:a:u:" opt; do
+while getopts "h?gt:c:r:w:s:a:u:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -37,6 +39,8 @@ while getopts "h?gt:r:w:s:a:u:" opt; do
     g)  run_gui=1
         ;;
     t)  image_tag=${OPTARG}
+        ;;
+    c)  stack_name="-p ${OPTARG}"
         ;;
     r)  rx_bits=${OPTARG}
         ;;
@@ -58,6 +62,7 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 # End of get options
 
+export DNS=$(nmcli dev show | grep 'IP4.DNS' | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
 export USER_UID=$(id -u)
 export IMAGE_VERSION=${image_tag}
 export NAME_SUFFIX=${name_suffix}
@@ -68,7 +73,7 @@ export UDP_PORT=${udp_port}
 export RX_BITS=${rx_bits}
 
 if [ "$run_gui" -eq 1 ]; then
-    docker-compose -f compose_gui.yml up -d
+    docker-compose -f compose_gui.yml ${stack_name} up -d
 else
-    docker-compose -f compose_server.yml up -d
+    docker-compose -f compose_server.yml ${stack_name} up -d
 fi

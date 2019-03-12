@@ -3,6 +3,7 @@ services:
   sdrangel:
     image: "sdrangel/bionic:${IMAGE_VERSION}"
     container_name: "sdrangel_${NAME_SUFFIX}"
+    dns: "${DNS}"
     ports:
       - "${SSH_PORT}:22"
       - "${API_PORT}:8091"
@@ -22,6 +23,7 @@ services:
   sdrangelcli:
     image: sdrangelcli/node:latest
     container_name: "sdrangelcli_${NAME_SUFFIX}"
+    dns: "${DNS}"
     ports:
       - "${WEB_PORT}:8080"
 
