@@ -10,13 +10,15 @@
 
 Eventually Docker compose could be used to fire up the entire SDRangel and SDRangelCli ecosystem.
 
+Please note that running SDRangel in Docker works only on a Linux host. See why just next.
+
 **Check the discussion group** [here](https://groups.io/g/sdrangel)
 
 <h2>Install Docker</h2>
 
 This is of course the first step. Please check the [Docker related page](https://docs.docker.com/install/) and follow instructions for your distribution.
 
-<h3>Note on Windows</h3>
+<h3>Why not Windows?</h3>
 
 You can of course install Docker on Windows in two ways:
   - Install with Hyper-V
@@ -24,7 +26,7 @@ You can of course install Docker on Windows in two ways:
 
 But in fact **running SDRangel in a Docker container in Windows is a no-no** in both cases...
 
-  - In Virtualbox building images is impossible due to network instability. Some apt-get will break at some point.
+  - In Virtualbox attaching USB devices is very flaky.
   - In Hyper-V there are too many issues with X-Server connection, sound and USB.
 
 <h2>Get familiar with Docker</h2>
@@ -45,9 +47,15 @@ You can check the [Github repository](https://github.com/docker/kitematic) where
 
 Kitematic may not be completely functional. Then Portainer can be a good alternative or complement. Moreover Portainer has a richer functionality like showing the subnet to which a container belongs.
 
-Portainer is a web application that is simply started as a container itself. It is started with this Docker command:
+Portainer is a web application that is itself started as a container.
 
-`docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer`
+For data persistency you will need to create a volume once with:
+
+`docker volume create portainer_data`
+
+ Then you will start it with this Docker command:
+
+`docker run -d -p 9000:9000 --name portainer --privileged -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer --no-auth -H unix:///var/run/docker.sock`
 
 Then you simply open a browser page at: [http://localhost:9000](http://localhost:9000). You can use a different port on the host by changing the port mapping in the Docker run command.
 
