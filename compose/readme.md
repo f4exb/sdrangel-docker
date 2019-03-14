@@ -33,6 +33,7 @@ Then using the container id you can fetch the log. You can use the `--since` par
 The `run.sh` script sets up a composition with a SDRangel and a SDRangelCli instance that can be used to remotely control the former. It takes the following arguments:
 
   - `-g`: starts the GUI variant of SDRangel else the server variant will be started.
+  - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
   - `-t version`: GUI only: SDRangel image name version (ex: `vanilla`). This is mandatory.
   - `-r bits`: Server only: number of Rx bits. This makes up the version suffix (ex: `16` makes `server16`). Default is `16`.
   - `-n suffix`: gives a suffix to the container names (default is `1`). The container names are `sdrangel_{suffix}` for SDRangel and `sdrangelcli_{suffix}` for SDRangelCli.

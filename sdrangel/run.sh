@@ -5,9 +5,10 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-g] -t version [-s port] [-a port] [-u port [-u port ...]] [-h]
+  Usage: ${0##*/} [-g] [-b branch] -t version [-s port] [-a port] [-u port [-u port ...]] [-h]
   Run SDRangel in a Docker container.
   -g         Run a GUI variant (server if unset)
+  -b         SDRangel source branch name (default master)
   -t version Docker image tag version
   -s port    SSH port map to 22.
   -a port    API port map to 8091 (default 8091).
@@ -19,10 +20,11 @@ EOF
 udp_conn=""
 api_port="-p 8091:8091"
 ssh_port=""
+branch_name="master"
 image_tag=""
 gui_opts=""
 
-while getopts "h?gs:a:u:t:" opt; do
+while getopts "h?gs:a:u:b:t:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -33,6 +35,8 @@ while getopts "h?gs:a:u:t:" opt; do
     s)  ssh_port="-p ${OPTARG}:22"
         ;;
     a)  api_port="-p ${OPTARG}:8091"
+        ;;
+    b)  branch_name=$OPTARG
         ;;
     t)  image_tag=$OPTARG
         ;;
@@ -59,4 +63,4 @@ docker run -it --rm --privileged \
     ${udp_conn} \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/1000/pulse" \
-    sdrangel/bionic:${image_tag}
+    sdrangel/${branch_name}:${image_tag}

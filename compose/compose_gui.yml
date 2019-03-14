@@ -1,7 +1,7 @@
 version: '3'
 services:
   sdrangel:
-    image: "sdrangel/bionic:${IMAGE_VERSION}"
+    image: "sdrangel/${branch_name}:${IMAGE_VERSION}"
     container_name: "sdrangel_${NAME_SUFFIX}"
     dns: "${DNS}"
     ports:

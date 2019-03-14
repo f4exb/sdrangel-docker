@@ -5,9 +5,10 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-g] -t version [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
+  Usage: ${0##*/} [-g] [-b branch] -t version [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
   Run SDRangel and SDRangelCli in a Docker compose stack.
   -g         Run a GUI variant (server if unset)
+  -b         SDRangel source branch name (default master)
   -t version Docker GUI image tag version
   -c name    Docker compose stack name (default compose)
   -r         Number of Rx bits for server version (default 16)
@@ -20,6 +21,7 @@ show_help() {
 EOF
 }
 
+branch_name="master"
 image_tag=""
 name_suffix="1"
 stack_name=""
@@ -37,6 +39,8 @@ while getopts "h?gt:c:r:w:s:a:u:" opt; do
         exit 0
         ;;
     g)  run_gui=1
+        ;;
+    b)  branch_name=$OPTARG
         ;;
     t)  image_tag=${OPTARG}
         ;;

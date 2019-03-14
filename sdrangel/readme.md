@@ -16,23 +16,39 @@ As an indication it takes ~36mn to build the `vanilla` image on a laptop with co
 
 <h3>GUI with no specific hardware dependencies</h3>
 
-  - Use the `build_vanilla.sh` script to produce the `sdrangel/bionic:vanilla` image
+  - Use the `build_vanilla.sh` script to produce the `sdrangel/master:vanilla` image
   - Use the `run.sh` script with options `-g -t vanilla` to run the image
 
 <h3>GUI with a NVidia graphics card</h3>
 
-  - Use the `build_linux_nvidia.sh` script to produce the `sdrangel/bionic:linux_nvidia` image
+  - Use the `build_linux_nvidia.sh` script to produce the `sdrangel/master:linux_nvidia` image
   - Use the `run.sh` script with options `-g -t linux_nvidia` to run the image
 
 <h3>Server with 16 bit Rx samples</h3>
 
-  - Use the `build_server16.sh` script to produce the `sdrangel/bionic:server16` image
+  - Use the `build_server.sh` script to produce the `sdrangel/master:server16` image
   - Use the `run.sh` script with options `-t server16` to run the image
 
 <h3>Server with 24 bit Rx samples</h3>
 
-  - Use the `build_server24.sh` script to produce the `sdrangel/bionic:server24` image
+  - Use the `build_server.sh -s 24` script to produce the `sdrangel/master:server24` image
   - Use the `run.sh` script with options `-t server24` to run the image
+
+<h2>Additional options to the build commands</h2>
+
+<h3>Common options</h3>
+
+The build commands can control from which repository and from which branch you are cloning the source of SDRangel. You can also give a different tag version than the default.
+
+  - `-r` specifies from which URL you are cloning the `sdrangel` repository (default is `https://github.com/f4exb/sdrangel.git`)
+  - `-b` specifies which branch you are checking out in the clone (default is `master`). The image name of the image tag (after the /) will be the branch name e.g. `sdrangel/dev:linux_nvidia`
+  - `-t` specifies the tag version image (default varies depending on build flavor)
+
+<h3>Build server specific options</h3>
+
+In addition the `build_server.sh` lets you specify the number of Rx bits. The image tag version is suffixed by the number of bits e.g. `server16`
+
+  - `-x` tells to use 24 bit samples for Rx (default is 16)
 
 <h2>Additional options to the run.sh command</h2>
 
@@ -40,7 +56,9 @@ You may specify extra options for port mapping between the host and the containe
 
   - `-s` specifies the host port linked to the container ssh port (22)
   - `-a` specifies the host port linked to the SDRangel REST API port
-  - `-u` specifies an UDP port on the host linked to the same port in the container. You may have several of these. UDP port mapping is used for Remote Input plugin operation
+  - `-u` specifies an UDP port on the host linked to the same port in the container.
+  You may have several of these. UDP port mapping is used for Remote Input plugin operation
+  - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
 
 <h2>Notes about running images</h2>
 
