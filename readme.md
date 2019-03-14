@@ -65,6 +65,33 @@ Portainer documentation [here](https://portainer.readthedocs.io/en/stable/deploy
 
 Visual Studio Code has a plugin from Microsoft (peterjausovec.vscode-docker) that in addition to Dockerfile syntax highlighting facilitates logging into a container and showing the logs. Click on the whale icon in the left toolbar of VS Code to access these functions.
 
+<h2>Getting logs</h2>
+
+The GUI tools can access the log (container stdout and stderr) live but in many cases it is truncated and the start of the log is unavailable. To get a full log you will have to use the Docker CLI commands.
+
+First get a list of containers and spot the container for which you would like to get the log:
+
+<pre><code>docker ps
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                                                                   NAMES
+8075e65626b1        sdrangelcli/node:latest        "http-server"            35 minutes ago      Up 35 minutes       0.0.0.0:8001->8080/tcp                                                  sdrangelcli_1
+48ebe711df3e        portainer/portainer            "/portainer --no-auth"   2 days ago          Up 31 minutes       0.0.0.0:9000->9000/tcp                                                  portainer
+2e2b2f97dae9        sdrangel/bionic:linux_nvidia   "/start.sh"              2 days ago          Up 8 minutes        0.0.0.0:8091->8091/tcp, 0.0.0.0:9094->9094/udp, 0.0.0.0:50022->22/tcp   sdrangel_1
+</code></pre>
+
+Let's say I would like to get the log of the SDRangel instance. It is the container running the `sdrangel/bionic:linux_nvidia` image and has the ID `2e2b2f97dae9`. I see that it has been running since 8 minutes. I will use the `docker log` command that has a `--since` option to tell since when you want to get the log. I can give it any arbitrary value larger than 8 minutes to get the full log:
+
+<pre><code>docker logs --since 10m 2e2b2f97dae9 > ~/sdrangel.log</code></pre>
+
+Or I can pipe it directly into other commands like `less` to browse through it or `grep` to look for something in particular:
+
+<pre></code>docker logs --since 10m 2e2b2f97dae9 | grep -i perseus
+2019-03-14 02:33:46.113 (D) PluginManager::loadPluginsDir: fileName:  libinputperseus.so
+2019-03-14 02:33:46.113 (I) PluginManager::loadPluginsDir: loaded plugin libinputperseus.so
+2019-03-14 02:33:46.117 (D) PluginManager::registerSampleSource  Perseus Input  with source name  sdrangel.samplesource.perseus
+2019-03-14 02:33:46.666 (I) DevicePerseusScan::scan: device #0 firmware downloaded
+2019-03-14 02:33:46.666 (D) PerseusPlugin::enumSampleSources: enumerated Perseus device #0
+</code></pre>
+
 <h2>SDRangel section</h2>
 
 The files contained in the `sdrangel` directory are used to build and run SDRangel images. Please check the readme inside this folder for further information
