@@ -7,8 +7,9 @@ show_help() {
   cat << EOF
   Usage: ${0##*/} [-r url] [-b name] [-t version] [-h]
   Build SDRangel image.
-  -r         Repository URL (default https://github.com/f4exb/sdrangel.git)
-  -b         Branch name (default master)
+  -r url     Repository URL (default https://github.com/f4exb/sdrangel.git)
+  -b name    Branch name (default master)
+  -c tag     Arbitrary clone tag. Clone again if different from the last tag (default empty)
   -t version Docker image tag version (default linux_nvidia)
   -h         Print this help.
 EOF
@@ -16,9 +17,10 @@ EOF
 
 repo_url="https://github.com/f4exb/sdrangel.git"
 branch_name="master"
+clone_tag=""
 image_tag="linux_nvidia"
 
-while getopts "h?r:b:t:" opt; do
+while getopts "h?r:b:c:t:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -27,6 +29,8 @@ while getopts "h?r:b:t:" opt; do
     r)  repo_url=${OPTARG}
         ;;
     b)  branch_name=${OPTARG}
+        ;;
+    c)  clone_tag=${OPTARG}
         ;;
     t)  image_tag=$OPTARG
         ;;
@@ -38,6 +42,7 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 # End of get options
 
+repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
 IMAGE_NAME=sdrangel/${branch_name}:${image_tag}
 NVIDIA_VER=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader) #410.78
 NVIDIA_DRIVER=NVIDIA-Linux-x86_64-${NVIDIA_VER}.run  # path to nvidia driver
@@ -50,5 +55,7 @@ fi
 DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \
+    --build-arg repo_hash=${repo_hash} \
+    --build-arg clone_tag=${clone_tag} \
     --target linux_nvidia \
     -t ${IMAGE_NAME} .

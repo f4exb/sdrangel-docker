@@ -319,9 +319,13 @@ FROM base AS sdrangel_clone
 WORKDIR /opt/build
 ARG repository
 ARG branch
+ARG repo_hash
+ARG clone_tag
 RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangel \
     && cd sdrangel \
-    && mkdir build
+    && mkdir build \
+    && echo "${repo_hash}" > build/repo_hash.txt \
+    && echo "${clone_tag}" > build/clone_tag.txt
 
 # Create a base image for all GUIs
 FROM base_deps AS gui
