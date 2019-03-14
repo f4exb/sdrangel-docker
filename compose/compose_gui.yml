@@ -1,7 +1,7 @@
 version: '3'
 services:
   sdrangel:
-    image: "sdrangel/${branch_name}:${IMAGE_VERSION}"
+    image: "sdrangel/${BRANCH_NAME}:${IMAGE_VERSION}"
     container_name: "sdrangel_${NAME_SUFFIX}"
     dns: "${DNS}"
     ports:

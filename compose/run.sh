@@ -32,7 +32,7 @@ api_port="8091"
 udp_port="9090"
 run_gui=0
 
-while getopts "h?gt:c:r:w:s:a:u:" opt; do
+while getopts "h?gb:t:c:r:w:s:a:u:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -40,7 +40,7 @@ while getopts "h?gt:c:r:w:s:a:u:" opt; do
         ;;
     g)  run_gui=1
         ;;
-    b)  branch_name=$OPTARG
+    b)  branch_name=${OPTARG}
         ;;
     t)  image_tag=${OPTARG}
         ;;
@@ -68,6 +68,7 @@ shift $((OPTIND-1))
 
 export DNS=$(nmcli dev show | grep 'IP4.DNS' | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
 export USER_UID=$(id -u)
+export BRANCH_NAME=${branch_name}
 export IMAGE_VERSION=${image_tag}
 export NAME_SUFFIX=${name_suffix}
 export WEB_PORT=${web_port}
