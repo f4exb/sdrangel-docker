@@ -9,7 +9,7 @@ show_help() {
   Build SDRangel image.
   -r url     Repository URL (default https://github.com/f4exb/sdrangel.git)
   -b name    Branch name (default master)
-  -c tag     Arbitrary clone tag. Clone again if different from the last tag (default empty)
+  -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -t version Docker image tag version (default vanilla)
   -h         Print this help.
 EOF
@@ -17,7 +17,7 @@ EOF
 
 repo_url="https://github.com/f4exb/sdrangel.git"
 branch_name="master"
-clone_tag=""
+clone_tag=$(date)
 image_tag="vanilla"
 
 while getopts "h?r:b:c:t:" opt; do
