@@ -43,21 +43,27 @@ RUN sudo apt-get update && sudo apt-get -y install \
 
 # Install base build packages dependencies - Qt5
 RUN sudo apt-get update && sudo apt-get -y install \
-    qt5-default \
     qtbase5-dev \
+    qt5-default
+RUN sudo apt-get update && sudo apt-get -y install \
     qtchooser \
     libqt5multimedia5-plugins \
-    qtmultimedia5-dev \
+    qtmultimedia5-dev
+RUN sudo apt-get update && sudo apt-get -y install \
     qttools5-dev \
-    qttools5-dev-tools \
-    libqt5opengl5-dev \
-    qtbase5-dev
+    qttools5-dev-tools
+RUN sudo apt-get update && sudo apt-get -y install \
+    libqt5opengl5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
     libpython2.7 libpython2.7-dev
 RUN sudo apt-get update && sudo apt-get -y install \
-    libpython3-dev libpython3.6-dev librdmacm1
+    libpython3-dev
+RUN sudo apt-get update && sudo apt-get -y install \
+    libpython3.6-dev
+RUN sudo apt-get update && sudo apt-get -y install \
+    librdmacm1
 RUN sudo apt-get update && sudo apt-get -y install \
     libboost-all-dev
 
