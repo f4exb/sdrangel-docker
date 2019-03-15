@@ -54,7 +54,7 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
-    --build-arg clone_tag=${clone_tag} \
+    --build-arg clone_tag="${clone_tag}" \
     --build-arg rx_24bits=${rx_24bits} \
     --target server \
     -t ${IMAGE_NAME} .

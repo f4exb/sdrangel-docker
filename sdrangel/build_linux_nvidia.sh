@@ -56,6 +56,6 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
-    --build-arg clone_tag=${clone_tag} \
+    --build-arg clone_tag="${clone_tag}" \
     --target linux_nvidia \
     -t ${IMAGE_NAME} .
