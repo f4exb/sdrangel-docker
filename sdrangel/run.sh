@@ -5,11 +5,12 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-g] [-b branch] -t version [-s port] [-a port] [-u port [-u port ...]] [-h]
+  Usage: ${0##*/} [-g] [-b branch] -t version [-k name] [-s port] [-a port] [-u port [-u port ...]] [-h]
   Run SDRangel in a Docker container.
   -g         Run a GUI variant (server if unset)
   -b         SDRangel source branch name (default master)
   -t version Docker image tag version
+  -c name    Docker container name (default sdrangel)
   -s port    SSH port map to 22.
   -a port    API port map to 8091 (default 8091).
   -u port    UDP port map to same with UDP option. Can be repeated.
@@ -17,14 +18,15 @@ show_help() {
 EOF
 }
 
-udp_conn=""
-api_port="-p 8091:8091"
+gui_opts=""
 ssh_port=""
+api_port="-p 8091:8091"
+udp_conn=""
 branch_name="master"
 image_tag=""
-gui_opts=""
+container_name="sdrangel"
 
-while getopts "h?gs:a:u:b:t:" opt; do
+while getopts "h?gs:a:u:b:t:c:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -36,11 +38,13 @@ while getopts "h?gs:a:u:b:t:" opt; do
         ;;
     a)  api_port="-p ${OPTARG}:8091"
         ;;
+    u)  udp_conn="-p ${OPTARG}:${OPTARG}/udp ${udp_conn}"
+        ;;
     b)  branch_name=$OPTARG
         ;;
     t)  image_tag=$OPTARG
         ;;
-    u)  udp_conn="-p ${OPTARG}:${OPTARG}/udp ${udp_conn}"
+    c)  container_name=$OPTARG
         ;;
     esac
 done
@@ -56,7 +60,9 @@ if [ ! -z "$gui_opts" ]; then
 fi
 # Start of launching script
 USER_UID=$(id -u)
-docker run -it --rm --privileged \
+docker run -it --rm \
+    --privileged \
+    --name ${container_name} \
     ${gui_opts} \
     ${ssh_port} \
     ${api_port} \
