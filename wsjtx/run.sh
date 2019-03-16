@@ -43,6 +43,7 @@ touch /home/${USER}/WSJT-X.ini
 USER_UID=$(id -u)
 docker run -it --rm \
     --privileged \
+    --name "wsjtx" \
     -e "FAKETIME=${delay}" \
     -e "PULSE_SERVER=unix:/run/user/1000/pulse/native" \
     -e "DISPLAY=unix:0.0" \
