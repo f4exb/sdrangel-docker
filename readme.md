@@ -10,24 +10,23 @@
 
 Eventually Docker compose could be used to fire up the entire SDRangel and SDRangelCli ecosystem.
 
-Please note that running SDRangel in Docker works only on a Linux host. See why just next.
-
 **Check the discussion group** [here](https://groups.io/g/sdrangel)
 
 <h2>Install Docker</h2>
 
 This is of course the first step. Please check the [Docker related page](https://docs.docker.com/install/) and follow instructions for your distribution.
 
-<h3>Why not Windows?</h3>
+<h3>Windows</h3>
 
 You can of course install Docker on Windows in two ways:
-  - Install with Hyper-V
-  - Install with Oracle Virtualbox
+  - Install Docker Desktop For Windows with Hyper-V activated
+  - Install with Oracle Virtualbox (do not activate Hyper-V)
 
-But in fact **running SDRangel in a Docker container in Windows is a no-no** in both cases...
+It turns out that running Docker Desktop For Windows is not an option because you could display something on screen but there are too many issues with X-Server connection, sound and USB.
 
-  - In Virtualbox attaching USB devices is very flaky.
-  - In Hyper-V there are too many issues with X-Server connection, sound and USB.
+Thus you will have to run inside a Linux VM in Virtualbox. One important point is to install Virtualbox running the installation program as an administrator else you will not be able to attach USB devices to the virtual machine.
+
+Then things will be the same as when running Docker in a Linux box and thus all the following applies.
 
 <h2>Get familiar with Docker</h2>
 
@@ -94,17 +93,17 @@ Or I can pipe it directly into other commands like `less` to browse through it o
 
 <h2>SDRangel section</h2>
 
-The files contained in the `sdrangel` directory are used to build and run SDRangel images. Please check the readme inside this folder for further information
+The files contained in the `sdrangel` directory are used to build and run SDRangel images. Please check the [readme](sdrangel/readme.md) inside this folder for further information
 
 <h2>SDRangelCli section</h2>
 
-The files contained in the `sdrangelcli` directory are used to build and run SDRangelCli images. Please check the readme inside this folder for further information
+The files contained in the `sdrangelcli` directory are used to build and run SDRangelCli images. Please check the [readme](sdrangelcli/readme.md) inside this folder for further information
 
 <h2>WSJT-X section</h2>
 
 Due to possible delay in the audio when running SDRangel in a container WSJT-X may fail to decode.
 
-The files contained in the `wsjtx` directory are used to build and run an image where WSJT-X and the `libfaketime` library are compiled. `libfaketime` is used to change system time as WSJT-X sees it.
+The files contained in the `wsjtx` directory (see [readme](wsjtx/readme.md)) are used to build and run an image where WSJT-X and the `libfaketime` library are compiled. `libfaketime` is used to change system time as WSJT-X sees it.
 
 Note that this is only for your convenience. It is also possible to use `libfaketime` with WSJT-X in the host without impacting the system clock.
 
