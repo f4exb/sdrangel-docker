@@ -43,6 +43,7 @@ shift $((OPTIND-1))
 # End of get options
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
+nb_cores=$(grep -c ^processor /proc/cpuinfo)
 IMAGE_NAME=sdrangel/${branch_name}:${image_tag}
 NVIDIA_VER=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader) #410.78
 NVIDIA_DRIVER=NVIDIA-Linux-x86_64-${NVIDIA_VER}.run  # path to nvidia driver
@@ -57,5 +58,6 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
+    --build-arg nb_cores=${nb_cores} \
     --target linux_nvidia \
     -t ${IMAGE_NAME} .

@@ -43,6 +43,7 @@ shift $((OPTIND-1))
 # End of get options
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
+nb_cores=$(grep -c ^processor /proc/cpuinfo)
 IMAGE_NAME=sdrangel/${branch_name}:${image_tag}
 DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
