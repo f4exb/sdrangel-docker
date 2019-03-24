@@ -58,17 +58,19 @@ WORKDIR /opt/build/wsjtx-${WSJTX_VER}
 
 # Build WSJT-X
 FROM get-wsjtx as wsjtx
+ARG nb_cores
 RUN mkdir build; cd build \
     && FC=/usr/bin/gfortran-7 cmake -Wno-dev -DWSJT_SKIP_MANPAGES=ON -DCMAKE_INSTALL_PREFIX=/opt/install/wsjtx .. \
-    && FC=/usr/bin/gfortran-7 make -j4 \
+    && FC=/usr/bin/gfortran-7 make -j${nb_cores} \
     && FC=/usr/bin/gfortran-7 make install
 
 # Clone and build libfaketime
 FROM base as libfaketime
+ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/wolfcw/libfaketime.git
 WORKDIR /opt/build/libfaketime
-RUN make -j4
+RUN make -j${nb_cores}
 RUN DESTDIR="/opt/install/libfaketime" PREFIX="" make install
 
 # Final image
