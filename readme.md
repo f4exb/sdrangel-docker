@@ -28,6 +28,10 @@ Thus you will have to run inside a Linux VM in Virtualbox. One important point i
 
 Then things will be the same as when running Docker in a Linux box and thus all the following applies.
 
+<h2>Add your user to the docker group</h2>
+
+In order to run docker commands as a normal user (without sudo) you will need to add your user to the `docker` group (using sudo once): `sudo usermod -a -G docker $USER`. Then you have to log out and back in to make it effective.
+
 <h2>Get familiar with Docker</h2>
 
 Although a set of shell scripts are there to help you build images and run containers it is better to have some understanding on how Docker works and know its most used commands. There are tons of tutorials on the net to get familiar with Docker. Please take time to play with Docker a little bit so that you are proficient enough to know how to build and run images, start containers, etc... Be sure that this is not time wasted just to run this project. Docker is a top notch technology (although based on ancient roots) widely used in the computer industry and at the heart of many IT ecosystems.
