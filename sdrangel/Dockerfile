@@ -279,7 +279,7 @@ FROM base AS soapy
 ARG nb_cores
 RUN git clone https://github.com/pothosware/SoapySDR.git \
     && cd SoapySDR \
-    && git reset --hard 6d21756 \
+    && git reset --hard 5838bc9 \
     && mkdir build; cd build \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR .. \
     && make -j${nb_cores} install
