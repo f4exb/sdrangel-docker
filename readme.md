@@ -30,7 +30,11 @@ Then things will be the same as when running Docker in a Linux box and thus all 
 
 <h2>Add your user to the docker group</h2>
 
-In order to run docker commands as a normal user (without sudo) you will need to add your user to the `docker` group (using sudo once): `sudo usermod -a -G docker $USER`. Then you have to log out and back in to make it effective.
+**This step is important.** You must <u>not</u> run the various scripts with `sudo` and therefore run docker commands with `sudo`.
+
+In order to run docker commands as a normal user you will need to add your user to the `docker` group (using sudo once): `sudo usermod -a -G docker $USER`. Then you have to log out and back in to make it effective.
+
+Type `groups` to verify `docker` is in the list of groups your user belongs to.
 
 <h2>Get familiar with Docker</h2>
 
