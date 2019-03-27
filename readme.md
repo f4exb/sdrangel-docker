@@ -12,6 +12,8 @@ Eventually Docker compose could be used to fire up the entire SDRangel and SDRan
 
 **Check the discussion group** [here](https://groups.io/g/sdrangel)
 
+&#9758; If you have already installed Docker and are familiar with it you can skip directly to the "Docker images" section at the bottom of the document
+
 <h2>Install Docker</h2>
 
 This is of course the first step. Please check the [Docker related page](https://docs.docker.com/install/) and follow instructions for your distribution.
@@ -99,15 +101,72 @@ Or I can pipe it directly into other commands like `less` to browse through it o
 2019-03-14 02:33:46.666 (D) PerseusPlugin::enumSampleSources: enumerated Perseus device #0
 </code></pre>
 
-<h2>SDRangel section</h2>
+<h2>Doing some cleanup</h2>
+
+To get the complete map of your docker space you issue the following command: `docker system df -v`.
+
+At some point you will notice that your docker space has inflated dramatically and that eventually you might run out of space on the volume where the docker folder is hosted. There are two things you can do to do some cleanup.
+
+<h3>Cleanup of unused images</h3>
+
+In the `Images space usage:` section on the top you will notice that some images have `<none>` for the `REPOSITORY` and `TAG` references:
+
+<pre><code>docker system df -v
+Images space usage:
+
+REPOSITORY            TAG                    IMAGE ID            CREATED             SIZE                SHARED SIZE         UNIQUE SIZE         CONTAINERS
+sdrangel/dev          linux_nvidia           75f6bb9db0dc        28 hours ago        2.607GB             1.958GB             649.3MB             1
+&lt;none&gt;                &lt;none&gt;                 95a6fee5e547        2 days ago          2.607GB             1.958GB             648.4MB             0
+sdrangel/master       linux_nvidia           b7bcc59c8866        2 days ago          2.607GB             1.951GB             655.8MB             0
+</code></pre>
+
+In Docker terms these are called "dangling images". If an image gets superseded by an image with the same tag by a more recent build this image is still kept in the images repository but its references are set to `<none>` and they cannot be used directly specifying a tag. A convenient command to get rid of them is:
+
+<pre><code>docker rmi $(docker images -q --filter "dangling=true")
+Deleted: sha256:95a6fee5e547891b8b3d739b416d46ed59378b019e15b191bb55ba4a99d4ba86</code></pre>
+
+If a dangling image is still in use by a container (its counter in the `CONTAINERS` column is not 0) then it cannot be deleted. You then have to wait until the container is exited and removed. Some disregarded containers may be left in an exit state. You can purge exited containers with the command
+
+<pre><code>docker rm $(docker ps -a -q)
+Error response from daemon: You cannot remove a running container babf0aab863a8a4b23e362dac9bb3aed2fa6a2d782198e57a1e1001f635f1a62. Stop the container before attempting removal or force remove
+</code></pre>
+
+As you can see this command will not delete containers that are running.
+
+<h3>Cleanup of the build cache</h3>
+
+The BuildKit feature of docker build is used in the various scripts presented here. It is nice because it preserves intermediate images but it keeps the build cache inflating. BuildKit comes with a garbage collector but it is not enabled by default. To enable it you have to edit `/etc/docker/daemon.json` so take your favorite editor (`vim`) and open the file with sudo: `sudo vim /etc/docker/daemon.json`. This is a JSON file and you will have to add this structure at the "root" of the JSON document i.e. at the level of the outermost brackets like this
+
+<pre><code>{
+    "you may have something else here": {...},
+    "builder": {
+        "gc": {
+            "enabled": true,
+            "policy": [
+                {"keepStorage": "5GB", "all": true}
+            ]
+        }
+    }
+}</code></pre>
+
+The `keepStorage` key gives a limit to the build cache. This is a target and actual space will generally be slightly higher and may occasionally be significantly higher but each time you restart Docker the build cache space will be reduced to around this value.
+
+You have to restart Docker for this to take effect:
+
+  - with `systemctl` do: `sudo systemctl restart docker`
+  - with `service` do: `sudo service docker restart`
+
+<h2>Docker images</h2>
+
+<h3>SDRangel section</h3>
 
 The files contained in the `sdrangel` directory are used to build and run SDRangel images. Please check the [readme](sdrangel/readme.md) inside this folder for further information
 
-<h2>SDRangelCli section</h2>
+<h3>SDRangelCli section</h3>
 
 The files contained in the `sdrangelcli` directory are used to build and run SDRangelCli images. Please check the [readme](sdrangelcli/readme.md) inside this folder for further information
 
-<h2>WSJT-X section</h2>
+<h3>WSJT-X section</h3>
 
 Due to possible delay in the audio when running SDRangel in a container WSJT-X may fail to decode.
 
@@ -115,6 +174,6 @@ The files contained in the `wsjtx` directory (see [readme](wsjtx/readme.md)) are
 
 Note that this is only for your convenience. It is also possible to use `libfaketime` with WSJT-X in the host without impacting the system clock.
 
-<h2>Compose section</h2>
+<h3>Compose section</h3>
 
 The files contained in the `compose` directory are used to set up and run Docker Compose stacks. Please check the readme inside this folder for further information
