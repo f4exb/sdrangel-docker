@@ -41,3 +41,5 @@ The `run.sh` script sets up a composition with a SDRangel and a SDRangelCli inst
   - `-s port`: host port to access the SDRangel container SSH server. Default is `50022`.
   - `-a port`: host port for the SDRangel REST API. Default is `8091`.
   - `-u port[-port]`: maps a UDP port or a range of ports from host to the SDRangel container (same). Default is `9090`.
+
+The composition default network has a fixed subnet address of `172.18.0.0/16`. SDRangel container will have the `172.18.0.2` IPv4 address and SDRangelCli `172.18.0.3`. A fixed address for SDRangel container is interesting if you use UDP connections.
