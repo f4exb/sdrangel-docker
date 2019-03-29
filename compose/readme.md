@@ -30,11 +30,13 @@ Then using the container id you can fetch the log. You can use the `--since` par
 
 <h2>SDRangel and SDRangelCli composition</h2>
 
-The `run.sh` script sets up a composition with a SDRangel and a SDRangelCli instance that can be used to remotely control the former. It takes the following arguments:
+The `run.sh` script brings up (or down) a compose stack with a SDRangel and a SDRangelCli instance that can be used to remotely control the former. It takes the following arguments:
 
+  - `-D`: use this option to bring down the compose stack (default is to bring up). Use the same `-g` and `-c` options if any that you used to bring up the stack. Other options do not matter.
   - `-g`: starts the GUI variant of SDRangel else the server variant will be started.
   - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
   - `-t version`: GUI only: SDRangel image name version (ex: `vanilla`). This is mandatory.
+  - `-c name` : Give stack name. Default is `compose`.
   - `-r bits`: Server only: number of Rx bits. This makes up the version suffix (ex: `16` makes `server16`). Default is `16`.
   - `-n suffix`: gives a suffix to the container names (default is `1`). The container names are `sdrangel_{suffix}` for SDRangel and `sdrangelcli_{suffix}` for SDRangelCli.
   - `-w port`: host port for the web client interface (SDRangelCli). Default is `8080`.

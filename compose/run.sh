@@ -31,12 +31,15 @@ ssh_port="50022"
 api_port="8091"
 udp_port="9090"
 run_gui=0
+action="up"
 
-while getopts "h?gb:t:c:r:w:s:a:u:" opt; do
+while getopts "h?Dgb:t:c:r:w:s:a:u:" opt; do
     case "$opt" in
     h|\?)
         show_help
         exit 0
+        ;;
+    D)  action="down"
         ;;
     g)  run_gui=1
         ;;
@@ -78,7 +81,7 @@ export UDP_PORT=${udp_port}
 export RX_BITS=${rx_bits}
 
 if [ "$run_gui" -eq 1 ]; then
-    docker-compose -f compose_gui.yml ${stack_name} up -d
+    docker-compose -f compose_gui.yml ${stack_name} ${action} -d
 else
-    docker-compose -f compose_server.yml ${stack_name} up -d
+    docker-compose -f compose_server.yml ${stack_name} ${action} -d
 fi
