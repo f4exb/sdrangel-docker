@@ -19,7 +19,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
     networks:
       default:
-        ipv4_address: 172.18.0.12
+        ipv4_address: 172.18.0.2
     privileged: true
     stdin_open: true
     tty: true
@@ -31,7 +31,7 @@ services:
       - "${WEB_PORT}:8080"
     networks:
       default:
-        ipv4_address: 172.18.0.13
+        ipv4_address: 172.18.0.3
 networks:
   default:
     driver: bridge
