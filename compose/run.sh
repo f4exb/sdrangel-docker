@@ -7,6 +7,9 @@ show_help() {
   cat << EOF
   Usage: ${0##*/} [-g] [-b branch] -t version [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
   Run SDRangel and SDRangelCli in a Docker compose stack.
+  -D         use this option to bring down the compose stack (default is to bring up).
+             Use the same -g and -c options if any that you used to bring up the stack.
+             Other options do not matter.
   -g         Run a GUI variant (server if unset)
   -b         SDRangel source branch name (default master)
   -t version Docker GUI image tag version
@@ -31,7 +34,7 @@ ssh_port="50022"
 api_port="8091"
 udp_port="9090"
 run_gui=0
-action="up"
+action="up -d"
 
 while getopts "h?Dgb:t:c:r:w:s:a:u:" opt; do
     case "$opt" in
@@ -81,7 +84,7 @@ export UDP_PORT=${udp_port}
 export RX_BITS=${rx_bits}
 
 if [ "$run_gui" -eq 1 ]; then
-    docker-compose -f compose_gui.yml ${stack_name} ${action} -d
+    docker-compose -f compose_gui.yml ${stack_name} ${action}
 else
-    docker-compose -f compose_server.yml ${stack_name} ${action} -d
+    docker-compose -f compose_server.yml ${stack_name} ${action}
 fi
