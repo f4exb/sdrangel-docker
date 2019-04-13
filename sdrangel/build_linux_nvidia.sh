@@ -11,6 +11,7 @@ show_help() {
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -t version Docker image tag version (default linux_nvidia)
+  -j number  Number of cores used in make commands (-j), Default is half the available number of cores.
   -h         Print this help.
 EOF
 }
@@ -19,8 +20,15 @@ repo_url="https://github.com/f4exb/sdrangel.git"
 branch_name="master"
 clone_tag=$(date)
 image_tag="linux_nvidia"
+nb_cores=$(grep -c ^processor /proc/cpuinfo)
 
-while getopts "h?r:b:c:t:" opt; do
+if [ $nb_cores -gt 2 ]; then
+    nb_cores="$(( $nb_cores / 2 ))"
+else
+    nb_cores=1
+fi
+
+while getopts "h?r:b:c:t:j:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -32,7 +40,9 @@ while getopts "h?r:b:c:t:" opt; do
         ;;
     c)  clone_tag=${OPTARG}
         ;;
-    t)  image_tag=$OPTARG
+    t)  image_tag=${OPTARG}
+        ;;
+    j)  nb_cores=${OPTARG}
         ;;
     esac
 done
@@ -43,7 +53,6 @@ shift $((OPTIND-1))
 # End of get options
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
-nb_cores=$(grep -c ^processor /proc/cpuinfo)
 IMAGE_NAME=sdrangel/${branch_name}:${image_tag}
 NVIDIA_VER=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader) #410.78
 NVIDIA_DRIVER=NVIDIA-Linux-x86_64-${NVIDIA_VER}.run  # path to nvidia driver
