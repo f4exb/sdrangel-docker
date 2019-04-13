@@ -12,7 +12,7 @@ show_help() {
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -x         Use 24 bit samples for Rx
   -t version Docker image tag version (default server{bits})
-  -j number  Number of cores used in make commands (-j), Default is half the available number of cores.
+  -j number  Number of cores used in make commands (-j), Default is the number of cores available.
   -h         Print this help.
 EOF
 }
@@ -24,12 +24,6 @@ image_tag="server"
 rx_24bits="OFF"
 rx_bits="16"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
-
-if [ $nb_cores -gt 2 ]; then
-    nb_cores="$(( $nb_cores / 2 ))"
-else
-    nb_cores=1
-fi
 
 while getopts "h?r:b:c:xt:j:" opt; do
     case "$opt" in
@@ -66,5 +60,6 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
     --build-arg rx_24bits=${rx_24bits} \
+    --build-arg nb_cores=${nb_cores} \
     --target server \
     -t ${IMAGE_NAME} .

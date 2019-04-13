@@ -11,7 +11,7 @@ show_help() {
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -t version Docker image tag version (default vanilla)
-  -j number  Number of cores used in make commands (-j), Default is half the available number of cores.
+  -j number  Number of cores used in make commands (-j), Default is half the number of cores available.
   -h         Print this help.
 EOF
 }
@@ -21,12 +21,6 @@ branch_name="master"
 clone_tag=$(date)
 image_tag="vanilla"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
-
-if [ $nb_cores -gt 2 ]; then
-    nb_cores="$(( $nb_cores / 2 ))"
-else
-    nb_cores=1
-fi
 
 while getopts "h?r:b:c:t:j:" opt; do
     case "$opt" in
@@ -59,5 +53,6 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
+    --build-arg nb_cores=${nb_cores} \
     --target vanilla \
     -t ${IMAGE_NAME} .

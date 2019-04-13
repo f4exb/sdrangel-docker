@@ -46,7 +46,7 @@ The build commands can control from which repository and from which branch you a
     - By default this is the current timestamp so each time the build is run a new cache is built
     - You can specify the commit SHA1 so that a fresh copy will be taken only if a new commit took place
   - `-t` specifies the tag version image (default varies depending on build flavor)
-  - `-j` specifies the number of CPU cores used in the make commands (same as the -j option of make). Default is half of the available CPU cores if there are more than 2 CPU cores else just one.
+  - `-j` specifies the number of CPU cores used in the make commands (same as the -j option of make). Default is the number of CPU cores available.
 
 <h3>Build server specific options</h3>
 
