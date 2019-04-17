@@ -104,7 +104,7 @@ FROM base AS cm256cc
 ARG nb_cores
 RUN git clone https://github.com/f4exb/cm256cc.git \
     && cd cm256cc \
-    && git reset --hard 64beaaa \
+    && git reset --hard 08c4929 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. \
     && make -j${nb_cores} install
