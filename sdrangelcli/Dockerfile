@@ -1,4 +1,8 @@
 FROM node
+ARG repository
+ARG branch
+ARG repo_hash
+ARG clone_tag
 
 # Install base packages
 RUN apt-get update && apt-get -y install sudo
@@ -14,7 +18,9 @@ USER node
 RUN sudo mkdir /opt/build \
      && sudo chown node:node /opt/build
 WORKDIR /opt/build
-RUN git clone https://github.com/f4exb/sdrangelcli.git
+RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelcli \
+    && echo "${repo_hash}" > /dev/null \
+    && echo "${clone_tag}" > /dev/null
 WORKDIR /opt/build/sdrangelcli
 RUN npm install \
      && ng build

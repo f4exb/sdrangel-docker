@@ -11,8 +11,10 @@ show_help() {
              Use the same -g and -c options if any that you used to bring up the stack.
              Other options do not matter.
   -g         Run a GUI variant (server if unset)
-  -b         SDRangel source branch name (default master)
-  -t version Docker GUI image tag version
+  -b branch  SDRangel source branch name (default master)
+  -B branch  SDRangelCli source branch name (default master)
+  -t version Docker SDRangel GUI image tag version
+  -T version Docker SDRangelCli image tag version (default latest)
   -c name    Docker compose stack name (default compose)
   -r         Number of Rx bits for server version (default 16)
   -n         Container name suffix (default 1)
@@ -25,7 +27,9 @@ EOF
 }
 
 branch_name="master"
+branch_name_cli="master"
 image_tag=""
+image_tag_cli="latest"
 name_suffix="1"
 stack_name=""
 rx_bits="16"
@@ -36,7 +40,7 @@ udp_port="9090"
 run_gui=0
 action="up -d"
 
-while getopts "h?Dgb:t:c:r:w:s:a:u:" opt; do
+while getopts "h?Dgb:B:t:T:c:r:w:s:a:u:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -48,7 +52,11 @@ while getopts "h?Dgb:t:c:r:w:s:a:u:" opt; do
         ;;
     b)  branch_name=${OPTARG}
         ;;
+    B)  branch_name_cli=${OPTARG}
+        ;;
     t)  image_tag=${OPTARG}
+        ;;
+    T)  image_tag_cli=${OPTARG}
         ;;
     c)  stack_name="-p ${OPTARG}"
         ;;
@@ -75,7 +83,9 @@ shift $((OPTIND-1))
 export DNS=$(nmcli dev show | grep 'IP4.DNS' | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
 export USER_UID=$(id -u)
 export BRANCH_NAME=${branch_name}
+export BRANCH_NAME_CLI=${branch_name_cli}
 export IMAGE_VERSION=${image_tag}
+export IMAGE_VERSION_CLI=${image_tag_cli}
 export NAME_SUFFIX=${name_suffix}
 export WEB_PORT=${web_port}
 export SSH_PORT=${ssh_port}

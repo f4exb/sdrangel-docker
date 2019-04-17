@@ -22,7 +22,7 @@ services:
     stdin_open: true
     tty: true
   sdrangelcli:
-    image: sdrangelcli/node:latest
+    image: "sdrangelcli/${BRANCH_NAME_CLI}:${IMAGE_VERSION_CLI}"
     container_name: "sdrangelcli_${NAME_SUFFIX}"
     dns: "${DNS}"
     ports:
