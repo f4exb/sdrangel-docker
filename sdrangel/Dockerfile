@@ -247,6 +247,7 @@ ARG nb_cores
 RUN git clone https://github.com/f4exb/libperseus-sdr.git \
     && cd libperseus-sdr \
     && git checkout fixes \
+    && git reset --hard afefa23 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libperseus .. \
     && make \
