@@ -13,6 +13,7 @@ show_help() {
   -x         Use 24 bit samples for Rx
   -t version Docker image tag version (default server{bits})
   -j number  Number of cores used in make commands (-j), Default is the number of cores available.
+  -f file    Specify a Dockerfile (default is Dockerfile in current directory i.e. '.')
   -h         Print this help.
 EOF
 }
@@ -24,8 +25,9 @@ image_tag="server"
 rx_24bits="OFF"
 rx_bits="16"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
+docker_file="."
 
-while getopts "h?r:b:c:xt:j:" opt; do
+while getopts "h?r:b:c:xt:j:f:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -43,6 +45,8 @@ while getopts "h?r:b:c:xt:j:" opt; do
     t)  image_tag=${OPTARG}
         ;;
     j)  nb_cores=${OPTARG}
+        ;;
+    f)  docker_file="-f ${OPTARG} ."
         ;;
     esac
 done
@@ -62,4 +66,4 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg rx_24bits=${rx_24bits} \
     --build-arg nb_cores=${nb_cores} \
     --target server \
-    -t ${IMAGE_NAME} .
+    -t ${IMAGE_NAME} ${docker_file}
