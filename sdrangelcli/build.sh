@@ -11,6 +11,7 @@ show_help() {
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -t version Docker image tag version (default latest)
+  -f file    Specify a Dockerfile (default is Dockerfile in current directory i.e. '.')
   -h         Print this help.
 EOF
 }
@@ -19,8 +20,9 @@ repo_url="https://github.com/f4exb/sdrangelcli.git"
 branch_name="master"
 clone_tag=$(date)
 image_tag="latest"
+docker_file="."
 
-while getopts "h?r:b:c:t:" opt; do
+while getopts "h?r:b:c:t:f:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -33,6 +35,8 @@ while getopts "h?r:b:c:t:" opt; do
     c)  clone_tag=${OPTARG}
         ;;
     t)  image_tag=${OPTARG}
+        ;;
+    f)  docker_file="-f ${OPTARG} ."
         ;;
     esac
 done
@@ -49,4 +53,4 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
-    -t ${IMAGE_NAME} .
+    -t ${IMAGE_NAME} ${docker_file}
