@@ -22,8 +22,8 @@ RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelcli \
     && echo "${repo_hash}" > /dev/null \
     && echo "${clone_tag}" > /dev/null
 WORKDIR /opt/build/sdrangelcli
-RUN npm install \
-    && ng build --prod
+RUN npm install
+RUN ng build --prod
 
 WORKDIR /opt/build/sdrangelcli/dist/sdrangelcli
 ENTRYPOINT [ "http-server" ]
