@@ -80,7 +80,11 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 # End of get options
 
-export DNS=$(nmcli dev show | grep 'IP4.DNS' | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
+if [ -x "$(command -v nmcli)" ]; then
+    export DNS=$(nmcli dev show | grep 'IP4.DNS' | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
+else
+    export DNS=$(grep nameserver /etc/resolv.conf | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
+fi
 export USER_UID=$(id -u)
 export BRANCH_NAME=${branch_name}
 export BRANCH_NAME_CLI=${branch_name_cli}
