@@ -1,8 +1,4 @@
-FROM node
-ARG repository
-ARG branch
-ARG repo_hash
-ARG clone_tag
+FROM node as base
 
 # Install base packages
 RUN apt-get update && apt-get -y install sudo
@@ -18,6 +14,13 @@ USER node
 RUN sudo mkdir /opt/build \
      && sudo chown node:node /opt/build
 WORKDIR /opt/build
+
+# Clone sdrangelcli and build final image
+FROM base as sdrangelcli
+ARG repository
+ARG branch
+ARG repo_hash
+ARG clone_tag
 RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelcli \
     && echo "${repo_hash}" > /dev/null \
     && echo "${clone_tag}" > /dev/null

@@ -53,4 +53,5 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
+    --target sdrangelcli \
     -t ${IMAGE_NAME} ${docker_file}
