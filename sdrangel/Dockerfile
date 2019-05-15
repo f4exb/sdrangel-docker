@@ -87,8 +87,9 @@ RUN sudo apt-get update && sudo apt-get -y install libspeexdsp-dev \
     libsamplerate0-dev
 # Perseus
 RUN sudo apt-get update && sudo apt-get -y install xxd
-# XTRX
-RUN sudo apt-get update && sudo apt-get -y install python-cheetah
+# XTRX, UHD
+RUN sudo apt-get update && sudo apt-get -y install python-cheetah \
+    python-mako
 
 # This is the first step to allow sharing pulseaudio with the host
 COPY pulse-client.conf /etc/pulse/client.conf
@@ -266,6 +267,16 @@ RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/xtrx-images -DENABLE_SOAPY=NO .. \
     && make -j${nb_cores} install
 
+# UHD
+FROM base AS uhd
+ARG nb_cores
+RUN git clone git://github.com/EttusResearch/uhd.git \
+    && cd uhd/host \
+    && git reset --hard e0e61a5 \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd -DENABLE_PYTHON_API=OFF -DINSTALL_UDEV_RULES=OFF .. \
+    && make -j${nb_cores} install
+
 # SDRPlay RSP1
 FROM base AS libmirisdr
 ARG nb_cores
@@ -318,6 +329,18 @@ RUN cd LimeSuite/builddir \
     && make -j${nb_cores} install \
     && cp /opt/install/LimeSuite/lib/SoapySDR/modules0.7/libLMS7Support.so /opt/install/SoapySDR/lib/SoapySDR/modules0.7
 
+# Soapy UHD
+FROM base AS soapy_uhd
+ARG nb_cores
+COPY --from=soapy --chown=sdr /opt/install /opt/install
+COPY --from=uhd --chown=sdr /opt/install /opt/install
+RUN git clone https://github.com/pothosware/SoapyUHD.git \
+    && cd SoapyUHD \
+    && git reset --hard 2900fff \
+    && mkdir build; cd build \
+    && UHD_DIR=/opt/install/uhd cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
+    && make -j${nb_cores} install
+
 # Create a base image plus dependencies
 FROM base AS base_deps
 COPY --from=cm256cc --chown=sdr /opt/install /opt/install
@@ -336,10 +359,13 @@ COPY --from=airspyhf --chown=sdr /opt/install /opt/install
 COPY --from=perseus --chown=sdr /opt/install /opt/install
 COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
+COPY --from=uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=soapy_sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
+COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
+COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
 
 FROM base AS sdrangel_clone
 WORKDIR /opt/build
