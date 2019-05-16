@@ -276,6 +276,11 @@ RUN git clone git://github.com/EttusResearch/uhd.git \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd -DENABLE_PYTHON_API=OFF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
+# Download firmware images for models requiring them at run time (see https://files.ettus.com/manual/page_images.html)
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t usrp1
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t b2xx
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e310
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e320_fpga
 
 # SDRPlay RSP1
 FROM base AS libmirisdr
