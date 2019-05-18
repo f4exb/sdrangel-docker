@@ -6,7 +6,7 @@ Docker 18.09 or later is required. A single Dockerfile is used to build all imag
 
 For GUI operation the `xhost` command should be available in the system. This is available in almost distributions as either the `xhost` package or with `xhost` in the package name. e.g `xhost` in Ubuntu, `xorg-xhost` in Arch.
 
-In order to be able to access the USB hardware on the host the udev rules must be properly set for your user (or system wide) on the host. The [udev-rules folder](https://github.com/f4exb/sdrangel/tree/master/udev-rules) in the SDRangel Github repository contains these rules and a script to install them to be run with `sudo install.sh`.
+In order to be able to access the USB hardware on the host the udev rules must be properly set for your user (or system wide) on the host. The `udev-rules` folder contains these rules and a script to install them to be run with `sudo install.sh`.
 
 Because SDRangel uses OpenGL this can make it possibly more difficult to run it properly on some hosts and operating systems.  In any case it is assumed that the rendering takes place on the hardware of the host running Docker. For example running with a NVidia graphics card will require to build and run a `linux_nvidia` version of the base image.
 
