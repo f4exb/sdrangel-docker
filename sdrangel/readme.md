@@ -24,6 +24,12 @@ As an indication it takes ~36mn to build the `vanilla` image on a laptop with co
   - Use the `build_linux_nvidia.sh` script to produce the `sdrangel/master:linux_nvidia` image
   - Use the `run.sh` script with options `-g -t linux_nvidia` to run the image
 
+As a prerequisite you have to download the driver appropriate to your system:
+
+  - First find out the driver currently in use in your system: `glxinfo | grep -i nvidia`. It should display a line like `OpenGL core profile version string: 4.6.0 NVIDIA 410.104`. In this example the version is `410.104`.
+  - Download the driver installer corresponding to this version from [this archive](https://www.nvidia.com/object/linux-amd64-display-archive.html)
+  - Copy it to `NVIDIA-DRIVER.run` in the `sdrangel` folder of the cloned repository (this folder).
+
 <h3>Server with 16 bit Rx samples</h3>
 
   - Use the `build_server.sh` script to produce the `sdrangel/master:server16` image
