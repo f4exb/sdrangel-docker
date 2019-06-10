@@ -48,7 +48,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
 RUN sudo apt-get update && sudo apt-get -y install \
     qtchooser \
     libqt5multimedia5-plugins \
-    qtmultimedia5-dev
+    qtmultimedia5-dev \
+    libqt5websockets5-dev
 RUN sudo apt-get update && sudo apt-get -y install \
     qttools5-dev \
     qttools5-dev-tools
@@ -346,6 +347,16 @@ RUN git clone https://github.com/pothosware/SoapyUHD.git \
     && UHD_DIR=/opt/install/uhd cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
     && make -j${nb_cores} install
 
+# Soapy Red Pitaya
+FROM base as soapy_redpitaya
+COPY --from=soapy --chown=sdr /opt/install /opt/install
+RUN git clone https://github.com/pothosware/SoapyRedPitaya.git \
+    && cd SoapyRedPitaya \
+    && git reset --hard 3d576f83b3bde52104b2a88150516ca8c9a78c7a \
+    && mkdir build; cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
+    && make -j${nb_cores} install
+
 # Create a base image plus dependencies
 FROM base AS base_deps
 COPY --from=cm256cc --chown=sdr /opt/install /opt/install
@@ -371,6 +382,7 @@ COPY --from=soapy_sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
+COPY --from=soapy_redpitaya --chown=sdr /opt/install /opt/install
 
 FROM base AS sdrangel_clone
 WORKDIR /opt/build
