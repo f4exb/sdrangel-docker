@@ -146,10 +146,10 @@ RUN git clone https://github.com/f4exb/dsdcc.git \
 # Codec2
 FROM base AS codec2
 ARG nb_cores
-RUN sudo apt-get update && sudo apt-get -y install subversion
-RUN svn co https://svn.code.sf.net/p/freetel/code/codec2-dev@4067 codec2-dev \
-    && cd codec2-dev \
-    && mkdir build; cd build \
+RUN git clone https://github.com/drowe67/codec2.git \
+    && cd codec2 \
+    && git reset --hard 76a20416d715ee06f8b36a9953506876689a3bd2 \
+    && mkdir build_linux; cd build_linux \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
 
@@ -382,7 +382,6 @@ COPY --from=soapy_sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
-COPY --from=soapy_redpitaya --chown=sdr /opt/install /opt/install
 
 FROM base AS sdrangel_clone
 WORKDIR /opt/build
