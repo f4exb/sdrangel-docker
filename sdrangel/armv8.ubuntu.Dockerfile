@@ -207,7 +207,7 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 
 # LimeSDR
 FROM base AS limesdr_clone
-RUN git config --global http.postBuffer 524288000
+RUN git config --global http.postBuffer 1048576000
 RUN git clone https://github.com/myriadrf/LimeSuite.git \
     && cd LimeSuite \
     && git reset --hard 025ffa1a \
