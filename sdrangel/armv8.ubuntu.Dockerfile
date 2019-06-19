@@ -48,7 +48,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
 RUN sudo apt-get update && sudo apt-get -y install \
     qtchooser \
     libqt5multimedia5-plugins \
-    qtmultimedia5-dev
+    qtmultimedia5-dev \
+    libqt5websockets5-dev
 RUN sudo apt-get update && sudo apt-get -y install \
     qttools5-dev \
     qttools5-dev-tools
@@ -59,9 +60,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
 RUN sudo apt-get update && sudo apt-get -y install \
     libpython2.7 libpython2.7-dev
 RUN sudo apt-get update && sudo apt-get -y install \
-    libpython3-dev
-RUN sudo apt-get update && sudo apt-get -y install \
-    libpython3.6-dev
+    libpython3.7-dev
 RUN sudo apt-get update && sudo apt-get -y install \
     librdmacm1
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -207,8 +206,8 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 
 # LimeSDR
 FROM base AS limesdr_clone
-RUN git config --global http.postBuffer 1048576000
-RUN git clone https://github.com/myriadrf/LimeSuite.git \
+RUN git config --global http.postBuffer 1048576000 \
+    && git clone https://github.com/myriadrf/LimeSuite.git \
     && cd LimeSuite \
     && git reset --hard 025ffa1a \
     && mkdir builddir

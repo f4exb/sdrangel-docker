@@ -39,7 +39,8 @@ RUN sudo apk update && sudo apk add \
 RUN sudo apk update && sudo apk add \
     qt5-qtbase-dev \
     qt5-qtmultimedia-dev \
-    qt5-qttools-dev
+    qt5-qttools-dev \
+    qt5-websockets-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apk update && sudo apk add \
