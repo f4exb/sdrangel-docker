@@ -1,4 +1,5 @@
 FROM arm64v8/alpine AS base
+ARG uid
 
 # Create a user with sudo rights
 RUN apk update && apk add sudo
@@ -6,7 +7,7 @@ RUN adduser \
     --disabled-password \
     --home /home/sdr \
     --ingroup users \
-    --uid 1000 sdr
+    --uid ${uid} sdr
 RUN echo "sdr:sdr" | chpasswd \
     && addgroup sdr audio \
     && addgroup sdr dialout \

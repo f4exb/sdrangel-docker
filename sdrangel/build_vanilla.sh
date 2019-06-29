@@ -21,6 +21,7 @@ branch_name="master"
 clone_tag=$(date)
 image_tag="vanilla"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
+uid=$(id -u)
 
 while getopts "h?r:b:c:t:j:" opt; do
     case "$opt" in
@@ -54,5 +55,6 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
     --build-arg nb_cores=${nb_cores} \
+    --build-arg uid=${uid} \
     --target vanilla \
     -t ${IMAGE_NAME} .

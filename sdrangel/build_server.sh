@@ -25,6 +25,7 @@ image_tag="server"
 rx_24bits="OFF"
 rx_bits="16"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
+uid=$(id -u)
 docker_file="."
 
 while getopts "h?r:b:c:xt:j:f:" opt; do
@@ -65,5 +66,6 @@ DOCKER_BUILDKIT=1 docker build \
     --build-arg clone_tag="${clone_tag}" \
     --build-arg rx_24bits=${rx_24bits} \
     --build-arg nb_cores=${nb_cores} \
+    --build-arg uid=${uid} \
     --target server \
     -t ${IMAGE_NAME} ${docker_file}

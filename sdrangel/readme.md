@@ -14,6 +14,8 @@ As an indication it takes ~36mn to build the `vanilla` image on a laptop with co
 
 <h2>Images</h2>
 
+When building images it is important that the image is built by the user that will also start the container. This is because the UID of the user on the host and the container should match.
+
 <h3>GUI with no specific hardware dependencies</h3>
 
   - Use the `build_vanilla.sh` script to produce the `sdrangel/master:vanilla` image

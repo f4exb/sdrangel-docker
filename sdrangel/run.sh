@@ -25,6 +25,7 @@ udp_conn=""
 branch_name="master"
 image_tag=""
 container_name="sdrangel"
+USER_UID=$(id -u)
 
 while getopts "h?gs:a:u:b:t:c:" opt; do
     case "$opt" in
@@ -32,7 +33,7 @@ while getopts "h?gs:a:u:b:t:c:" opt; do
         show_help
         exit 0
         ;;
-    g)  gui_opts="-e PULSE_SERVER=unix:/run/user/1000/pulse/native -e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    g)  gui_opts="-e PULSE_SERVER=unix:/run/user/${USER_UID}/pulse/native -e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw"
         ;;
     s)  ssh_port="-p ${OPTARG}:22"
         ;;
@@ -59,7 +60,6 @@ if [ ! -z "$gui_opts" ]; then
     xhost +si:localuser:${USER}
 fi
 # Start of launching script
-USER_UID=$(id -u)
 docker run -it --rm \
     --privileged \
     --name ${container_name} \
@@ -68,5 +68,5 @@ docker run -it --rm \
     ${api_port} \
     ${udp_conn} \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
-    -v="/run/user/${USER_UID}/pulse:/run/user/1000/pulse" \
+    -v="/run/user/${USER_UID}/pulse:/run/user/${USER_UID}/pulse" \
     sdrangel/${branch_name}:${image_tag}
