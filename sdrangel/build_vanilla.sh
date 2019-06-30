@@ -10,7 +10,7 @@ show_help() {
   -r url     Repository URL (default https://github.com/f4exb/sdrangel.git)
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
-  -t version Docker image tag version (default vanilla)
+  -t version Docker image tag version. Use tag or commit hash (default latest)
   -j number  Number of cores used in make commands (-j), Default is half the number of cores available.
   -h         Print this help.
 EOF
@@ -19,7 +19,7 @@ EOF
 repo_url="https://github.com/f4exb/sdrangel.git"
 branch_name="master"
 clone_tag=$(date)
-image_tag="vanilla"
+image_tag="latest"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
 uid=$(id -u)
 
@@ -48,7 +48,7 @@ shift $((OPTIND-1))
 # End of get options
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
-IMAGE_NAME=sdrangel/${branch_name}:${image_tag}
+IMAGE_NAME=sdrangel/vanilla:${image_tag}
 DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \

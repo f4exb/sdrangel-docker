@@ -5,15 +5,15 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-g] [-b branch] -t version [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
+  Usage: ${0##*/} [-g] [-f flavor] [-B branch] [-t tag] [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
   Run SDRangel and SDRangelCli in a Docker compose stack.
   -D         use this option to bring down the compose stack (default is to bring up).
              Use the same -g and -c options if any that you used to bring up the stack.
              Other options do not matter.
   -g         Run a GUI variant (server if unset)
-  -b branch  SDRangel source branch name (default master)
+  -f flavor  Image flavor. Can be vanilla, nvidia, server16, server24 (default vanilla). Use a flavor relevant to GUI or server variants.
   -B branch  SDRangelCli source branch name (default master)
-  -t version Docker SDRangel GUI image tag version
+  -t version Docker SDRangel GUI image tag version (default latest)
   -T version Docker SDRangelCli image tag version (default latest)
   -c name    Docker compose stack name (default compose)
   -r         Number of Rx bits for server version (default 16)
@@ -23,10 +23,15 @@ show_help() {
   -a port    API port map to 8091 (default 8091).
   -u port(s) UDP port(s) map to same with UDP option (default 9090). You can specify a range as XXXX-YYYY.
   -h         Print this help.
+  Examples:
+    ./run.sh -g (starts sdrangel/vanilla:latest and sdrangelcli/master:latest)
+    ./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -u 9090:9090 (starts sdrangel/nvidia:v4.10.4 and sdrangelcli/master:latest)
+    ./run.sh -f server16 -t 38df0a6 -c sdrangel -u 9090:9090 (starts sdrangel/server16:38df0a6 and sdrangelcli/master:latest)
+    ./run.sh -f server16 -t v4.10.4 -T v1.1.1 (starts sdrangel/server16:v4.10.1 and sdrangelcli/master:v1.1.1)
 EOF
 }
 
-branch_name="master"
+sdrangel_flavor="vanilla"
 branch_name_cli="master"
 image_tag=""
 image_tag_cli="latest"
@@ -40,7 +45,7 @@ udp_port="9090"
 run_gui=0
 action="up -d"
 
-while getopts "h?Dgb:B:t:T:c:r:w:s:a:u:" opt; do
+while getopts "h?Dgf:B:t:T:c:r:w:s:a:u:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -50,7 +55,7 @@ while getopts "h?Dgb:B:t:T:c:r:w:s:a:u:" opt; do
         ;;
     g)  run_gui=1
         ;;
-    b)  branch_name=${OPTARG}
+    f)  sdrangel_flavor=${OPTARG}
         ;;
     B)  branch_name_cli=${OPTARG}
         ;;
@@ -86,7 +91,7 @@ else
     export DNS=$(grep nameserver /etc/resolv.conf | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
 fi
 export USER_UID=$(id -u)
-export BRANCH_NAME=${branch_name}
+export SDRANGEL_FLAVOR=${sdrangel_flavor}
 export BRANCH_NAME_CLI=${branch_name_cli}
 export IMAGE_VERSION=${image_tag}
 export IMAGE_VERSION_CLI=${image_tag_cli}

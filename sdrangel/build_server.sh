@@ -11,7 +11,7 @@ show_help() {
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -x         Use 24 bit samples for Rx
-  -t version Docker image tag version (default server{bits})
+  -t version Docker image tag version. Use tag or commit hash (default latest)
   -j number  Number of cores used in make commands (-j), Default is the number of cores available.
   -f file    Specify a Dockerfile (default is Dockerfile in current directory i.e. '.')
   -h         Print this help.
@@ -21,7 +21,7 @@ EOF
 repo_url="https://github.com/f4exb/sdrangel.git"
 branch_name="master"
 clone_tag=$(date)
-image_tag="server"
+image_tag="latest"
 rx_24bits="OFF"
 rx_bits="16"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
@@ -58,7 +58,7 @@ shift $((OPTIND-1))
 # End of get options
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
-IMAGE_NAME=sdrangel/${branch_name}:${image_tag}${rx_bits}
+IMAGE_NAME=sdrangel/server${rx_bits}:${image_tag}
 DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \

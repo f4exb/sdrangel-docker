@@ -8,13 +8,17 @@ show_help() {
   Usage: ${0##*/} [-g] [-b branch] -t version [-k name] [-s port] [-a port] [-u port [-u port ...]] [-h]
   Run SDRangel in a Docker container.
   -g         Run a GUI variant (server if unset)
-  -b         SDRangel source branch name (default master)
-  -t version Docker image tag version
+  -f         Image flavor. Can be vanilla, nvidia, server16, server24 (default vanilla). Use a flavor relevant to GUI or server variants.
+  -t version Docker image tag version (default latest). Use the corresponding image tag.
   -c name    Docker container name (default sdrangel)
   -s port    SSH port map to 22.
   -a port    API port map to 8091 (default 8091).
   -u port    UDP port map to same with UDP option. Can be repeated.
   -h         Print this help.
+  Examples:
+    ./run.sh -g -c sdrangel -s 50022 -u 9090:9090 (starts sdrangel/vanilla:latest)
+    ./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -s 50022 -u 9090:9090 (starts sdrangel/nvidia:v4.10.4)
+    ./run.sh -f server16 -t 38df0a6 -c sdrangel -s 50022 -u 9090:9090 (starts sdrangel/server16:38df0a6)
 EOF
 }
 
@@ -22,12 +26,12 @@ gui_opts=""
 ssh_port=""
 api_port="-p 8091:8091"
 udp_conn=""
-branch_name="master"
-image_tag=""
+flavor="vanilla"
+image_tag="latest"
 container_name="sdrangel"
 USER_UID=$(id -u)
 
-while getopts "h?gs:a:u:b:t:c:" opt; do
+while getopts "h?gs:a:u:f:t:c:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -41,7 +45,7 @@ while getopts "h?gs:a:u:b:t:c:" opt; do
         ;;
     u)  udp_conn="-p ${OPTARG}:${OPTARG}/udp ${udp_conn}"
         ;;
-    b)  branch_name=$OPTARG
+    b)  flavor=$OPTARG
         ;;
     t)  image_tag=$OPTARG
         ;;
@@ -69,4 +73,4 @@ docker run -it --rm \
     ${udp_conn} \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/${USER_UID}/pulse" \
-    sdrangel/${branch_name}:${image_tag}
+    sdrangel/${flavor}:${image_tag}

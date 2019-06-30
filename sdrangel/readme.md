@@ -18,13 +18,13 @@ When building images it is important that the image is built by the user that wi
 
 <h3>GUI with no specific hardware dependencies</h3>
 
-  - Use the `build_vanilla.sh` script to produce the `sdrangel/master:vanilla` image
+  - Use the `build_vanilla.sh` script to produce the `sdrangel/vanilla:latest` image. `latest` is the default but can be user defined with `-t` option.
   - Use the `run.sh` script with options `-g -t vanilla` to run the image
 
 <h3>GUI with a NVidia graphics card</h3>
 
-  - Use the `build_linux_nvidia.sh` script to produce the `sdrangel/master:linux_nvidia` image
-  - Use the `run.sh` script with options `-g -t linux_nvidia` to run the image
+  - Use the `build_linux_nvidia.sh` script to produce the `sdrangel/nvidia:latest` image. `latest` is the default but can be user defined with `-t` option.
+  - Use the `run.sh` script with options `-g -t nvidia` to run the image
 
 As a prerequisite you have to download the driver appropriate to your system:
 
@@ -34,12 +34,12 @@ As a prerequisite you have to download the driver appropriate to your system:
 
 <h3>Server with 16 bit Rx samples</h3>
 
-  - Use the `build_server.sh` script to produce the `sdrangel/master:server16` image
+  - Use the `build_server.sh` script to produce the `sdrangel/server16:latest` image. `latest` is the default but can be user defined with `-t` option.
   - Use the `run.sh` script with options `-t server16` to run the image
 
 <h3>Server with 24 bit Rx samples</h3>
 
-  - Use the `build_server.sh -s 24` script to produce the `sdrangel/master:server24` image
+  - Use the `build_server.sh -s 24` script to produce the `sdrangel/server24:latest` image. `latest` is the default but can be user defined with `-t` option.
   - Use the `run.sh` script with options `-t server24` to run the image
 
 <h2>Additional options to the build commands</h2>
@@ -53,7 +53,7 @@ The build commands can control from which repository and from which branch you a
   - `-c` specifies an arbitrary commit tag. This is to force a fresh clone of the SDRangel repository. If that tag changes from the one previously used then the clone layer in the build cache is refreshed.
     - By default this is the current timestamp so each time the build is run a new cache is built
     - You can specify the commit SHA1 so that a fresh copy will be taken only if a new commit took place
-  - `-t` specifies the tag version image (default varies depending on build flavor)
+  - `-t` specifies the tag version image (default `latest`). You would normally use a tag relative to the git repository for example the tag name for tagged commits or the commit hash.
   - `-j` specifies the number of CPU cores used in the make commands (same as the -j option of make). Default is the number of CPU cores available.
 
 <h3>Build server specific options</h3>
@@ -71,6 +71,12 @@ You may specify extra options for port mapping between the host and the containe
   - `-u` specifies an UDP port on the host linked to the same port in the container.
   You may have several of these. UDP port mapping is used for Remote Input plugin operation
   - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
+
+<h3>Examples</h3>
+
+  - `./run.sh -g -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/vanilla:latest`
+  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/nvidia:v4.10.4`
+  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/server16:38df0a6`
 
 <h2>Notes about running images</h2>
 
