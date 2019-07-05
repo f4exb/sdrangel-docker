@@ -5,7 +5,7 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-g] [-f flavor] [-B branch] [-t tag] [-n name] [-r bits] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
+  Usage: ${0##*/} [-g] [-f flavor] [-B branch] [-t tag] [-n name] [-w port] [-s port] [-a port] [-u port[-port]] [-h]
   Run SDRangel and SDRangelCli in a Docker compose stack.
   -D         use this option to bring down the compose stack (default is to bring up).
              Use the same -g and -c options if any that you used to bring up the stack.
@@ -33,11 +33,10 @@ EOF
 
 sdrangel_flavor="vanilla"
 branch_name_cli="master"
-image_tag=""
+image_tag="latest"
 image_tag_cli="latest"
 name_suffix="1"
 stack_name=""
-rx_bits="16"
 web_port="8080"
 ssh_port="50022"
 api_port="8091"
@@ -45,7 +44,7 @@ udp_port="9090"
 run_gui=0
 action="up -d"
 
-while getopts "h?Dgf:B:t:T:c:r:w:s:a:u:" opt; do
+while getopts "h?Dgf:B:t:T:c:w:s:a:u:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -64,8 +63,6 @@ while getopts "h?Dgf:B:t:T:c:r:w:s:a:u:" opt; do
     T)  image_tag_cli=${OPTARG}
         ;;
     c)  stack_name="-p ${OPTARG}"
-        ;;
-    r)  rx_bits=${OPTARG}
         ;;
     n)  name_suffix=${OPTARG}
         ;;
@@ -100,7 +97,6 @@ export WEB_PORT=${web_port}
 export SSH_PORT=${ssh_port}
 export API_PORT=${api_port}
 export UDP_PORT=${udp_port}
-export RX_BITS=${rx_bits}
 
 if [ "$run_gui" -eq 1 ]; then
     docker-compose -f compose_gui.yml ${stack_name} ${action}
