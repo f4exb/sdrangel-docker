@@ -160,10 +160,15 @@ FROM base AS bladerf
 ARG nb_cores
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
-    && git reset --hard 32058c4 \
+    && git reset --hard "2018.10-rc1" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
+RUN mkdir /opt/install/libbladeRF/fpga \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedxA4.rbf \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedxA9.rbf \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedx40.rbf \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedx115.rbf
 
 # HackRF
 FROM base AS hackrf
@@ -267,6 +272,7 @@ COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
 RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
+COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends
 COPY start_server.armv8.sh /start.sh
 COPY restart_server.armv8.sh /home/sdr/restart.sh
