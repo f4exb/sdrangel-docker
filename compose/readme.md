@@ -20,7 +20,7 @@ First get the container id:
 <pre><code>docker ps -a
 CONTAINER ID        IMAGE                      COMMAND             CREATED             STATUS              PORTS                                                                   NAMES
 482ddf88673f        sdrangel/server16:v4.10.4  "/start.sh"         22 minutes ago      Up 21 minutes       0.0.0.0:8091->8091/tcp, 0.0.0.0:9094->9094/udp, 0.0.0.0:50022->22/tcp   sdrangel_1
-da8731da1272        sdrangelcli/master:latest  "http-server"       22 minutes ago      Up 22 minutes       0.0.0.0:8080->8080/tcp                                                  sdrangelcli_1
+da8731da1272        sdrangelcli:latest         "http-server"       22 minutes ago      Up 22 minutes       0.0.0.0:8080->8080/tcp                                                  sdrangelcli_1
 5ba81852ed59        portainer/portainer        "/portainer"        5 hours ago         Up 5 hours          0.0.0.0:9000->9000/tcp                                                  confident_beaver
 </code></pre>
 
@@ -35,7 +35,6 @@ The `run.sh` script brings up (or down) a compose stack with a SDRangel and a SD
   - `-D`: use this option to bring down the compose stack (default is to bring up). Use the same `-g` and `-c` options if any that you used to bring up the stack. Other options do not matter.
   - `-g`: starts the GUI variant of SDRangel else the server variant will be started.
   - `-f` specifies the flavor used when compiling SDRangel and that appears in the image name after `sdrangel/` (default is `vanilla`)
-  - `-B`: specifies the branch name of the SDRangelcli image (default is `master`)
   - `-t tag`: SDRangel image name tag (ex: `v4.10.4` default is `latest`).
   - `-T tag`: SDRangelcli image name tag (ex: `v1.1.1` default is `latest`).
   - `-c name` : Give a stack name. Default is `compose`.
@@ -49,7 +48,7 @@ The composition default network has a fixed subnet address of `172.18.0.0/16`. S
 
 <h2>Examples</h2>
 
-  - `./run.sh -g` starts `sdrangel/vanilla:latest` and `sdrangelcli/master:latest`
-  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -u 9090:9090` starts `sdrangel/nvidia:v4.10.4` and `sdrangelcli/master:latest`
-  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -u 9090:9090` starts `sdrangel/server16:38df0a6` and `sdrangelcli/master:latest`
-  - `./run.sh -f server16 -t v4.10.4 -T v1.1.1` starts `sdrangel/server16:v4.10.1` and `sdrangelcli/master:v1.1.1`
+  - `./run.sh -g` starts `sdrangel/vanilla:latest` and `sdrangelcli:latest`
+  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -u 9090:9090` starts `sdrangel/nvidia:v4.10.4` and `sdrangelcli:latest`
+  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -u 9090:9090` starts `sdrangel/server16:38df0a6` and `sdrangelcli:latest`
+  - `./run.sh -f server16 -t v4.10.4 -T v1.1.1` starts `sdrangel/server16:v4.10.1` and `sdrangelcli:v1.1.1`

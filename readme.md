@@ -2,6 +2,8 @@
 
 <h1>Running SDRangel in a Docker container</h1>
 
+&#9888; This is still experimental.
+
 [SDRangel](https://github.com/f4exb/sdrangel) is  is an Open Source Qt5 / OpenGL 3.0+ SDR and signal analyzer frontend to various hardware. It also supports remote and terminal (no GUI) operation and can be controlled or control other pieces of software with a REST API.
 
 [SDRangelCli](https://github.com/f4exb/sdrangelcli) is a browser based client application to control SDRangel in remote mode using its REST API.
@@ -27,6 +29,8 @@ It turns out that running Docker Desktop For Windows is not an option because yo
 Thus you will have to run inside a Linux VM in Virtualbox. One important point is to install Virtualbox running the installation program as an administrator else you will not be able to attach USB devices to the virtual machine.
 
 Then things will be the same as when running Docker in a Linux box and thus all the following applies.
+
+&#9888; Please note that this does not work as well as with a Linux native host or may not work at all.
 
 <h2>Add your user to the docker group</h2>
 
@@ -80,12 +84,12 @@ First get a list of containers and spot the container for which you would like t
 
 <pre><code>docker ps
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                                                                   NAMES
-8075e65626b1        sdrangelcli/node:latest        "http-server"            35 minutes ago      Up 35 minutes       0.0.0.0:8001->8080/tcp                                                  sdrangelcli_1
+8075e65626b1        sdrangelcli:latest             "http-server"            35 minutes ago      Up 35 minutes       0.0.0.0:8001->8080/tcp                                                  sdrangelcli_1
 48ebe711df3e        portainer/portainer            "/portainer --no-auth"   2 days ago          Up 31 minutes       0.0.0.0:9000->9000/tcp                                                  portainer
-2e2b2f97dae9        sdrangel/bionic:linux_nvidia   "/start.sh"              2 days ago          Up 8 minutes        0.0.0.0:8091->8091/tcp, 0.0.0.0:9094->9094/udp, 0.0.0.0:50022->22/tcp   sdrangel_1
+2e2b2f97dae9        sdrangel/nvidia:v4.10.4        "/start.sh"              2 days ago          Up 8 minutes        0.0.0.0:8091->8091/tcp, 0.0.0.0:9094->9094/udp, 0.0.0.0:50022->22/tcp   sdrangel_1
 </code></pre>
 
-Let's say I would like to get the log of the SDRangel instance. It is the container running the `sdrangel/bionic:linux_nvidia` image and has the ID `2e2b2f97dae9`. I see that it has been running since 8 minutes. I will use the `docker log` command that has a `--since` option to tell since when you want to get the log. I can give it any arbitrary value larger than 8 minutes to get the full log:
+Let's say I would like to get the log of the SDRangel instance. It is the container running the `sdrangel/nvidia:v4.10.4` image and has the ID `2e2b2f97dae9`. I see that it has been running since 8 minutes. I will use the `docker log` command that has a `--since` option to tell since when you want to get the log. I can give it any arbitrary value larger than 8 minutes to get the full log:
 
 <pre><code>docker logs --since 10m 2e2b2f97dae9 > ~/sdrangel.log</code></pre>
 
@@ -113,9 +117,9 @@ In the `Images space usage:` section on the top you will notice that some images
 Images space usage:
 
 REPOSITORY            TAG                    IMAGE ID            CREATED             SIZE                SHARED SIZE         UNIQUE SIZE         CONTAINERS
-sdrangel/dev          linux_nvidia           75f6bb9db0dc        28 hours ago        2.607GB             1.958GB             649.3MB             1
+sdrangel/nvidia       latest                 75f6bb9db0dc        28 hours ago        2.607GB             1.958GB             649.3MB             1
 &lt;none&gt;                &lt;none&gt;                 95a6fee5e547        2 days ago          2.607GB             1.958GB             648.4MB             0
-sdrangel/master       linux_nvidia           b7bcc59c8866        2 days ago          2.607GB             1.951GB             655.8MB             0
+sdrangelcli           v1.1.4                 b7bcc59c8866        2 days ago          2.607GB             1.951GB             655.8MB             0
 </code></pre>
 
 In Docker terms these are called "dangling images". If an image gets superseded by an image with the same tag by a more recent build this image is still kept in the images repository but its references are set to `<none>` and they cannot be used directly specifying a tag. A convenient command to get rid of them is:
