@@ -10,13 +10,12 @@ show_help() {
   -D         use this option to bring down the compose stack (default is to bring up).
              Use the same -g and -c options if any that you used to bring up the stack.
              Other options do not matter.
-  -g         Run a GUI variant (server if unset)
+  -g         Run a GUI variant (assumes server if unset)
   -f flavor  Image flavor. Can be vanilla, nvidia, server16, server24 (default vanilla). Use a flavor relevant to GUI or server variants.
   -B branch  SDRangelCli source branch name (default master)
-  -t version Docker SDRangel GUI image tag version (default latest)
-  -T version Docker SDRangelCli image tag version (default latest)
+  -t tag     Docker SDRangel image tag (default latest)
+  -T tag     Docker SDRangelCli image tag (default latest)
   -c name    Docker compose stack name (default compose)
-  -r         Number of Rx bits for server version (default 16)
   -n         Container name suffix (default 1)
   -w port    Web client port map to 8080 (default 8080)
   -s port    SSH port map to 22 (default 50022).

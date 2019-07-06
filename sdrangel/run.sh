@@ -9,7 +9,7 @@ show_help() {
   Run SDRangel in a Docker container.
   -g         Run a GUI variant (server if unset)
   -f         Image flavor. Can be vanilla, nvidia, server16, server24 (default vanilla). Use a flavor relevant to GUI or server variants.
-  -t version Docker image tag version (default latest). Use the corresponding image tag.
+  -t tag     Docker image tag version (default latest). Use the corresponding image tag.
   -c name    Docker container name (default sdrangel)
   -s port    SSH port map to 22.
   -a port    API port map to 8091 (default 8091).

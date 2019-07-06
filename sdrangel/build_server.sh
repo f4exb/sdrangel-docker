@@ -5,13 +5,13 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-r url] [-b name] [-t version] [-h]
+  Usage: ${0##*/} [-r url] [-b branch] [-t tag] [-h]
   Build SDRangel image.
   -r url     Repository URL (default https://github.com/f4exb/sdrangel.git)
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
   -x         Use 24 bit samples for Rx
-  -t version Docker image tag version. Use tag or commit hash (default latest)
+  -t tag     Docker image tag. Use git tag or commit hash (default latest)
   -j number  Number of cores used in make commands (-j), Default is the number of cores available.
   -f file    Specify a Dockerfile (default is Dockerfile in current directory i.e. '.')
   -h         Print this help.
