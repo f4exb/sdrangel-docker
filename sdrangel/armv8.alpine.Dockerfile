@@ -95,7 +95,7 @@ FROM base AS serialdv
 ARG nb_cores
 RUN git clone https://github.com/f4exb/serialDV.git \
     && cd serialDV \
-    && git reset --hard c58676a \
+    && git reset --hard 5fc77511ff5ab7eb37b27d4d2746ec2754788a34 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. \
     && make -j${nb_cores} install
