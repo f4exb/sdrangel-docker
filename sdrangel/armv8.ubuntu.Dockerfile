@@ -212,10 +212,10 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 
 # LimeSDR
 FROM base AS limesdr_clone
-RUN git config --global http.postBuffer 1048576000 \
-    && git clone https://github.com/myriadrf/LimeSuite.git \
+RUN wget https://github.com/myriadrf/LimeSuite/archive/v19.01.0.tar.gz \
+    && tar -xf v19.01.0.tar.gz \
+    && ln -s LimeSuite-19.01.0 LimeSuite \
     && cd LimeSuite \
-    && git reset --hard 025ffa1a \
     && mkdir builddir
 
 FROM limesdr_clone as limesdr
