@@ -41,7 +41,7 @@ fi
 # Run...
 touch /home/${USER}/WSJT-X.ini
 USER_UID=$(id -u)
-docker run -it --rm \
+docker run -d \
     --privileged \
     --name "wsjtx" \
     -e "FAKETIME=${delay}" \
