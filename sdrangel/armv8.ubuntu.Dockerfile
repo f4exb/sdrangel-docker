@@ -90,18 +90,15 @@ RUN sudo apt-get update && sudo apt-get -y install xxd
 # XTRX
 RUN sudo apt-get update && sudo apt-get -y install python-cheetah
 
-# This is the first step to allow sharing pulseaudio with the host
-COPY pulse-client.conf /etc/pulse/client.conf
-
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
     && sudo chown sdr:sdr /opt/build /opt/install
 
-WORKDIR /opt/build
 
 # CM256cc
 FROM base AS cm256cc
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/cm256cc.git \
     && cd cm256cc \
     && git reset --hard 08c4929 \
@@ -112,6 +109,7 @@ RUN git clone https://github.com/f4exb/cm256cc.git \
 # MBElib
 FROM base AS mbelib
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/szechyjs/mbelib.git \
     && cd mbelib \
     && git reset --hard e2d84c1 \
@@ -122,6 +120,7 @@ RUN git clone https://github.com/szechyjs/mbelib.git \
 # SerialDV
 FROM base AS serialdv
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/serialDV.git \
     && cd serialDV \
     && git reset --hard "v1.1.2" \
@@ -134,6 +133,7 @@ FROM base AS dsdcc
 ARG nb_cores
 COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/dsdcc.git \
     && cd dsdcc \
     && git reset --hard  b8ecee6c00a45c1ce6cf7fa51d6cc433d6e88948 \
@@ -144,6 +144,7 @@ RUN git clone https://github.com/f4exb/dsdcc.git \
 # Codec2
 FROM base AS codec2
 ARG nb_cores
+WORKDIR /opt/build
 RUN sudo apt-get update && sudo apt-get -y install subversion
 RUN git clone https://github.com/drowe67/codec2.git \
     && cd codec2 \
@@ -152,12 +153,10 @@ RUN git clone https://github.com/drowe67/codec2.git \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
 
-
-WORKDIR /opt/build
-
 # Airspy
 FROM base AS airspy
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/airspy/host.git libairspy \
     && cd libairspy \
     && git reset --hard 5c86e53 \
@@ -168,6 +167,7 @@ RUN git clone https://github.com/airspy/host.git libairspy \
 # RTL-SDR
 FROM base AS rtlsdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/librtlsdr/librtlsdr.git \
     && cd librtlsdr \
     && git reset --hard c7d970a \
@@ -178,6 +178,7 @@ RUN git clone https://github.com/librtlsdr/librtlsdr.git \
 # PlutoSDR
 FROM base AS plutosdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/analogdevicesinc/libiio.git \
     && cd libiio \
     && git reset --hard 5bdc242 \
@@ -188,6 +189,7 @@ RUN git clone https://github.com/analogdevicesinc/libiio.git \
 # BladeRF
 FROM base AS bladerf
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
     && git reset --hard "2018.10-rc1" \
@@ -203,6 +205,7 @@ RUN mkdir /opt/install/libbladeRF/fpga \
 # HackRF
 FROM base AS hackrf
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/mossmann/hackrf.git \
     && cd hackrf/host \
     && git reset --hard 9bbbbbf \
@@ -212,6 +215,7 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 
 # LimeSDR
 FROM base AS limesdr_clone
+WORKDIR /opt/build
 RUN wget https://github.com/myriadrf/LimeSuite/archive/v19.01.0.tar.gz \
     && tar -xf v19.01.0.tar.gz \
     && ln -s LimeSuite-19.01.0 LimeSuite \
@@ -227,6 +231,7 @@ RUN cd /opt/build/LimeSuite/builddir \
 # Airspy HF
 FROM base AS airspyhf
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/airspy/airspyhf \
     && cd airspyhf \
     && git reset --hard 075b8f9 \
@@ -237,6 +242,7 @@ RUN git clone https://github.com/airspy/airspyhf \
 # Perseus
 FROM base AS perseus
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libperseus-sdr.git \
     && cd libperseus-sdr \
     && git checkout fixes \
@@ -249,6 +255,7 @@ RUN git clone https://github.com/f4exb/libperseus-sdr.git \
 # XTRX
 FROM base AS xtrx
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
     && cd xtrx-images \
     && git reset --hard 053ec82 \
@@ -262,6 +269,7 @@ RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
 # SDRPlay RSP1
 FROM base AS libmirisdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libmirisdr-4.git \
     && cd libmirisdr-4 \
     && mkdir build; cd build \
@@ -271,6 +279,7 @@ RUN git clone https://github.com/f4exb/libmirisdr-4.git \
 # Soapy main
 FROM base AS soapy
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapySDR.git \
     && cd SoapySDR \
     && git reset --hard 5838bc9 \
@@ -282,6 +291,7 @@ RUN git clone https://github.com/pothosware/SoapySDR.git \
 FROM base AS soapy_remote
 ARG nb_cores
 COPY --from=soapy --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapyRemote.git \
     && cd SoapyRemote \
     && git reset --hard 4f5d717 \
@@ -294,6 +304,7 @@ FROM base AS soapy_limesdr
 ARG nb_cores
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=limesdr --chown=sdr /opt/build /opt/build
+WORKDIR /opt/build
 RUN cd LimeSuite/builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR .. \
     && make -j${nb_cores} install \
@@ -319,13 +330,15 @@ COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
+# This is to allow sharing pulseaudio with the host
+COPY pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
-WORKDIR /opt/build
 ARG repository
 ARG branch
 ARG repo_hash
 ARG clone_tag
+WORKDIR /opt/build
 RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangel \
     && cd sdrangel \
     && mkdir build \

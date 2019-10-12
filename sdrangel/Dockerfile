@@ -19,12 +19,12 @@ RUN sudo ln -fs /usr/share/zoneinfo/$TZONE /etc/localtime \
 
 # Some essentials
 RUN sudo apt-get update && sudo apt-get -y install \
-	 vim \
-	 openssh-server \
-	 iputils-ping \
-	 traceroute \
-	 iproute2 \
-	 nmap \
+	vim \
+	openssh-server \
+	iputils-ping \
+	traceroute \
+	iproute2 \
+	nmap \
     net-tools \
     python-requests \
     python-flask
@@ -93,18 +93,15 @@ RUN sudo apt-get update && sudo apt-get -y install xxd
 RUN sudo apt-get update && sudo apt-get -y install python-cheetah \
     python-mako
 
-# This is the first step to allow sharing pulseaudio with the host
-COPY pulse-client.conf /etc/pulse/client.conf
-
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
     && sudo chown sdr:sdr /opt/build /opt/install
 
-WORKDIR /opt/build
 
 # CM256cc
 FROM base AS cm256cc
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/cm256cc.git \
     && cd cm256cc \
     && git reset --hard f21e8bc \
@@ -115,6 +112,7 @@ RUN git clone https://github.com/f4exb/cm256cc.git \
 # MBElib
 FROM base AS mbelib
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/szechyjs/mbelib.git \
     && cd mbelib \
     && git reset --hard e2d84c1 \
@@ -125,6 +123,7 @@ RUN git clone https://github.com/szechyjs/mbelib.git \
 # SerialDV
 FROM base AS serialdv
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/serialDV.git \
     && cd serialDV \
     && git reset --hard "v1.1.2" \
@@ -137,6 +136,7 @@ FROM base AS dsdcc
 ARG nb_cores
 COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/dsdcc.git \
     && cd dsdcc \
     && git reset --hard  b8ecee6c00a45c1ce6cf7fa51d6cc433d6e88948 \
@@ -147,6 +147,7 @@ RUN git clone https://github.com/f4exb/dsdcc.git \
 # Codec2
 FROM base AS codec2
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/drowe67/codec2.git \
     && cd codec2 \
     && git reset --hard 76a20416d715ee06f8b36a9953506876689a3bd2 \
@@ -158,10 +159,9 @@ RUN git clone https://github.com/drowe67/codec2.git \
 FROM base AS sdrplay
 ENV SDRPLAY_MAJ 2.13
 ENV SDRPLAY_MIN .1
-RUN mkdir /home/sdr/sdrplay \
-    && mkdir -p /opt/install/libsdrplay/include \
-    && mkdir -p /opt/install/libsdrplay/lib
 WORKDIR /home/sdr/sdrplay
+RUN mkdir -p /opt/install/libsdrplay/include \
+    && mkdir -p /opt/install/libsdrplay/lib
 RUN wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
     && export ARCH=`arch` \
     && sh ./SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
@@ -172,11 +172,10 @@ RUN wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${
     && cp mirsdrapi-rsp.h /opt/install/libsdrplay/include/. \
     && chmod 644 /opt/install/libsdrplay/include/mirsdrapi-rsp.h
 
-WORKDIR /opt/build
-
 # Airspy
 FROM base AS airspy
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/airspy/host.git libairspy \
     && cd libairspy \
     && git reset --hard 5c86e53 \
@@ -187,6 +186,7 @@ RUN git clone https://github.com/airspy/host.git libairspy \
 # RTL-SDR
 FROM base AS rtlsdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/librtlsdr/librtlsdr.git \
     && cd librtlsdr \
     && git reset --hard c7d970a \
@@ -197,6 +197,7 @@ RUN git clone https://github.com/librtlsdr/librtlsdr.git \
 # PlutoSDR
 FROM base AS plutosdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/analogdevicesinc/libiio.git \
     && cd libiio \
     && git reset --hard 5bdc242 \
@@ -207,6 +208,7 @@ RUN git clone https://github.com/analogdevicesinc/libiio.git \
 # BladeRF
 FROM base AS bladerf
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
     && git reset --hard "2018.10-rc1" \
@@ -222,6 +224,7 @@ RUN mkdir /opt/install/libbladeRF/fpga \
 # HackRF
 FROM base AS hackrf
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/mossmann/hackrf.git \
     && cd hackrf/host \
     && git reset --hard 9bbbbbf \
@@ -232,6 +235,7 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 # LimeSDR
 FROM base AS limesdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/myriadrf/LimeSuite.git \
     && cd LimeSuite \
     && git reset --hard 025ffa1a \
@@ -242,6 +246,7 @@ RUN git clone https://github.com/myriadrf/LimeSuite.git \
 # Airspy HF
 FROM base AS airspyhf
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/airspy/airspyhf \
     && cd airspyhf \
     && git reset --hard 075b8f9 \
@@ -252,6 +257,7 @@ RUN git clone https://github.com/airspy/airspyhf \
 # Perseus
 FROM base AS perseus
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libperseus-sdr.git \
     && cd libperseus-sdr \
     && git checkout fixes \
@@ -264,6 +270,7 @@ RUN git clone https://github.com/f4exb/libperseus-sdr.git \
 # XTRX
 FROM base AS xtrx
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
     && cd xtrx-images \
     && git reset --hard 053ec82 \
@@ -277,6 +284,7 @@ RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
 # UHD
 FROM base AS uhd
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone git://github.com/EttusResearch/uhd.git \
     && cd uhd/host \
     && git reset --hard e0e61a5 \
@@ -292,6 +300,7 @@ RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e320_fpga
 # SDRPlay RSP1
 FROM base AS libmirisdr
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libmirisdr-4.git \
     && cd libmirisdr-4 \
     && mkdir build; cd build \
@@ -301,6 +310,7 @@ RUN git clone https://github.com/f4exb/libmirisdr-4.git \
 # Soapy main
 FROM base AS soapy
 ARG nb_cores
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapySDR.git \
     && cd SoapySDR \
     && git reset --hard 5838bc9 \
@@ -312,6 +322,7 @@ RUN git clone https://github.com/pothosware/SoapySDR.git \
 FROM base AS soapy_remote
 ARG nb_cores
 COPY --from=soapy --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapyRemote.git \
     && cd SoapyRemote \
     && git reset --hard 4f5d717 \
@@ -324,6 +335,7 @@ FROM base AS soapy_sdrplay
 ARG nb_cores
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=sdrplay --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapySDRPlay.git \
     && cd SoapySDRPlay \
     && git reset --hard 12c3db6 \
@@ -336,6 +348,7 @@ FROM base AS soapy_limesdr
 ARG nb_cores
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=limesdr --chown=sdr /opt/build /opt/build
+WORKDIR /opt/build
 RUN cd LimeSuite/builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR .. \
     && make -j${nb_cores} install \
@@ -346,6 +359,7 @@ FROM base AS soapy_uhd
 ARG nb_cores
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=uhd --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapyUHD.git \
     && cd SoapyUHD \
     && git reset --hard 2900fff \
@@ -356,6 +370,7 @@ RUN git clone https://github.com/pothosware/SoapyUHD.git \
 # Soapy Red Pitaya
 FROM base as soapy_redpitaya
 COPY --from=soapy --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapyRedPitaya.git \
     && cd SoapyRedPitaya \
     && git reset --hard 3d576f83b3bde52104b2a88150516ca8c9a78c7a \
@@ -388,13 +403,15 @@ COPY --from=soapy_sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
+# This is to allow sharing pulseaudio with the host
+COPY pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
-WORKDIR /opt/build
 ARG repository
 ARG branch
 ARG repo_hash
 ARG clone_tag
+WORKDIR /opt/build
 RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangel \
     && cd sdrangel \
     && mkdir build \
