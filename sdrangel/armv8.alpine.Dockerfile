@@ -71,7 +71,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/cm256cc.git \
     && cd cm256cc \
-    && git reset --hard 08c4929 \
+    && git reset --hard f21e8bc1e9afdb0b28672743dcec111aec1d32d9 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. \
     && make -j${nb_cores} install
@@ -82,7 +82,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/szechyjs/mbelib.git \
     && cd mbelib \
-    && git reset --hard e2d84c1 \
+    && git reset --hard 9a04ed5c78176a9965f3d43f7aa1b1f5330e771f \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/mbelib .. \
     && make -j${nb_cores} install
@@ -93,7 +93,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/serialDV.git \
     && cd serialDV \
-    && git reset --hard "v1.1.2" \
+    && git reset --hard "v1.1.4" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/serialdv .. \
     && make -j${nb_cores} install
@@ -106,7 +106,7 @@ COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
 RUN git clone https://github.com/f4exb/dsdcc.git \
     && cd dsdcc \
-    && git reset --hard  b8ecee6c00a45c1ce6cf7fa51d6cc433d6e88948 \
+    && git reset --hard "v1.8.6" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. \
     && make -j${nb_cores} install
@@ -131,7 +131,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/airspy/host.git libairspy \
     && cd libairspy \
-    && git reset --hard 5c86e53 \
+    && git reset --hard bfb667080936ca5c2d23b3282f5893931ec38d3f \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libairspy .. \
     && make -j${nb_cores} install
@@ -140,9 +140,9 @@ RUN git clone https://github.com/airspy/host.git libairspy \
 FROM base AS rtlsdr
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/librtlsdr/librtlsdr.git \
+RUN git clone https://github.com/osmocom/rtl-sdr.git librtlsdr \
     && cd librtlsdr \
-    && git reset --hard c7d970a \
+    && git reset --hard be1d1206bfb6e6c41f7d91b20b77e20f929fa6a7 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. \
     && make -j${nb_cores} install
@@ -153,7 +153,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/analogdevicesinc/libiio.git \
     && cd libiio \
-    && git reset --hard 5bdc242 \
+    && git reset --hard 826563e41b5ce9890b75506f672017de8d76d52d \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libiio -DINSTALL_UDEV_RULE=OFF .. \
     && make -j${nb_cores} install
@@ -164,15 +164,15 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
-    && git reset --hard "2018.10-rc1" \
+    && git reset --hard "2019.07" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
 RUN mkdir /opt/install/libbladeRF/fpga \
-    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedxA4.rbf \
-    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedxA9.rbf \
-    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedx40.rbf \
-    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.9.0/hostedx115.rbf
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.11.0/hostedxA4.rbf \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.11.0/hostedxA9.rbf \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.11.0/hostedx40.rbf \
+    && wget -P /opt/install/libbladeRF/fpga https://www.nuand.com/fpga/v0.11.0/hostedx115.rbf
 
 # HackRF
 FROM base AS hackrf
@@ -180,7 +180,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/mossmann/hackrf.git \
     && cd hackrf/host \
-    && git reset --hard 9bbbbbf \
+    && git reset --hard "v2018.01.1" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libhackrf -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
@@ -206,7 +206,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/airspy/airspyhf \
     && cd airspyhf \
-    && git reset --hard 075b8f9 \
+    && git reset --hard "1.1.5" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. \
     && make -j${nb_cores} install
@@ -218,7 +218,7 @@ WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libperseus-sdr.git \
     && cd libperseus-sdr \
     && git checkout fixes \
-    && git reset --hard afefa23 \
+    && git reset --hard afefa23e3140ac79d845acb68cf0beeb86d09028 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libperseus .. \
     && make \
@@ -254,7 +254,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapySDR.git \
     && cd SoapySDR \
-    && git reset --hard 5838bc9 \
+    && git reset --hard "soapy-sdr-0.7.1" \
     && mkdir build; cd build \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR .. \
     && make -j${nb_cores} install
@@ -266,7 +266,7 @@ COPY --from=soapy --chown=sdr /opt/install /opt/install
 WORKDIR /opt/build
 RUN git clone https://github.com/pothosware/SoapyRemote.git \
     && cd SoapyRemote \
-    && git reset --hard 4f5d717 \
+    && git reset --hard "soapy-remote-0.5.1" \
     && mkdir build; cd build \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
     && make -j${nb_cores} install
