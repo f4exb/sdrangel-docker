@@ -45,7 +45,7 @@ while getopts "h?gs:a:u:f:t:c:" opt; do
         ;;
     u)  udp_conn="-p ${OPTARG}:${OPTARG}/udp ${udp_conn}"
         ;;
-    b)  flavor=$OPTARG
+    f)  flavor=$OPTARG
         ;;
     t)  image_tag=$OPTARG
         ;;
