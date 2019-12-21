@@ -50,11 +50,11 @@ RUN sudo mkdir /opt/build /opt/install \
 
 # Download WSJT-X
 FROM base as get-wsjtx
+ARG wsjtx_version
 WORKDIR /opt/build
-ENV WSJTX_VER="2.0.1"
-RUN wget --no-check-certificate https://physics.princeton.edu/pulsar/k1jt/wsjtx-${WSJTX_VER}.tgz \
-    && tar -xf wsjtx-${WSJTX_VER}.tgz
-WORKDIR /opt/build/wsjtx-${WSJTX_VER}
+RUN wget --no-check-certificate https://physics.princeton.edu/pulsar/k1jt/wsjtx-${wsjtx_version}.tgz \
+    && tar -xf wsjtx-${wsjtx_version}.tgz
+WORKDIR /opt/build/wsjtx-${wsjtx_version}
 
 # Build WSJT-X
 FROM get-wsjtx as wsjtx

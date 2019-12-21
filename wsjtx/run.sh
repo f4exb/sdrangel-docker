@@ -4,18 +4,18 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-t version] [-p port] [-h]
+  Usage: ${0##*/} [-t version] [-d delay] [-h]
   Run WSKT-X with clock adjustment in a Docker container.
-  -t version Docker image tag version (default libfaketime)
-  -d delay   delay in seconds (default 4)
+  -t version Docker image tag version (default latest)
+  -d delay   delay in seconds (default 2)
   -h         Print this help.
 EOF
 }
 
-delay="-4s"
-image_tag="libfaketime"
+delay="-2s"
+image_tag="latest"
 
-while getopts "h?gd:t:" opt; do
+while getopts "h?d:t:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -39,7 +39,7 @@ if [ ! -z "$gui_opts" ]; then
 fi
 
 # Run...
-touch /home/${USER}/WSJT-X.ini
+touch /home/${USER}/.config/WSJT-X.ini
 USER_UID=$(id -u)
 docker run -d \
     --privileged \
@@ -49,5 +49,5 @@ docker run -d \
     -e "DISPLAY=unix:0.0" \
     -v="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/1000/pulse" \
-    -v="/home/${USER}/WSJT-X.ini:/home/wsjtx/.config/WSJT-X.ini:rw" \
+    -v="/home/${USER}/.config/WSJT-X.ini:/home/wsjtx/.config/WSJT-X.ini:rw" \
     wsjtx/bionic:${image_tag}

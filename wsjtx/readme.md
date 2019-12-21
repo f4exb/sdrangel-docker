@@ -14,17 +14,19 @@ Here for your convenience we will provide ways to create a container with WSJT-X
 
 <h2>Build image</h2>
 
-A `wsjtx/bionic:libfaketime` image is created by running `./build.sh`
+Use the `./build.sh` script to build the WSJT-X with libfaketime Docker image. You can specify the WSJT-X version with the `-t` option (default `2.1.2`). With the default WSJT-X version a `wsjtx/bionic:v2.1.2` image is created.
 
 <h2>Run image</h2>
 
-The `run.sh` script can be used.
+The `run.sh` script can be used to run the WSJT-X image in a Docker container.
 
 `xhost` utility should be installed in your system.
 
-A `WSJT-X.ini` file is created in your home directory that will allow settings to be persistent. It is mapped to `/home/wsjtx/.config/WSJT-X.ini` in the container.
+A `WSJT-X.ini` file is created in the `.config` folder in your home directory that will allow settings to be persistent. It is mapped to `/home/wsjtx/.config/WSJT-X.ini` in the container.
 
 You can use the following options:
 
-  - `-t version`: image version if different from `libfaketime`
-  - `-d delay`: delay in seconds (defaut `4`)
+  - `-t version`: image version if different from `latest`
+  - `-d delay`: delay in seconds (defaut `2`)
+
+Note that the default image version is `latest`. It is the responsibility of the user to tag the desired image version to version `latest`. This makes it easy to switch from one version to the other in case of trouble.
