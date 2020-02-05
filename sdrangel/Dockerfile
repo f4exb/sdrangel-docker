@@ -238,7 +238,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/myriadrf/LimeSuite.git \
     && cd LimeSuite \
-    && git reset --hard "v19.01.0" \
+    && git reset --hard "v20.01.0" \
     && mkdir builddir; cd builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. \
     && make -j${nb_cores} install
