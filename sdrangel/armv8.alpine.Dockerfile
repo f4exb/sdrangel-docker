@@ -188,9 +188,9 @@ RUN git clone https://github.com/mossmann/hackrf.git \
 # LimeSDR
 FROM base AS limesdr_clone
 WORKDIR /opt/build
-RUN wget https://github.com/myriadrf/LimeSuite/archive/v19.01.0.tar.gz \
-    && tar -xf v19.01.0.tar.gz \
-    && ln -s LimeSuite-19.01.0 LimeSuite \
+RUN wget https://github.com/myriadrf/LimeSuite/archive/v20.01.0.tar.gz \
+    && tar -xf v20.01.0.tar.gz \
+    && ln -s LimeSuite-20.01.0 LimeSuite \
     && cd LimeSuite \
     && mkdir builddir
 
