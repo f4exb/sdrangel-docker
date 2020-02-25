@@ -233,13 +233,17 @@ RUN git clone https://github.com/mossmann/hackrf.git \
     && make -j${nb_cores} install
 
 # LimeSDR
-FROM base AS limesdr
-ARG nb_cores
+FROM base AS limesdr_clone
 WORKDIR /opt/build
-RUN git clone https://github.com/myriadrf/LimeSuite.git \
+RUN wget https://github.com/myriadrf/LimeSuite/archive/v20.01.0.tar.gz \
+    && tar -xf v20.01.0.tar.gz \
+    && ln -s LimeSuite-20.01.0 LimeSuite \
     && cd LimeSuite \
-    && git reset --hard "v20.01.0" \
-    && mkdir builddir; cd builddir \
+    && mkdir builddir
+
+FROM limesdr_clone as limesdr
+ARG nb_cores
+RUN cd /opt/build/LimeSuite/builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. \
     && make -j${nb_cores} install
 
