@@ -104,7 +104,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/cm256cc.git \
     && cd cm256cc \
-    && git reset --hard f21e8bc1e9afdb0b28672743dcec111aec1d32d9 \
+    && git reset --hard c0e92b92aca3d1d36c990b642b937c64d363c559 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. \
     && make -j${nb_cores} install
@@ -277,7 +277,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
     && cd xtrx-images \
-    && git reset --hard 053ec82 \
+    && git reset --hard 703cc42285b51e7b214e3b5d02c07f90b53c840e \
     && git submodule init \
     && git submodule update \
     && cd sources \
