@@ -93,3 +93,5 @@ You may specify extra options for port mapping between the host and the containe
 When the program terminates it will drop to a shell in the container. This leaves the user with the opportunity to inspect the container from inside (ssh connection is also available) or restart the program with the `restart.sh` script found in the home directory of the `sdr` user (default location).
 
 A SSH connection to the container is always available with user `sdr` and password `sdr`. `sdr` is the user executing the program and it has sudo rights. You may use the `-s` option of the run script to specify the port to be used on the host side then use the `-p` option to specify this port on the `ssh` command.
+
+To speed up starting time you have to create a so called FFT Wisdom file. This is critical for small armv8 machines lile the Raspberry-Pi. The typical command to execute is: `fftwf-wisdom -v -n -o ~/.config/sdrangel/fftw-wisdom 128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096`
