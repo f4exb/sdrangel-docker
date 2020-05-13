@@ -1,7 +1,7 @@
-FROM node as base
+FROM node:slim as base
 
 # Install base packages
-RUN apt-get update && apt-get -y install sudo
+RUN apt-get update && apt-get -y install sudo git
 RUN npm install -g @angular/cli \
      && npm install -g http-server
 
@@ -27,7 +27,8 @@ RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelcli \
 WORKDIR /opt/build/sdrangelcli
 RUN npm install \
     && ng build --prod \
-    && find . -not -name dist -delete
+    && mv dist /opt/build \
+    && rm -rf *
 
-WORKDIR /opt/build/sdrangelcli/dist/sdrangelcli
+WORKDIR /opt/build/dist/sdrangelcli
 ENTRYPOINT [ "http-server" ]
