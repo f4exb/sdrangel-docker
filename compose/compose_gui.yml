@@ -5,8 +5,8 @@ services:
     container_name: "sdrangel_${NAME_SUFFIX}"
     dns: "${DNS}"
     ports:
-      - "${SSH_PORT}:22"
       - "${API_PORT}:8091"
+      - "${TCP_PORT}:${TCP_PORT}"
       - "${UDP_PORT}:${UDP_PORT}/udp"
     expose:
       - "8091"
@@ -32,6 +32,15 @@ services:
     networks:
       default:
         ipv4_address: 172.18.0.3
+  sdrangelspectrum:
+    image: "sdrangelspectrum:${IMAGE_VERSION_SPEC}"
+    container_name: "sdrangelspectrum_${NAME_SUFFIX}"
+    dns: "${DNS}"
+    ports:
+      - "${SPEC_PORT}:8081"
+    networks:
+      default:
+        ipv4_address: 172.18.0.4
 networks:
   default:
     driver: bridge
