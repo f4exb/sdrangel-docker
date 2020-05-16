@@ -51,7 +51,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libqt5multimedia5-plugins \
     qtmultimedia5-dev \
     libqt5websockets5-dev
-RUN sudo apt-get update && sudo apt-get -y install \
+RUN sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install \
     qttools5-dev \
     qttools5-dev-tools
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -89,9 +89,11 @@ RUN sudo apt-get update && sudo apt-get -y install libspeexdsp-dev \
     libsamplerate0-dev
 # Perseus
 RUN sudo apt-get update && sudo apt-get -y install xxd
-# XTRX, UHD
-RUN sudo apt-get update && sudo apt-get -y install python-cheetah \
-    python-mako
+# XTRX (f4exb), UHD
+RUN sudo apt-get update && sudo apt-get -y install \
+    python3 python3-pip \
+    python-mako \
+    && sudo pip3 install Cheetah3
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
@@ -275,9 +277,8 @@ RUN git clone https://github.com/f4exb/libperseus-sdr.git \
 FROM base AS xtrx
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
+RUN git clone https://github.com/f4exb/images.git xtrx-images \
     && cd xtrx-images \
-    && git reset --hard 703cc42285b51e7b214e3b5d02c07f90b53c840e \
     && git submodule init \
     && git submodule update \
     && cd sources \
