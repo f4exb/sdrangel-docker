@@ -37,14 +37,19 @@ The `run.sh` script brings up (or down) a compose stack with a SDRangel and a SD
   - `-f` specifies the flavor used when compiling SDRangel and that appears in the image name after `sdrangel/` (default is `vanilla`)
   - `-t tag`: SDRangel image name tag (ex: `v4.10.4` default is `latest`).
   - `-T tag`: SDRangelcli image name tag (ex: `v1.1.1` default is `latest`).
+  - `-S tag`: SDRangelSpectrum image tag (ex: `v1.0.0` default is `latest`)
   - `-c name` : Give a stack name. Default is `compose`.
   - `-n suffix`: gives a suffix to the container names (default is `1`). The container names are `sdrangel_{suffix}` for SDRangel and `sdrangelcli_{suffix}` for SDRangelCli.
   - `-w port`: host port for the web client interface (SDRangelCli). Default is `8080`.
-  - `-s port`: host port to access the SDRangel container SSH server. Default is `50022`.
+  - `-s port`: host port for the web spectrum (SDRangelSpectrum) (default 8081).
   - `-a port`: host port for the SDRangel REST API. Default is `8091`.
   - `-u port[-port]`: maps a UDP port or a range of ports from host to the SDRangel container (same). Default is `9090`.
+  - `-p port[-port]`: maps a TCP port or a range of ports from host to the SDRangel contaoner (same). Default is `8887`.
 
-The composition default network has a fixed subnet address of `172.18.0.0/16`. SDRangel container will have the `172.18.0.2` IPv4 address and SDRangelCli `172.18.0.3`. A fixed address for SDRangel container is interesting if you use UDP connections.
+The composition default network has a fixed subnet address of `172.18.0.0/16`. A fixed address for SDRangel container is interesting if you use UDP connections thus:
+  - SDRangel container will have the `172.18.0.2` IPv4 address
+  - SDRangelCli will have  `172.18.0.3`
+  - SDRangelSpectrum will have `172.18.0.4`.
 
 <h2>Examples</h2>
 
