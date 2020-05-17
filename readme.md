@@ -168,6 +168,10 @@ The files contained in the `sdrangel` directory are used to build and run SDRang
 
 The files contained in the `sdrangelcli` directory are used to build and run SDRangelCli images. Please check the [readme](sdrangelcli/readme.md) inside this folder for further information
 
+<h3>SDRangelSpectrum section</h3>
+
+The files contained in the `sdrangelspectrum` directory are used to build and run SDRangelSpectrum images. Please check the [readme](sdrangelspectrum/readme.md) inside this folder for further information
+
 <h3>WSJT-X section</h3>
 
 Due to possible delay in the audio when running SDRangel in a container WSJT-X may fail to decode.
