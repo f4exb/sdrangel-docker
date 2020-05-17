@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 AS base
+FROM ubuntu:20.04 AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -26,8 +26,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
 	iproute2 \
 	nmap \
     net-tools \
-    python-requests \
-    python-flask
+    python3-requests \
+    python3-flask
 
 # Install base build packages dependencies - step 1
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -59,11 +59,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
-    libpython2.7 libpython2.7-dev
-RUN sudo apt-get update && sudo apt-get -y install \
     libpython3-dev
-RUN sudo apt-get update && sudo apt-get -y install \
-    libpython3.6-dev
 RUN sudo apt-get update && sudo apt-get -y install \
     librdmacm1
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -91,9 +87,8 @@ RUN sudo apt-get update && sudo apt-get -y install libspeexdsp-dev \
 RUN sudo apt-get update && sudo apt-get -y install xxd
 # XTRX (f4exb), UHD
 RUN sudo apt-get update && sudo apt-get -y install \
-    python3 python3-pip \
-    python-mako \
-    && sudo pip3 install Cheetah3
+    python3 python3-cheetah \
+    python3-mako
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
@@ -290,17 +285,17 @@ RUN git clone https://github.com/f4exb/images.git xtrx-images \
 FROM base AS uhd
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone git://github.com/EttusResearch/uhd.git \
+RUN git clone https://github.com/EttusResearch/uhd.git \
     && cd uhd/host \
-    && git reset --hard e0e61a5 \
+    && git reset --hard v3.15.0.0 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd -DENABLE_PYTHON_API=OFF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
 # Download firmware images for models requiring them at run time (see https://files.ettus.com/manual/page_images.html)
 RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t usrp1
 RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t b2xx
-RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e310
-RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e320_fpga
+# RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e310 - too big
+# RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e320_fpga - too big
 
 # SDRPlay RSP1
 FROM base AS libmirisdr

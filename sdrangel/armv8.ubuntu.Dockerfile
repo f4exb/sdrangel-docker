@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:18.04 AS base
+FROM arm64v8/ubuntu:20.04 AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -26,8 +26,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
 	 iproute2 \
 	 nmap \
     net-tools \
-    python-requests \
-    python-flask
+    python3-requests \
+    python3-flask
 
 # Install base build packages dependencies - step 1
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -59,9 +59,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
-    libpython2.7 libpython2.7-dev
-RUN sudo apt-get update && sudo apt-get -y install \
-    libpython3.7-dev
+    libpython3-dev
 RUN sudo apt-get update && sudo apt-get -y install \
     librdmacm1
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -89,8 +87,7 @@ RUN sudo apt-get update && sudo apt-get -y install libspeexdsp-dev \
 RUN sudo apt-get update && sudo apt-get -y install xxd
 # XTRX (f4exb)
 RUN sudo apt-get update && sudo apt-get -y install \
-    python3 python3-pip \
-    && sudo pip3 install Cheetah3
+    python3 python3-cheetah
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
