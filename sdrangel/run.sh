@@ -29,9 +29,10 @@ udp_conn=""
 flavor="vanilla"
 image_tag="latest"
 container_name="sdrangel"
+fftw_filename="fftw-wisdom"
 USER_UID=$(id -u)
 
-while getopts "h?gs:a:u:f:t:c:" opt; do
+while getopts "h?gs:a:u:f:t:c:w:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -50,6 +51,8 @@ while getopts "h?gs:a:u:f:t:c:" opt; do
     t)  image_tag=$OPTARG
         ;;
     c)  container_name=$OPTARG
+        ;;
+    w)  fftw_filename=$OPTARG
         ;;
     esac
 done
@@ -71,6 +74,7 @@ docker run -it --rm \
     ${ssh_port} \
     ${api_port} \
     ${udp_conn} \
+    --env FFTWFILE=${file_name} \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/${USER_UID}/pulse" \
     sdrangel/${flavor}:${image_tag}

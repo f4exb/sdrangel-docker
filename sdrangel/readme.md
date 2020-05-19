@@ -72,7 +72,8 @@ In addition the `build_server.sh` lets you specify the number of Rx bits. The im
     - `server16`: Server flavor with 16 bits sample size (I or Q) for the Rx samples
     - `server24`: Server flavor with 24 bits sample size for he Rx samples (effectively 32 bits)
   - `-t` image tag. This is normally the SDRangel version number but is effectively the Docker image tag (what appears after the colon `:` in the `docker images` command output)
-  - `-c` container name. Use this to give the container a name. By default this is `sdrangel`.
+  - `-c` container name. Use this to give the container a name. By default this is `sdrangel`
+  - `-w` FFTW wisdom file name in the `~/.config/sdrangel` directory. By default this is `fftw-wisdom`
 
 You may specify extra options for port mapping between the host and the container:
 
@@ -82,11 +83,12 @@ You may specify extra options for port mapping between the host and the containe
   You may have several of these. UDP port mapping is used for Remote Input plugin operation
   - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
 
-To speed up FFT plan allocations you can put a FFTW wisdom file named `fftw-wisdom` in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file.
+To speed up FFT plan allocations you can put a FFTW wisdom file in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file. The name of the file can be specified with the `-w` option (see above).
 
 <h3>Examples</h3>
 
   - `./run.sh -g -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/vanilla:latest`
+  - `./run.sh -g -c sdrangel -s 50022 -u 9090:9090 -w fftw-wisdom-k4` starts `sdrangel/vanilla:latest` using `~/.config/sdrangel/fftw-wisdom-k4` FFTW wisdom file
   - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/nvidia:v4.10.4`
   - `./run.sh -f server16 -t 38df0a6 -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/server16:38df0a6`
 

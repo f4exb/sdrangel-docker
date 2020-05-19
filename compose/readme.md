@@ -38,7 +38,8 @@ The `run.sh` script brings up (or down) a compose stack with a SDRangel and a SD
   - `-t tag`: SDRangel image name tag (ex: `v4.10.4` default is `latest`).
   - `-T tag`: SDRangelcli image name tag (ex: `v1.1.1` default is `latest`).
   - `-S tag`: SDRangelSpectrum image tag (ex: `v1.0.0` default is `latest`)
-  - `-c name` : Give a stack name. Default is `compose`.
+  - `-c name`: Give a stack name. Default is `compose`.
+  - `-w name`: FFTW wisdom file name in the `~/.config/sdrangel` directory. By default this is `fftw-wisdom`
   - `-n suffix`: gives a suffix to the container names (default is `1`). The container names are `sdrangel_{suffix}` for SDRangel and `sdrangelcli_{suffix}` for SDRangelCli.
   - `-w port`: host port for the web client interface (SDRangelCli). Default is `8080`.
   - `-s port`: host port for the web spectrum (SDRangelSpectrum) (default 8081).
@@ -51,11 +52,13 @@ The composition default network has a fixed subnet address of `172.18.0.0/16`. A
   - SDRangelCli will have  `172.18.0.3`
   - SDRangelSpectrum will have `172.18.0.4`.
 
-To speed up FFT plan allocations you can put a FFTW wisdom file named `fftw-wisdom` in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file.
+To speed up FFT plan allocations you can put a FFTW wisdom file in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file. The name of the file can be specified with the `-w` option (see above).
 
 <h2>Examples</h2>
 
-  - `./run.sh -g` starts `sdrangel/vanilla:latest` and `sdrangelcli:latest`
-  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -u 9090:9090` starts `sdrangel/nvidia:v4.10.4` and `sdrangelcli:latest`
-  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -u 9090:9090` starts `sdrangel/server16:38df0a6` and `sdrangelcli:latest`
-  - `./run.sh -f server16 -t v4.10.4 -T v1.1.1` starts `sdrangel/server16:v4.10.1` and `sdrangelcli:v1.1.1`
+  - `./run.sh -g` starts `sdrangel/vanilla:latest`, `sdrangelcli:latest` and `sdrangelspectrum:latest`
+  - `./run.sh -g -w fftw-wisdom-k4` same as above using `~/.config/sdrangel/fftw-wisdom-k4` FFTW wisdom file
+  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -u 9090:9090` starts `sdrangel/nvidia:v4.10.4`, `sdrangelcli:latest` and `sdrangelspectrum:latest`
+  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -u 9090:9090` starts `sdrangel/server16:38df0a6`, `sdrangelcli:latest` and `sdrangelspectrum:latest`
+  - `./run.sh -f server16 -t v4.10.4 -T v1.1.1` starts `sdrangel/server16:v4.10.1`, `sdrangelcli:v1.1.1` and `sdrangelspectrum:latest`
+  - `./run.sh -f server16 -t v4.10.4 -T v1.1.1 -S v1.0.0` starts `sdrangel/server16:v4.10.1`, `sdrangelcli:v1.1.1` and `sdrangelspectrum:v1.0.0`

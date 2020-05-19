@@ -37,6 +37,7 @@ image_tag_cli="latest"
 image_tag_spec="latest"
 name_suffix="1"
 stack_name=""
+fftw_filename="fftw-wisdom"
 web_port="8080"
 spec_port="8081"
 api_port="8091"
@@ -45,7 +46,7 @@ tcp_port="8887"
 run_gui=0
 action="up -d"
 
-while getopts "h?Dgf:t:T:c:w:s:a:u:p:" opt; do
+while getopts "h?Dgf:t:T:c:W:w:s:a:u:p:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -64,6 +65,8 @@ while getopts "h?Dgf:t:T:c:w:s:a:u:p:" opt; do
     S)  image_tag_spec=${OPTARG}
         ;;
     c)  stack_name="-p ${OPTARG}"
+        ;;
+    W)  fftw_filename=${OPTARG}
         ;;
     n)  name_suffix=${OPTARG}
         ;;
@@ -101,6 +104,7 @@ export SPEC_PORT=${spec_port}
 export API_PORT=${api_port}
 export UDP_PORT=${udp_port}
 export TCP_PORT=${tcp_port}
+export FFTWFILE=${fftw_filename}
 
 if [ "$run_gui" -eq 1 ]; then
     docker-compose -f compose_gui.yml ${stack_name} ${action}
