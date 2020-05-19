@@ -82,6 +82,8 @@ You may specify extra options for port mapping between the host and the containe
   You may have several of these. UDP port mapping is used for Remote Input plugin operation
   - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
 
+To speed up FFT plan allocations you can put a FFTW wisdom file named `fftw-wisdom` in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file.
+
 <h3>Examples</h3>
 
   - `./run.sh -g -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/vanilla:latest`

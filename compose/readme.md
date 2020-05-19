@@ -51,6 +51,8 @@ The composition default network has a fixed subnet address of `172.18.0.0/16`. A
   - SDRangelCli will have  `172.18.0.3`
   - SDRangelSpectrum will have `172.18.0.4`.
 
+To speed up FFT plan allocations you can put a FFTW wisdom file named `fftw-wisdom` in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file.
+
 <h2>Examples</h2>
 
   - `./run.sh -g` starts `sdrangel/vanilla:latest` and `sdrangelcli:latest`

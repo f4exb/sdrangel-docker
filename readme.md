@@ -160,6 +160,10 @@ You have to restart Docker for this to take effect:
 
 <h2>Docker images</h2>
 
+<h3>FFTWisdom section</h3>
+
+The files contained in the `fftwisdom` directory are used to build an image to run the `fftw-wisdom` command in a container. This ensures the same environment as in the SDRangel images is used to produce the FFTW wisdom file that can be used with SDRangel. Please check the [readme](fftwisdom/readme.md) inside this folder for further information.
+
 <h3>SDRangel section</h3>
 
 The files contained in the `sdrangel` directory are used to build and run SDRangel images. Please check the [readme](sdrangel/readme.md) inside this folder for further information
