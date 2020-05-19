@@ -52,9 +52,6 @@ RUN sudo apt-get update && sudo apt-get -y install \
     qtmultimedia5-dev \
     libqt5websockets5-dev
 RUN sudo apt-get update && sudo apt-get -y install \
-    qttools5-dev \
-    qttools5-dev-tools
-RUN sudo apt-get update && sudo apt-get -y install \
     libqt5opengl5-dev
 
 # Install base build packages dependencies - Boost

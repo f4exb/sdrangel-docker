@@ -51,9 +51,6 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libqt5multimedia5-plugins \
     qtmultimedia5-dev \
     libqt5websockets5-dev
-RUN sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install \
-    qttools5-dev \
-    qttools5-dev-tools
 RUN sudo apt-get update && sudo apt-get -y install \
     libqt5opengl5-dev
 
@@ -136,7 +133,7 @@ COPY --from=serialdv --chown=sdr /opt/install /opt/install
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/dsdcc.git \
     && cd dsdcc \
-    && git reset --hard  "v1.8.6" \
+    && git reset --hard "v1.8.6" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/dsdcc -DUSE_MBELIB=ON -DLIBMBE_INCLUDE_DIR=/opt/install/mbelib/include -DLIBMBE_LIBRARY=/opt/install/mbelib/lib/libmbe.so -DLIBSERIALDV_INCLUDE_DIR=/opt/install/serialdv/include/serialdv -DLIBSERIALDV_LIBRARY=/opt/install/serialdv/lib/libserialdv.so .. \
     && make -j${nb_cores} install
