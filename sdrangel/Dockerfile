@@ -153,10 +153,12 @@ RUN git clone https://github.com/drowe67/codec2.git \
 FROM base AS sdrplay
 ENV SDRPLAY_MAJ 2.13
 ENV SDRPLAY_MIN .1
-WORKDIR /home/sdr/sdrplay
+WORKDIR /opt/build
 RUN mkdir -p /opt/install/libsdrplay/include \
-    && mkdir -p /opt/install/libsdrplay/lib
-RUN wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
+    && mkdir -p /opt/install/libsdrplay/lib \
+    && mkdir -p /opt/build/sdrplay
+RUN cd sdrplay \
+    && wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
     && export ARCH=`arch` \
     && sh ./SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
     && cp ${ARCH}/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/. \
