@@ -19,12 +19,12 @@ RUN sudo ln -fs /usr/share/zoneinfo/$TZONE /etc/localtime \
 
 # Some essentials
 RUN sudo apt-get update && sudo apt-get -y install \
-	 vim \
-	 openssh-server \
-	 iputils-ping \
-	 traceroute \
-	 iproute2 \
-	 nmap \
+	vim \
+	openssh-server \
+	iputils-ping \
+	traceroute \
+	iproute2 \
+	nmap \
     net-tools \
     python3-requests \
     python3-flask
@@ -166,7 +166,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/osmocom/rtl-sdr.git librtlsdr \
     && cd librtlsdr \
-    && git reset --hard be1d1206bfb6e6c41f7d91b20b77e20f929fa6a7 \
+    && git reset --hard dc92af01bf82b5185986190e3cde3762565d2194 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DDETACH_KERNEL_DRIVER=ON -DCMAKE_INSTALL_PREFIX=/opt/install/librtlsdr .. \
     && make -j${nb_cores} install
