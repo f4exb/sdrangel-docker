@@ -10,6 +10,7 @@ show_help() {
   -r url     Repository URL (default https://github.com/f4exb/sdrangelspectrum.git)
   -b name    Branch name (default master)
   -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
+  -i name    Image name (default sdrangelspectrum)
   -t tag     Docker image tag version (default latest)
   -f file    Specify a Dockerfile (default is Dockerfile in current directory i.e. '.')
   -h         Print this help.
@@ -19,10 +20,12 @@ EOF
 repo_url="https://github.com/f4exb/sdrangelspectrum.git"
 branch_name="master"
 clone_tag=$(date)
+image_name="sdrangelspectrum"
 image_tag="latest"
+uid=$(id -u)
 docker_file="."
 
-while getopts "h?r:b:c:t:f:" opt; do
+while getopts "h?r:b:c:i:t:f:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -33,6 +36,8 @@ while getopts "h?r:b:c:t:f:" opt; do
     b)  branch_name=${OPTARG}
         ;;
     c)  clone_tag=${OPTARG}
+        ;;
+    i)  image_name=${OPTARG}
         ;;
     t)  image_tag=${OPTARG}
         ;;
@@ -47,11 +52,12 @@ shift $((OPTIND-1))
 # End of get options
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
-IMAGE_NAME=sdrangelspectrum:${image_tag}
+IMAGE_NAME=${image_name}:${image_tag}
 DOCKER_BUILDKIT=1 docker build \
     --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \
     --build-arg repo_hash=${repo_hash} \
     --build-arg clone_tag="${clone_tag}" \
+    --build-arg uid=${uid} \
     --target sdrangelspectrum \
     -t ${IMAGE_NAME} ${docker_file}

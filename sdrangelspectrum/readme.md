@@ -13,6 +13,7 @@ The build command can control from which repository and from which branch you ar
   - `-c` specifies an arbitrary commit tag. This is to force a fresh clone of the SDRangelSpectrum repository. If that tag changes from the one previously used then the clone layer in the build cache is refreshed.
     - By default this is the current timestamp so each time the build is run a new cache is built
     - You can specify the commit SHA1 so that a fresh copy will be taken only if a new commit took place
+  - `-i` specifies the image name (default is `sdrangelspectrum`)
   - `-t` specifies the tag version image (default is `latest`)
 
 <h2>Run image</h2>
@@ -21,6 +22,7 @@ Use the `run.sh` script without options to run the image. By default it listens 
 
 The available options are:
 
+  - `-i` specifies the image name (default is `sdrangelspectrum`)
   - `-t` specifies the tag version image (default is `latest`)
   - `-c` specifies a container name. Default is `sdrangelspectrum`
   - `-p` specifies the port on the host to which the UI will listen. Default is `8081`.

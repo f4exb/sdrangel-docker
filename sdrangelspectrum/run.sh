@@ -7,6 +7,7 @@ show_help() {
   cat << EOF
   Usage: ${0##*/} [-t version] [-p port] [-h]
   Run SDRangelSpectrum client in a Docker container.
+  -i name    Docker image name (default sdrangelcli)
   -t tag     Docker image tag version (default latest)
   -c name    Docker container name (default sdrangelcli)
   -p port    http port map to 8081 (default 8081)
@@ -14,15 +15,18 @@ show_help() {
 EOF
 }
 
+image_name="sdrangelspectrum"
 image_tag="latest"
 container_name="sdrangelspectrum"
 http_port="-p 8081:8081"
 
-while getopts "h?gt:c:p:" opt; do
+while getopts "h?gi:t:c:p:" opt; do
     case "$opt" in
     h|\?)
         show_help
         exit 0
+        ;;
+    i)  image_name=${OPTARG}
         ;;
     t)  image_tag=${OPTARG}
         ;;
@@ -47,4 +51,4 @@ USER_UID=$(id -u)
 docker run -it --rm \
     --name ${container_name} \
     ${http_port} \
-    sdrangelspectrum:${image_tag}
+    ${image_name}:${image_tag}
