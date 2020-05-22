@@ -1,13 +1,21 @@
-FROM node:slim as base
+FROM ubuntu:20.04 AS base
+ARG uid
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install base packages
-RUN apt-get update && apt-get -y install sudo git
+RUN apt-get update && apt-get -y install sudo git curl npm
+RUN npm install npm -g \
+    && npm cache clean -f \
+    && npm install -g n \
+    && n stable
 RUN npm install -g @angular/cli \
     && npm install -g http-server
 
-# Give node user sudo rights and default to it
-RUN usermod -a -G sudo node \
-    && usermod --shell /bin/bash node
+# Create node user with sudo rights and default to it
+RUN useradd -m node -u ${uid} && echo "node:node" | chpasswd \
+    && adduser node sudo \
+    && sudo usermod --shell /bin/bash node
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER node
 
