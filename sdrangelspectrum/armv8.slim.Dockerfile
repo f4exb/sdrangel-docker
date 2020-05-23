@@ -1,14 +1,14 @@
-FROM arm64v8/node:alpine as base
+FROM arm64v8/node:slim as base
 
 # Install base packages
-RUN apk update && apk add sudo git
-
+RUN apt-get update && apt-get -y install sudo git
 RUN npm install -g @angular/cli@9 \
     && npm install -g http-server
 
 # Give node user sudo rights and default to it
-RUN addgroup node wheel
-RUN echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN usermod -a -G sudo node \
+    && usermod --shell /bin/bash node
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER node
 
 RUN sudo mkdir /opt/build \
