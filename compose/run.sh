@@ -22,6 +22,7 @@ show_help() {
   -a port    API port map to 8091 (default 8091).
   -u port(s) UDP port(s) map to same with UDP option (default 9090). You can specify a range as XXXX-YYYY.
   -p port(s) TCP port(s) map to same with TCP option (default 8887). You can specify a range as XXXX-YYYY.
+  -W name    FFTW wisdom file name in the `~/.config/sdrangel` directory (default fftw-wisdom).
   -h         Print this help.
   Examples:
     ./run.sh -g (starts sdrangel/vanilla:latest and sdrangelcli:latest)

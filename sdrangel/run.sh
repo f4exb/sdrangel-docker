@@ -14,6 +14,7 @@ show_help() {
   -s port    SSH port map to 22.
   -a port    API port map to 8091 (default 8091).
   -u port    UDP port map to same with UDP option. Can be repeated.
+  -w name    FFTW wisdom file name in the `~/.config/sdrangel` directory (default fftw-wisdom).
   -h         Print this help.
   Examples:
     ./run.sh -g -c sdrangel -s 50022 -u 9090:9090 (starts sdrangel/vanilla:latest)
