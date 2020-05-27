@@ -75,7 +75,7 @@ docker run -it --rm \
     ${ssh_port} \
     ${api_port} \
     ${udp_conn} \
-    --env FFTWFILE=${file_name} \
+    --env FFTWFILE=${fftw_filename} \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/${USER_UID}/pulse" \
     sdrangel/${flavor}:${image_tag}
