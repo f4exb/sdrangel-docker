@@ -29,7 +29,7 @@ ARG repository
 ARG branch
 ARG repo_hash
 ARG clone_tag
-RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} sdrangelspectrum \
+RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelspectrum \
     && echo "${repo_hash}" > /dev/null \
     && echo "${clone_tag}" > /dev/null
 WORKDIR /opt/build/sdrangelspectrum

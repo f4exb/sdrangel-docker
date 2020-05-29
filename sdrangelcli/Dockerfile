@@ -21,7 +21,7 @@ ARG repository
 ARG branch
 ARG repo_hash
 ARG clone_tag
-RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelcli \
+RUN git clone https://github.com/f4exb/sdrangelcli.git -b ${branch} sdrangelcli \
     && echo "${repo_hash}" > /dev/null \
     && echo "${clone_tag}" > /dev/null
 WORKDIR /opt/build/sdrangelcli

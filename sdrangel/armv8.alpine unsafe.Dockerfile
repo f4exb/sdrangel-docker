@@ -1,95 +1,68 @@
-FROM arm64v8/ubuntu:20.04 AS base
+FROM arm64v8/alpine AS base
 ARG uid
 
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Create a user with sudo rights
-RUN apt-get update && apt-get -y install sudo
-RUN useradd -m sdr -u ${uid} && echo "sdr:sdr" | chpasswd \
-   && adduser sdr sudo \
-   && usermod -a -G audio,dialout,plugdev sdr\
-   && sudo usermod --shell /bin/bash sdr
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN apk update && apk add sudo
+RUN adduser \
+    --disabled-password \
+    --home /home/sdr \
+    --ingroup users \
+    --uid ${uid} sdr
+RUN echo "sdr:sdr" | chpasswd \
+    && addgroup sdr audio \
+    && addgroup sdr dialout \
+    && addgroup sdr wheel
+RUN echo '%wheel ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER sdr
 
-# Configure tzdata manually before anything else
-ENV TZONE=Europe/Paris
-RUN sudo ln -fs /usr/share/zoneinfo/$TZONE /etc/localtime \
-    && sudo apt-get update && sudo apt-get -y install tzdata
-
 # Some essentials
-RUN sudo apt-get update && sudo apt-get -y install \
-	vim \
-	openssh-server \
-	iputils-ping \
-	traceroute \
-	iproute2 \
-	nmap \
-    net-tools \
-    python3-requests \
-    python3-flask
+RUN sudo apk update && sudo apk add \
+    vim \
+    openssh-server \
+    iputils \
+    py-requests \
+    py-flask
 
 # Install base build packages dependencies - step 1
-RUN sudo apt-get update && sudo apt-get -y install \
+RUN sudo apk update && sudo apk add \
     git \
+    make \
     cmake \
     g++ \
-    pkg-config \
+    pkgconf \
     autoconf \
     automake \
     libtool \
-    libfftw3-dev \
-    libusb-1.0-0-dev \
+    fftw-dev \
     libusb-dev
 
 # Install base build packages dependencies - Qt5
-RUN sudo apt-get update && sudo apt-get -y install \
-    qtbase5-dev \
-    qt5-default
-RUN sudo apt-get update && sudo apt-get -y install \
-    qtchooser \
-    libqt5multimedia5-plugins \
-    qtmultimedia5-dev \
-    libqt5websockets5-dev
-RUN sudo apt-get update && sudo apt-get -y install \
-    libqt5opengl5-dev
+RUN sudo apk update && sudo apk add \
+    qt5-qtbase-dev \
+    qt5-qtmultimedia-dev \
+    qt5-websockets-dev
 
 # Install base build packages dependencies - Boost
-RUN sudo apt-get update && sudo apt-get -y install \
-    libpython3-dev
-RUN sudo apt-get update && sudo apt-get -y install \
-    librdmacm1
-RUN sudo apt-get update && sudo apt-get -y install \
-    libboost-all-dev
+RUN sudo apk update && sudo apk add \
+    boost-dev
 
 # Install base build packages dependencies - the rest
-RUN sudo apt-get update && sudo apt-get -y install \
-    libasound2-dev \
+RUN sudo apk update && sudo apk add \
     pulseaudio \
-    libopencv-dev \
     libxml2-dev \
     bison \
     flex \
-    ffmpeg \
-    libavcodec-dev \
-    libavformat-dev \
-    libopus-dev \
-    libavahi-client-dev
-
-# Install compiled libraries dependencies
-# Codec2
-RUN sudo apt-get update && sudo apt-get -y install libspeexdsp-dev \
-    libsamplerate0-dev
-# Perseus
-RUN sudo apt-get update && sudo apt-get -y install xxd
-# XTRX (f4exb)
-RUN sudo apt-get update && sudo apt-get -y install \
-    python3 python3-cheetah
+    ffmpeg-dev \
+    opus-dev \
+    avahi-dev \
+    speex-dev \
+    speexdsp-dev \
+    libsamplerate-dev \
+    py-cheetah
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
-    && sudo chown sdr:sdr /opt/build /opt/install
-
+    && sudo chown sdr:users /opt/build /opt/install
 
 # CM256cc
 FROM base AS cm256cc
@@ -127,9 +100,9 @@ RUN git clone https://github.com/f4exb/serialDV.git \
 # DSDcc
 FROM base AS dsdcc
 ARG nb_cores
+WORKDIR /opt/build
 COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
-WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/dsdcc.git \
     && cd dsdcc \
     && git reset --hard "v1.8.6" \
@@ -141,13 +114,15 @@ RUN git clone https://github.com/f4exb/dsdcc.git \
 FROM base AS codec2
 ARG nb_cores
 WORKDIR /opt/build
-RUN sudo apt-get update && sudo apt-get -y install subversion
+RUN sudo apk update && sudo apk add subversion
 RUN git clone https://github.com/drowe67/codec2.git \
     && cd codec2 \
     && git reset --hard "v0.9.2" \
     && mkdir build_linux; cd build_linux \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
+
+WORKDIR /opt/build
 
 # Airspy
 FROM base AS airspy
@@ -218,7 +193,7 @@ RUN wget https://github.com/myriadrf/LimeSuite/archive/v20.01.0.tar.gz \
     && cd LimeSuite \
     && mkdir builddir
 
-FROM limesdr_clone as limesdr
+FROM limesdr_clone AS limesdr
 ARG nb_cores
 RUN cd /opt/build/LimeSuite/builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. \
@@ -252,8 +227,9 @@ RUN git clone https://github.com/f4exb/libperseus-sdr.git \
 FROM base AS xtrx
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/f4exb/images.git xtrx-images \
+RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
     && cd xtrx-images \
+    && git reset --hard 703cc42285b51e7b214e3b5d02c07f90b53c840e \
     && git submodule init \
     && git submodule update \
     && cd sources \
@@ -325,54 +301,20 @@ COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
-# This is to allow sharing pulseaudio with the host
+# This is the first step to allow sharing pulseaudio with the host
 COPY pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
 ARG repository
+WORKDIR /opt/build
 ARG branch
 ARG repo_hash
 ARG clone_tag
-WORKDIR /opt/build
-RUN git clone https://github.com/f4exb/sdrangel.git -b ${branch} sdrangel \
+RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangel \
     && cd sdrangel \
     && mkdir build \
     && echo "${repo_hash}" > build/repo_hash.txt \
     && echo "${clone_tag}" > build/clone_tag.txt
-
-# Create a base image for all GUIs
-FROM base_deps AS gui
-ARG nb_cores
-COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
-WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
-    && make -j${nb_cores} install
-COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
-
-# Configure SSH for X-forwarding to be able to start the UI from ssh connection
-RUN sudo sed -i '/X11Forwarding/c\X11Forwarding yes' /etc/ssh/sshd_config \
-	&& sudo sed -i '/X11UseLocalhost/c\X11UseLocalhost no' /etc/ssh/sshd_config
-
-# The final "vanilla" GUI version with no particular hardware dependencies
-FROM gui AS vanilla
-# Start SDRangel and some more services on which SDRangel depends
-COPY start_gui.sh /start.sh
-COPY restart_gui.sh /home/sdr/restart.sh
-WORKDIR /home/sdr
-ENTRYPOINT ["/start.sh"]
-
-# The final "linux_nvidia" GUI version for running with NVidia GPU
-FROM gui AS linux_nvidia
-RUN sudo apt-get update && sudo apt-get install -y mesa-utils binutils kmod
-# install nvidia driver
-ADD NVIDIA-DRIVER.run /tmp/NVIDIA-DRIVER.run
-RUN sudo sh /tmp/NVIDIA-DRIVER.run -s --ui=none --no-kernel-module --install-libglvnd --no-questions
-RUN sudo rm /tmp/NVIDIA-DRIVER.run
-# Start SDRangel and some more services on which SDRangel depends
-COPY start_gui.sh /start.sh
-COPY restart_gui.sh /home/sdr/restart.sh
-WORKDIR /home/sdr
-ENTRYPOINT ["/start.sh"]
 
 # The final server version
 FROM base_deps AS server
@@ -380,11 +322,11 @@ ARG rx_24bits
 ARG nb_cores
 COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
+RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends
-COPY start_server.sh /start.sh
-COPY restart_server.sh /home/sdr/restart.sh
+COPY start_server.armv8.sh /start.sh
+COPY restart_server.armv8.sh /home/sdr/restart.sh
 WORKDIR /home/sdr
 ENTRYPOINT ["/start.sh"]

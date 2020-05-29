@@ -1,6 +1,5 @@
 Dockerfile
-armv8.alpine.Dockerfile
-armv8.ubuntu.Dockerfile
+*.Dockerfile
 .gitignore
 NVIDIA-Linux*
 build_*.sh

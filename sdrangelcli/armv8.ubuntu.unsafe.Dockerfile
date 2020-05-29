@@ -24,19 +24,19 @@ RUN sudo mkdir /opt/build \
 WORKDIR /opt/build
 
 # Clone sdrangelcli and build final image
-FROM base as sdrangelspectrum
+FROM base as sdrangelcli
 ARG repository
 ARG branch
 ARG repo_hash
 ARG clone_tag
-RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} sdrangelspectrum \
+RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangelcli \
     && echo "${repo_hash}" > /dev/null \
     && echo "${clone_tag}" > /dev/null
-WORKDIR /opt/build/sdrangelspectrum
+WORKDIR /opt/build/sdrangelcli
 RUN npm install \
     && ng build --prod \
     && mv dist /opt/build \
     && rm -rf *
 
-WORKDIR /opt/build/dist/sdrangelspectrum
-ENTRYPOINT [ "http-server", "-p 8081" ]
+WORKDIR /opt/build/dist/sdrangelcli
+ENTRYPOINT [ "http-server" ]

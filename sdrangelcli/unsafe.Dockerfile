@@ -1,4 +1,4 @@
-FROM arm64v8/node:slim as base
+FROM node:slim as base
 
 # Install base packages
 RUN apt-get update && apt-get -y install sudo git

@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:20.04 AS base
+FROM ubuntu:20.04 AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -82,9 +82,10 @@ RUN sudo apt-get update && sudo apt-get -y install libspeexdsp-dev \
     libsamplerate0-dev
 # Perseus
 RUN sudo apt-get update && sudo apt-get -y install xxd
-# XTRX (f4exb)
+# XTRX (f4exb), UHD
 RUN sudo apt-get update && sudo apt-get -y install \
-    python3 python3-cheetah
+    python3 python3-cheetah \
+    python3-mako
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
@@ -141,13 +142,31 @@ RUN git clone https://github.com/f4exb/dsdcc.git \
 FROM base AS codec2
 ARG nb_cores
 WORKDIR /opt/build
-RUN sudo apt-get update && sudo apt-get -y install subversion
 RUN git clone https://github.com/drowe67/codec2.git \
     && cd codec2 \
     && git reset --hard "v0.9.2" \
     && mkdir build_linux; cd build_linux \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
+
+# SDRplay special
+FROM base AS sdrplay
+ENV SDRPLAY_MAJ 2.13
+ENV SDRPLAY_MIN .1
+WORKDIR /opt/build
+RUN mkdir -p /opt/install/libsdrplay/include \
+    && mkdir -p /opt/install/libsdrplay/lib \
+    && mkdir -p /opt/build/sdrplay
+RUN cd sdrplay \
+    && wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
+    && export ARCH=`arch` \
+    && sh ./SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
+    && cp ${ARCH}/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/. \
+    && chmod 644 /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} \
+    && ln -s /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.2 \
+    && ln -s /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.2 /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so \
+    && cp mirsdrapi-rsp.h /opt/install/libsdrplay/include/. \
+    && chmod 644 /opt/install/libsdrplay/include/mirsdrapi-rsp.h
 
 # Airspy
 FROM base AS airspy
@@ -261,6 +280,22 @@ RUN git clone https://github.com/f4exb/images.git xtrx-images \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/xtrx-images -DENABLE_SOAPY=NO .. \
     && make -j${nb_cores} install
 
+# UHD
+FROM base AS uhd
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/EttusResearch/uhd.git \
+    && cd uhd/host \
+    && git reset --hard v3.15.0.0 \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd -DENABLE_PYTHON_API=OFF -DINSTALL_UDEV_RULES=OFF .. \
+    && make -j${nb_cores} install
+# Download firmware images for models requiring them at run time (see https://files.ettus.com/manual/page_images.html)
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t usrp1
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t b2xx
+# RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e310 - too big
+# RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e320_fpga - too big
+
 # SDRPlay RSP1
 FROM base AS libmirisdr
 ARG nb_cores
@@ -294,6 +329,19 @@ RUN git clone https://github.com/pothosware/SoapyRemote.git \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
     && make -j${nb_cores} install
 
+# Soapy SDRplay
+FROM base AS soapy_sdrplay
+ARG nb_cores
+COPY --from=soapy --chown=sdr /opt/install /opt/install
+COPY --from=sdrplay --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
+RUN git clone https://github.com/pothosware/SoapySDRPlay.git \
+    && cd SoapySDRPlay \
+    && git reset --hard "soapy-sdrplay-0.2.0" \
+    && mkdir build; cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DLIBSDRPLAY_INCLUDE_DIRS=/opt/install/libsdrplay/include -DLIBSDRPLAY_LIBRARIES=/opt/install/libsdrplay/lib/libmirsdrapi-rsp.so -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
+    && make -j${nb_cores} install
+
 # Soapy LimeSDR
 FROM base AS soapy_limesdr
 ARG nb_cores
@@ -305,6 +353,30 @@ RUN cd LimeSuite/builddir \
     && make -j${nb_cores} install \
     && cp /opt/install/LimeSuite/lib/SoapySDR/modules0.7/libLMS7Support.so /opt/install/SoapySDR/lib/SoapySDR/modules0.7
 
+# Soapy UHD
+FROM base AS soapy_uhd
+ARG nb_cores
+COPY --from=soapy --chown=sdr /opt/install /opt/install
+COPY --from=uhd --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
+RUN git clone https://github.com/pothosware/SoapyUHD.git \
+    && cd SoapyUHD \
+    && git reset --hard 2900fff \
+    && mkdir build; cd build \
+    && UHD_DIR=/opt/install/uhd cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
+    && make -j${nb_cores} install
+
+# Soapy Red Pitaya
+FROM base as soapy_redpitaya
+COPY --from=soapy --chown=sdr /opt/install /opt/install
+WORKDIR /opt/build
+RUN git clone https://github.com/pothosware/SoapyRedPitaya.git \
+    && cd SoapyRedPitaya \
+    && git reset --hard 3d576f83b3bde52104b2a88150516ca8c9a78c7a \
+    && mkdir build; cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
+    && make -j${nb_cores} install
+
 # Create a base image plus dependencies
 FROM base AS base_deps
 COPY --from=cm256cc --chown=sdr /opt/install /opt/install
@@ -312,6 +384,7 @@ COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
 COPY --from=dsdcc --chown=sdr /opt/install /opt/install
 COPY --from=codec2 --chown=sdr /opt/install /opt/install
+COPY --from=sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=airspy --chown=sdr /opt/install /opt/install
 COPY --from=rtlsdr --chown=sdr /opt/install /opt/install
 COPY --from=plutosdr --chown=sdr /opt/install /opt/install
@@ -322,9 +395,13 @@ COPY --from=airspyhf --chown=sdr /opt/install /opt/install
 COPY --from=perseus --chown=sdr /opt/install /opt/install
 COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
+COPY --from=uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
+COPY --from=soapy_sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
+COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
+COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
 # This is to allow sharing pulseaudio with the host
 COPY pulse-client.conf /etc/pulse/client.conf
 
@@ -334,7 +411,7 @@ ARG branch
 ARG repo_hash
 ARG clone_tag
 WORKDIR /opt/build
-RUN git clone https://github.com/f4exb/sdrangel.git -b ${branch} sdrangel \
+RUN GIT_SSL_NO_VERIFY=true git clone ${repository} -b ${branch} sdrangel \
     && cd sdrangel \
     && mkdir build \
     && echo "${repo_hash}" > build/repo_hash.txt \
@@ -345,7 +422,7 @@ FROM base_deps AS gui
 ARG nb_cores
 COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
+RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 
@@ -380,7 +457,7 @@ ARG rx_24bits
 ARG nb_cores
 COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
+RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends
