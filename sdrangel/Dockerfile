@@ -38,6 +38,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     automake \
     libtool \
     libfftw3-dev \
+    wget \
     libusb-1.0-0-dev \
     libusb-dev
 
