@@ -76,7 +76,6 @@ In addition the `build_server.sh` lets you specify the number of Rx bits. The im
 
 You may specify extra options for port mapping between the host and the container:
 
-  - `-s` specifies the host port linked to the container ssh port (22)
   - `-a` specifies the host port linked to the SDRangel REST API port
   - `-u` specifies an UDP port on the host linked to the same port in the container.
   You may have several of these. UDP port mapping is used for Remote Input plugin operation
@@ -85,10 +84,10 @@ To speed up FFT plan allocations you can put a FFTW wisdom file in the `~/.confi
 
 <h3>Examples</h3>
 
-  - `./run.sh -g -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/vanilla:latest`
-  - `./run.sh -g -c sdrangel -s 50022 -u 9090:9090 -w fftw-wisdom-k4` starts `sdrangel/vanilla:latest` using `~/.config/sdrangel/fftw-wisdom-k4` FFTW wisdom file
-  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/nvidia:v4.10.4`
-  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -s 50022 -u 9090:9090` starts `sdrangel/server16:38df0a6`
+  - `./run.sh -g -c sdrangel -u 9090:9090` starts `sdrangel/vanilla:latest`
+  - `./run.sh -g -c sdrangel -u 9090:9090 -w fftw-wisdom-k4` starts `sdrangel/vanilla:latest` using `~/.config/sdrangel/fftw-wisdom-k4` FFTW wisdom file
+  - `./run.sh -g -f nvidia -t v4.10.4 -c sdrangel -u 9090:9090` starts `sdrangel/nvidia:v4.10.4`
+  - `./run.sh -f server16 -t 38df0a6 -c sdrangel -u 9090:9090` starts `sdrangel/server16:38df0a6`
 
 <h2>Notes about running images</h2>
 

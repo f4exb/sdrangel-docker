@@ -18,7 +18,6 @@ USER sdr
 # Some essentials
 RUN sudo apk update && sudo apk add \
     vim \
-    openssh-server \
     iputils \
     py-requests \
     py-flask

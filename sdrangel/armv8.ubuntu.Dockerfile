@@ -20,7 +20,6 @@ RUN sudo ln -fs /usr/share/zoneinfo/$TZONE /etc/localtime \
 # Some essentials
 RUN sudo apt-get update && sudo apt-get -y install \
 	vim \
-	openssh-server \
 	iputils-ping \
 	traceroute \
 	iproute2 \
