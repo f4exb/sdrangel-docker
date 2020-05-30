@@ -423,10 +423,6 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF -DM
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 
-# Configure SSH for X-forwarding to be able to start the UI from ssh connection
-RUN sudo sed -i '/X11Forwarding/c\X11Forwarding yes' /etc/ssh/sshd_config \
-	&& sudo sed -i '/X11UseLocalhost/c\X11UseLocalhost no' /etc/ssh/sshd_config
-
 # The final "vanilla" GUI version with no particular hardware dependencies
 FROM gui AS vanilla
 # Start SDRangel and some more services on which SDRangel depends
