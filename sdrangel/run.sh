@@ -5,7 +5,7 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-g] [-b branch] -t version [-k name] [-s port] [-a port] [-u port [-u port ...]] [-h]
+  Usage: ${0##*/} [-g] -t version [-k name] [-s port] [-a port] [-u port [-u port ...]] [-h]
   Run SDRangel in a Docker container.
   -g         Run a GUI variant (server if unset)
   -f         Image flavor. Can be vanilla, nvidia, server16, server24 (default vanilla). Use a flavor relevant to GUI or server variants.

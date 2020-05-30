@@ -6,9 +6,8 @@ This should work the same in all environments.
 
 Use the `build.sh` script to produce the `sdrangelcli/node:latest` image
 
-The build command can control from which repository and from which branch you are cloning the source of SDRangelCli. You can also give a different tag version than the default.
+The build command can control from which branch you are cloning the source of SDRangelCli. You can also give a different tag version than the default.
 
-  - `-r` specifies from which URL you are cloning the `sdrangelcli` repository (default is `https://github.com/f4exb/sdrangelcli.git`). The repository name hash key is used during the clone step so that build caches can be kept separately for each repository.
   - `-b` specifies which branch you are checking out in the clone (default is `master`). The image name of the image tag (after the /) will be the branch name e.g. `sdrangel/dev:latest`
   - `-c` specifies an arbitrary commit tag. This is to force a fresh clone of the SDRangelCli repository. If that tag changes from the one previously used then the clone layer in the build cache is refreshed.
     - By default this is the current timestamp so each time the build is run a new cache is built

@@ -46,9 +46,8 @@ As a prerequisite you have to download the driver appropriate to your system:
 
 <h3>Common options</h3>
 
-The build commands can control from which repository and from which branch you are cloning the source of SDRangel. You can also give a different tag version than the default.
+The build commands can control from which branch you are cloning the source of SDRangel. You can also give a different tag version than the default.
 
-  - `-r` specifies from which URL you are cloning the `sdrangel` repository (default is `https://github.com/f4exb/sdrangel.git`). The repository name hash key is used during the clone step so that build caches can be kept separately for each repository.
   - `-b` specifies which branch you are checking out in the clone (default is `master`). The image name of the image tag (after the /) will be the branch name e.g. `sdrangel/dev:linux_nvidia`
   - `-c` specifies an arbitrary commit tag. This is to force a fresh clone of the SDRangel repository. If that tag changes from the one previously used then the clone layer in the build cache is refreshed.
     - By default this is the current timestamp so each time the build is run a new cache is built
@@ -81,7 +80,6 @@ You may specify extra options for port mapping between the host and the containe
   - `-a` specifies the host port linked to the SDRangel REST API port
   - `-u` specifies an UDP port on the host linked to the same port in the container.
   You may have several of these. UDP port mapping is used for Remote Input plugin operation
-  - `-b` specifies the branch used when compiling SDRangel and that appears in the image name (default is `master`)
 
 To speed up FFT plan allocations you can put a FFTW wisdom file in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file. The name of the file can be specified with the `-w` option (see above).
 

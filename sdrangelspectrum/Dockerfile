@@ -7,7 +7,7 @@ RUN npm install -g @angular/cli@9 \
 
 # Give node user sudo rights and default to it
 RUN usermod -a -G sudo node \
-     && sudo usermod --shell /bin/bash node
+     && usermod --shell /bin/bash node
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER node
 
