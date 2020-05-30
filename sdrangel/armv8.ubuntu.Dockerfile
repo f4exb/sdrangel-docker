@@ -39,6 +39,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libtool \
     libfftw3-dev \
     libusb-1.0-0-dev \
+    wget \
     libusb-dev
 
 # Install base build packages dependencies - Qt5

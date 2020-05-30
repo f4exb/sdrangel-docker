@@ -60,7 +60,7 @@ The build commands can control from which branch you are cloning the source of S
 In addition the `build_server.sh` lets you specify the number of Rx bits. The image tag version is suffixed by the number of bits e.g. `server16`
 
   - `-x` tells to use 24 bit samples for Rx (default is 16)
-  - `-f` specify an alternate Dockerfile to the default `Dockerfile` used for `x86-64` architecture. This can be `armv8.ubuntu.Dockerfile` for `armv8` or `arch64` ARM architectures (ex: RPi3 or 4). `armv8.alpine.Dockerfile` is experimental and has issues compiling LimeSuite.
+  - `-f` specify an alternate Dockerfile to the default `Dockerfile` used for `x86-64` architecture. This can be `armv8.ubuntu.Dockerfile` for `armv8` or `arch64` ARM architectures (ex: RPi3 or 4). `armv8.alpine.Dockerfile` is experimental and has issues compiling LimeSuite. To build an ARM image from a x86-64 system you need to install the qemu-user-static package on Ubuntu host, or equivalent.
 
 <h2>Options of the run.sh command</h2>
 
