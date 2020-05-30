@@ -17,13 +17,10 @@ WORKDIR /opt/build
 
 # Clone sdrangelcli and build final image
 FROM base as sdrangelspectrum
-ARG repository
 ARG branch
-ARG repo_hash
-ARG clone_tag
+ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} sdrangelspectrum \
-    && echo "${repo_hash}" > /dev/null \
-    && echo "${clone_tag}" > /dev/null
+    && echo "${clone_label}" > /dev/null
 WORKDIR /opt/build/sdrangelspectrum
 RUN npm install \
     && ng build --prod \

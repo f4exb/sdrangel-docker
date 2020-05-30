@@ -49,7 +49,7 @@ As a prerequisite you have to download the driver appropriate to your system:
 The build commands can control from which branch you are cloning the source of SDRangel. You can also give a different tag version than the default.
 
   - `-b` specifies which branch you are checking out in the clone (default is `master`). The image name of the image tag (after the /) will be the branch name e.g. `sdrangel/dev:linux_nvidia`
-  - `-c` specifies an arbitrary commit tag. This is to force a fresh clone of the SDRangel repository. If that tag changes from the one previously used then the clone layer in the build cache is refreshed.
+  - `-c` specifies an arbitrary commit label. This is to force a fresh clone of the SDRangel repository. If that label changes from the one previously used then the clone layer in the build cache is refreshed.
     - By default this is the current timestamp so each time the build is run a new cache is built
     - You can specify the commit SHA1 so that a fresh copy will be taken only if a new commit took place
   - `-t` specifies the tag version image (default `latest`). You would normally use a tag relative to the git repository for example the tag name for tagged commits or the commit hash.

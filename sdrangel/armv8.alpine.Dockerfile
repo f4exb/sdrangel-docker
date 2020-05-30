@@ -304,16 +304,13 @@ COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
 COPY pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
-ARG repository
 WORKDIR /opt/build
 ARG branch
-ARG repo_hash
-ARG clone_tag
+ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangel.git -b ${branch} sdrangel \
     && cd sdrangel \
     && mkdir build \
-    && echo "${repo_hash}" > build/repo_hash.txt \
-    && echo "${clone_tag}" > build/clone_tag.txt
+    && echo "${clone_label}" > build/clone_label.txt
 
 # The final server version
 FROM base_deps AS server

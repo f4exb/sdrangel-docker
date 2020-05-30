@@ -5,34 +5,31 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-b branch] [-t tag] [-h]
+  Usage: ${0##*/} [-b branch] [-c label] [-t tag] [-h]
   Build SDRangel image.
   -b name    Branch name (default master)
-  -c tag     Arbitrary clone tag. Clone again if different from the last tag (default current timestamp)
+  -c label   Arbitrary clone label. Clone again if different from the last labl (default current timestamp)
   -t tag     Docker image tag. Use git tag or commit hash (default latest)
   -j number  Number of cores used in make commands (-j), Default is half the number of cores available.
   -h         Print this help.
 EOF
 }
 
-repo_url="https://github.com/f4exb/sdrangel.git"
 branch_name="master"
-clone_tag=$(date)
+clone_label=$(date)
 image_tag="latest"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
 uid=$(id -u)
 
-while getopts "h?r:b:c:t:j:" opt; do
+while getopts "h?b:c:t:j:" opt; do
     case "$opt" in
     h|\?)
         show_help
         exit 0
         ;;
-    r)  repo_url=${OPTARG}
-        ;;
     b)  branch_name=${OPTARG}
         ;;
-    c)  clone_tag=${OPTARG}
+    c)  clone_label=${OPTARG}
         ;;
     t)  image_tag=${OPTARG}
         ;;
@@ -49,10 +46,8 @@ shift $((OPTIND-1))
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
 IMAGE_NAME=sdrangel/vanilla:${image_tag}
 DOCKER_BUILDKIT=1 docker build \
-    --build-arg repository=${repo_url} \
     --build-arg branch=${branch_name} \
-    --build-arg repo_hash=${repo_hash} \
-    --build-arg clone_tag="${clone_tag}" \
+    --build-arg clone_label="${clone_label}" \
     --build-arg nb_cores=${nb_cores} \
     --build-arg uid=${uid} \
     --target vanilla \

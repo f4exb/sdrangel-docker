@@ -405,16 +405,13 @@ COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/
 COPY pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
-ARG repository
 ARG branch
-ARG repo_hash
-ARG clone_tag
+ARG clone_label
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/sdrangel.git -b ${branch} sdrangel \
     && cd sdrangel \
     && mkdir build \
-    && echo "${repo_hash}" > build/repo_hash.txt \
-    && echo "${clone_tag}" > build/clone_tag.txt
+    && echo "${clone_label}" > build/clone_label.txt
 
 # Create a base image for all GUIs
 FROM base_deps AS gui
