@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo service ssh start
 sudo service dbus start
 sudo service avahi-daemon start
 IPADDR=$(ip addr show type veth | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
