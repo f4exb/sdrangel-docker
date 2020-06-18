@@ -149,6 +149,17 @@ RUN git clone https://github.com/drowe67/codec2.git \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
 
+# libsigmf
+FROM base AS libsigmf
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/f4exb/libsigmf.git \
+    && cd libsigmf \
+    && git checkout "new-namespaces" \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. \
+    && make -j${nb_cores} install
+
 # SDRplay special
 FROM base AS sdrplay
 ENV SDRPLAY_MAJ 2.13
@@ -384,6 +395,7 @@ COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
 COPY --from=dsdcc --chown=sdr /opt/install /opt/install
 COPY --from=codec2 --chown=sdr /opt/install /opt/install
+COPY --from=libsigmf --chown=sdr /opt/install /opt/install
 COPY --from=sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=airspy --chown=sdr /opt/install /opt/install
 COPY --from=rtlsdr --chown=sdr /opt/install /opt/install
@@ -419,7 +431,7 @@ FROM base_deps AS gui
 ARG nb_cores
 COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
+RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DLIBSIGMF_DIR=/opt/install/libsigmf -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 
