@@ -39,6 +39,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libtool \
     libfftw3-dev \
     wget \
+    avahi-utils \
     libusb-1.0-0-dev \
     libusb-dev
 
