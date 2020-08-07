@@ -1,6 +1,6 @@
 <h1>Building and running SDRangel in a Docker container</h1>
 
-![Docker Pulls](https://img.shields.io/docker/pulls/f4exb06/sdrangelsrv)
+[![Docker Pulls](https://img.shields.io/docker/pulls/f4exb06/sdrangelsrv)](https://hub.docker.com/repository/docker/f4exb06/sdrangelsrv)
 
 <h2>Introduction</h2>
 
