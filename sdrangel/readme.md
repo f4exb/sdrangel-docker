@@ -1,5 +1,7 @@
 <h1>Building and running SDRangel in a Docker container</h1>
 
+![Docker Pulls](https://img.shields.io/docker/pulls/f4exb06/sdrangelsrv)
+
 <h2>Introduction</h2>
 
 Docker 18.09 or later is required. A single Dockerfile is used to build all images thanks to the BuildKit feature of Docker build.
