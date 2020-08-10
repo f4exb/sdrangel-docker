@@ -28,9 +28,17 @@ When building images it is important that the image is built by the user that wi
 
 As a prerequisite you have to download the driver appropriate to your system:
 
-  - First find out the driver currently in use in your system: `glxinfo | grep -i nvidia`. It should display a line like `OpenGL core profile version string: 4.6.0 NVIDIA 410.104`. In this example the version is `410.104`.
+  - First find out the driver currently in use in your system:
+    - `glewinfo | grep Running` to make sure the NVidia card is active (on multi GPU systems)
+    - `glxinfo | grep -i nvidia`. It should display a line like `OpenGL core profile version string: 4.6.0 NVIDIA 410.104`. In this example the version is `410.104`.
   - Download the driver installer corresponding to this version from [this archive](https://www.nvidia.com/object/linux-amd64-display-archive.html)
   - Copy it to `NVIDIA-DRIVER.run` in the `sdrangel` folder of the cloned repository (this folder).
+
+Alternatively you can get the driver directly knowing its version. Example:
+
+  - cd to `sdrangel-docker\sdrangel`
+  - `wget http://us.download.nvidia.com/XFree86/Linux-x86_64/440.100/NVIDIA-Linux-x86_64-440.100.run`
+  - then `cp NVIDIA-Linux-x86_64-440.100.run NVIDIA-DRIVER.run`
 
 <h3>Server with 16 bit Rx samples</h3>
 
