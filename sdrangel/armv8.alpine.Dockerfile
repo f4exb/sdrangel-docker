@@ -318,9 +318,11 @@ COPY pulse-client.conf /etc/pulse/client.conf
 FROM base AS sdrangel_clone
 WORKDIR /opt/build
 ARG branch
+ARG sdrangel_tag
 ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangel.git -b ${branch} sdrangel \
     && cd sdrangel \
+    && git checkout ${sdrangel_tag} \
     && mkdir build \
     && echo "${clone_label}" > build/clone_label.txt
 
