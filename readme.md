@@ -158,6 +158,8 @@ You have to restart Docker for this to take effect:
   - with `systemctl` do: `sudo systemctl restart docker`
   - with `service` do: `sudo service docker restart`
 
+You can also remove dangling items in cache with the command: `docker builder prune`
+
 <h2>Docker images</h2>
 
 <h3>FFTWisdom section</h3>

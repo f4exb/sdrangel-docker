@@ -5,13 +5,14 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 # Get options:
 show_help() {
   cat << EOF
-  Usage: ${0##*/} [-b branch] [-T tag] [-c label] [-t tag] [-n] [-h]
+  Usage: ${0##*/} [-b branch] [-T tag] [-c label] [-t tag] [-f file] [-n] [-h]
   Build SDRangel image.
   -b name    Branch name (default master)
   -T tag     Checkout tag or commit (default to branch name i.e. do nothing)
   -c label   Arbitrary clone label. Clone again if different from the last label (default current timestamp)
   -t tag     Docker image tag. Use git tag or commit hash (default latest)
   -j number  Number of cores used in make commands (-j), Default is the number of cores available.
+  -f file    Specify a Dockerfile (default is Dockerfile in current directory i.e. '.')
   -n         Force the no cahe option (--no-cache)
   -h         Print this help.
 EOF
@@ -23,8 +24,9 @@ clone_label=$(date)
 image_tag="latest"
 nb_cores=$(grep -c ^processor /proc/cpuinfo)
 uid=$(id -u)
+docker_file="."
 
-while getopts "h?b:c:t:j:T:n" opt; do
+while getopts "h?b:c:t:j:f:T:n" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -37,6 +39,8 @@ while getopts "h?b:c:t:j:T:n" opt; do
     t)  image_tag=${OPTARG}
         ;;
     j)  nb_cores=${OPTARG}
+        ;;
+    f)  docker_file="-f ${OPTARG} ."
         ;;
     T)  sdrangel_tag=${OPTARG}
         ;;
@@ -70,4 +74,4 @@ DOCKER_BUILDKIT=1 docker build ${no_cache} \
     --build-arg nb_cores=${nb_cores} \
     --build-arg uid=${uid} \
     --target linux_nvidia \
-    -t ${IMAGE_NAME} .
+    -t ${IMAGE_NAME} ${docker_file}

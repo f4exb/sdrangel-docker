@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20200319 AS base
+FROM debian:buster AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive

@@ -58,19 +58,22 @@ Alternatively you can get the driver directly knowing its version. Example:
 
 The build commands can control from which branch you are cloning the source of SDRangel. You can also give a different tag version than the default.
 
-  - `-b` specifies which branch you are checking out in the clone (default is `master`). The image name of the image tag (after the /) will be the branch name e.g. `sdrangel/dev:linux_nvidia`
+  - `-b` specifies which branch you are checking out in the clone (default is `master`).
   - `-c` specifies an arbitrary commit label. This is to force a fresh clone of the SDRangel repository. If that label changes from the one previously used then the clone layer in the build cache is refreshed.
     - By default this is the current timestamp so each time the build is run a new cache is built
     - You can specify the commit SHA1 so that a fresh copy will be taken only if a new commit took place
-  - `-t` specifies the tag version image (default `latest`). You would normally use a tag relative to the git repository for example the tag name for tagged commits or the commit hash.
+  - `-T` specifies the git tag or commit to checkout. It defaults to the branch name thus defaults to the HEAD of branch.
+  - `-t` specifies the Docker tag version image (default `latest`). You would normally use a tag relative to the git repository for example the tag name for tagged commits or the commit hash.
   - `-j` specifies the number of CPU cores used in the make commands (same as the -j option of make). Default is the number of CPU cores available.
+  - `-f` specify an alternate Dockerfile to the default `Dockerfile` used for GUI flavor on `x86-64` architecture.
+  - `-n` build with the `--no-cache` option thus rebuilding the image completely from the start.
 
 <h3>Build server specific options</h3>
 
 In addition the `build_server.sh` lets you specify the number of Rx bits. The image tag version is suffixed by the number of bits e.g. `server16`
 
   - `-x` tells to use 24 bit samples for Rx (default is 16)
-  - `-f` specify an alternate Dockerfile to the default `Dockerfile` used for `x86-64` architecture. This can be `armv8.ubuntu.Dockerfile` for `armv8` or `arch64` ARM architectures (ex: RPi3 or 4). `armv8.alpine.Dockerfile` is experimental and has issues compiling LimeSuite. To build an ARM image from a x86-64 system you need to install the qemu-user-static package on Ubuntu host, or equivalent.
+  - `-f` for server variants this can be `armv8.ubuntu.Dockerfile` for `armv8` or `arch64` ARM architectures (ex: RPi3 or 4). `armv8.alpine.Dockerfile` is experimental and has issues compiling LimeSuite. To build an ARM image from a x86-64 system you need to install the qemu-user-static package on Ubuntu host, or equivalent.
 
 <h2>Options of the run.sh command</h2>
 
