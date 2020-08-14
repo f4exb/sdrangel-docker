@@ -1,0 +1,8 @@
+# FTDI rules
+ATTR{idVendor}=="0403", ATTR{idProduct}=="6010", MODE="660", GROUP="dialout"
+ATTR{idVendor}=="0403", ATTR{idProduct}=="6014", MODE="660", GROUP="dialout"
+# These two lines are for Papilio DUO, from Jack Gassett at Gadget Factory Forum.
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="7bc0", GROUP="dialout"
+ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="7bc0", \
+  RUN+="/sbin/modprobe ftdi_sio", \
+  RUN+="/bin/sh -c 'echo 0403 7bc0 > /sys/bus/usb-serial/drivers/ftdi_sio/new_id'"

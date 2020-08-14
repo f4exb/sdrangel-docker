@@ -12,6 +12,7 @@ cp rtl-sdr.rules /etc/udev/rules.d/
 cp mirisdr.rules /etc/udev/rules.d/
 cp 95-perseus.rules /etc/udev/rules.d/
 cp uhd-usrp.rules /etc/udev/rules.d/
+cp 85-ftdi.rules /etc/udev/rules.d/
 
 udevadm control --reload-rules
 udevadm trigger
