@@ -38,7 +38,7 @@ while getopts "h?ga:u:f:t:c:w:" opt; do
         show_help
         exit 0
         ;;
-    g)  gui_opts="-e PULSE_SERVER=unix:/run/user/${USER_UID}/pulse/native -e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    g)  gui_opts="-e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw -v=/var/run/dbus:/var/run/dbus -v=/var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket"
         ;;
     a)  api_port="-p ${OPTARG}:8091"
         ;;
@@ -72,6 +72,7 @@ docker run -it --rm \
     ${api_port} \
     ${udp_conn} \
     --env FFTWFILE=${fftw_filename} \
+    --env PULSE_SERVER="unix:/run/user/${USER_UID}/pulse/native" \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/${USER_UID}/pulse" \
     sdrangel/${flavor}:${image_tag}
