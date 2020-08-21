@@ -188,7 +188,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/analogdevicesinc/libiio.git \
     && cd libiio \
-    && git reset --hard 826563e41b5ce9890b75506f672017de8d76d52d \
+    && git reset --hard "v0.21" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libiio -DINSTALL_UDEV_RULE=OFF .. \
     && make -j${nb_cores} install
