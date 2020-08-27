@@ -1,6 +1,4 @@
 #!/bin/bash
-sudo service dbus start
-sudo service avahi-daemon start
 if [ -z ${IPADDR+x} ]; then # take container virtual address if not specified
     IPADDR=$(ip addr show type veth | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | head -1)
 fi

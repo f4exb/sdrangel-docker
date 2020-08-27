@@ -41,7 +41,7 @@ while getopts "h?ga:u:f:t:c:w:H:" opt; do
         show_help
         exit 0
         ;;
-    g)  gui_opts="-e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw -v=/var/run/dbus:/var/run/dbus -v=/var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket"
+    g)  gui_opts="-e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw"
         ;;
     a)  api_port="-p ${OPTARG}:8091"
         host_api_port=$OPTARG
@@ -91,4 +91,6 @@ docker run -it --rm \
     --env PULSE_SERVER="unix:/run/user/${USER_UID}/pulse/native" \
     -v="/home/${USER}/.config:/home/sdr/.config:rw" \
     -v="/run/user/${USER_UID}/pulse:/run/user/${USER_UID}/pulse" \
+    -v="/var/run/dbus:/var/run/dbus" \
+    -v="/var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket" \
     sdrangel/${flavor}:${image_tag}
