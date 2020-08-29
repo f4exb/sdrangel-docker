@@ -34,6 +34,7 @@ The `run.sh` script brings up (or down) a compose stack with a SDRangel and a SD
 
   - `-D`: use this option to bring down the compose stack (default is to bring up). Use the same `-g` and `-c` options if any that you used to bring up the stack. Other options do not matter.
   - `-g`: starts the GUI variant of SDRangel else the server variant will be started.
+  - `-H` use the host network for SDRangel container. The address of the interface is specified as the argument Ex: `-H 192.168.0.1`. This configuration is useful if you want to use UDP multicast since multicast is not supported in Docker networks
   - `-f` specifies the flavor used when compiling SDRangel and that appears in the image name after `sdrangel/` (default is `vanilla`)
   - `-t tag`: SDRangel image name tag (ex: `v4.10.4` default is `latest`).
   - `-T tag`: SDRangelcli image name tag (ex: `v1.1.1` default is `latest`).
@@ -44,11 +45,11 @@ The `run.sh` script brings up (or down) a compose stack with a SDRangel and a SD
   - `-w port`: host port for the web client interface (SDRangelCli). Default is `8080`.
   - `-s port`: host port for the web spectrum (SDRangelSpectrum) (default 8081).
   - `-a port`: host port for the SDRangel REST API. Default is `8091`.
-  - `-u port[-port]`: maps a UDP port or a range of ports from host to the SDRangel container (same). Default is `9090`.
-  - `-p port[-port]`: maps a TCP port or a range of ports from host to the SDRangel contaoner (same). Default is `8887`.
+  - `-u port[-port]`: maps a UDP port or a range of ports from host to the SDRangel container (same). Default is `9090`. This is ignored when host network is used (`-H` option)
+  - `-p port[-port]`: maps a TCP port or a range of ports from host to the SDRangel contaoner (same). Default is `8887`. This is ignored when host network is used (`-H` option)
 
 The composition default network has a fixed subnet address of `172.18.0.0/16`. A fixed address for SDRangel container is interesting if you use UDP connections thus:
-  - SDRangel container will have the `172.18.0.2` IPv4 address
+  - SDRangel container will have the `172.18.0.2` IPv4 address (unless host network is used)
   - SDRangelCli will have  `172.18.0.3`
   - SDRangelSpectrum will have `172.18.0.4`.
 

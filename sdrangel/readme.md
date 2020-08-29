@@ -78,6 +78,7 @@ In addition the `build_server.sh` lets you specify the number of Rx bits. The im
 <h2>Options of the run.sh command</h2>
 
   - `-g` run a GUI flavor (use with `-f vanilla` (default) or `-f nvidia`). Without this option it is expected to run a server flavor (`-f server16`or `-f server24`)
+  - `-H` use the host network. The address of the interface is specified as the argument Ex: `-H 192.168.0.1`. This configuration is useful if you want to use UDP multicast since multicast is not supported in Docker networks
   - `-f` image flavor. Can be any of:
     - `vanilla`: default. Non specific GUI flavor
     - `nvidia`: GUI flavor specific to Nvidia graphics cards
@@ -90,7 +91,7 @@ In addition the `build_server.sh` lets you specify the number of Rx bits. The im
 You may specify extra options for port mapping between the host and the container:
 
   - `-a` specifies the host port linked to the SDRangel REST API port
-  - `-u` specifies an UDP port on the host linked to the same port in the container.
+  - `-u` specifies an UDP port on the host linked to the same port in the container. This is ignored when host network is used (`-H` option)
   You may have several of these. UDP port mapping is used for Remote Input plugin operation
 
 To speed up FFT plan allocations you can put a FFTW wisdom file in the `~/.config/sdrangel` directory. The `fftwisdom` image in the `fftwisdom` section can be used to produce a compatible FFTW wisdom file. The name of the file can be specified with the `-w` option (see above).
