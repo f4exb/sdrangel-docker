@@ -57,7 +57,8 @@ RUN sudo apk update && sudo apk add \
     speex-dev \
     speexdsp-dev \
     libsamplerate-dev \
-    py-cheetah
+    py-cheetah \
+    py-mako
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
@@ -247,6 +248,28 @@ RUN git clone https://github.com/xtrx-sdr/images.git xtrx-images \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/xtrx-images -DENABLE_SOAPY=NO .. \
     && make -j${nb_cores} install
 
+# UHD
+FROM base AS uhd
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/EttusResearch/uhd.git \
+    && cd uhd/host \
+    && git reset --hard v3.15.0.0 \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd \
+    -DENABLE_PYTHON_API=OFF \
+    -DENABLE_EXAMPLES=OFF \
+    -DENABLE_TESTS=OFF \
+    -DENABLE_E320=OFF \
+    -DENABLE_E300=OFF \
+    -DINSTALL_UDEV_RULES=OFF .. \
+    && make -j${nb_cores} install
+# Download firmware images for models requiring them at run time (see https://files.ettus.com/manual/page_images.html)
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t usrp1
+RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t b2xx
+# RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e310 - too big
+# RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t e3xx_e320_fpga - too big
+
 # SDRPlay RSP1
 FROM base AS libmirisdr
 ARG nb_cores
@@ -309,6 +332,7 @@ COPY --from=airspyhf --chown=sdr /opt/install /opt/install
 COPY --from=perseus --chown=sdr /opt/install /opt/install
 COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
+COPY --from=uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
@@ -332,7 +356,25 @@ ARG rx_24bits
 ARG nb_cores
 COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DLIBSIGMF_DIR=/opt/install/libsigmf -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
+RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF \
+    -DMIRISDR_DIR=/opt/install/libmirisdr \
+    -DAIRSPY_DIR=/opt/install/libairspy \
+    -DAIRSPYHF_DIR=/opt/install/libairspyhf \
+    -DBLADERF_DIR=/opt/install/libbladeRF \
+    -DHACKRF_DIR=/opt/install/libhackrf \
+    -DRTLSDR_DIR=/opt/install/librtlsdr \
+    -DLIMESUITE_DIR=/opt/install/LimeSuite \
+    -DIIO_DIR=/opt/install/libiio \
+    -DCM256CC_DIR=/opt/install/cm256cc \
+    -DDSDCC_DIR=/opt/install/dsdcc \
+    -DSERIALDV_DIR=/opt/install/serialdv \
+    -DMBE_DIR=/opt/install/mbelib \
+    -DCODEC2_DIR=/opt/install/codec2 \
+    -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DPERSEUS_DIR=/opt/install/libperseus \
+    -DXTRX_DIR=/opt/install/xtrx-images \
+    -DUHD_DIR=/opt/install/uhd \
+    -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends
