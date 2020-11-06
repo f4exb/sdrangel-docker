@@ -371,6 +371,7 @@ ARG clone_label
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/sdrangel.git -b ${branch} sdrangel \
     && cd sdrangel \
+    && git fetch ${sdrangel_tag} \
     && git reset --hard ${sdrangel_tag} \
     && mkdir build \
     && echo "${clone_label}" > build/clone_label.txt
