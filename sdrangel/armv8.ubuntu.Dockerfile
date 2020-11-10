@@ -52,7 +52,19 @@ RUN sudo apt-get update && sudo apt-get -y install \
     qtmultimedia5-dev \
     libqt5websockets5-dev
 RUN sudo apt-get update && sudo apt-get -y install \
-    libqt5opengl5-dev
+    libqt5opengl5-dev \
+    libqt5quick5 \
+    qml-module-qtlocation \
+    qml-module-qtlocation \
+    qml-module-qtpositioning \
+    qml-module-qtquick-window2 \
+    qml-module-qtquick-dialogs \
+    qml-module-qtquick-controls \
+    qml-module-qtquick-layouts \
+    libqt5serialport5-dev \
+    qtdeclarative5-dev \
+    qtpositioning5-dev \
+    qtlocation5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -395,6 +407,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=ON -
     -DSERIALDV_DIR=/opt/install/serialdv \
     -DMBE_DIR=/opt/install/mbelib \
     -DCODEC2_DIR=/opt/install/codec2 \
+    -DLIBSIGMF_DIR=/opt/install/libsigmf \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DSOAPYSDR_DIR=/opt/install/SoapySDR \
@@ -434,7 +447,25 @@ ARG rx_24bits
 ARG nb_cores
 COPY --from=sdrangel_clone --chown=sdr /opt/build/sdrangel /opt/build/sdrangel
 WORKDIR /opt/build/sdrangel/build
-RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF -DMIRISDR_DIR=/opt/install/libmirisdr -DAIRSPY_DIR=/opt/install/libairspy -DAIRSPYHF_DIR=/opt/install/libairspyhf -DBLADERF_DIR=/opt/install/libbladeRF -DHACKRF_DIR=/opt/install/libhackrf -DRTLSDR_DIR=/opt/install/librtlsdr -DLIMESUITE_DIR=/opt/install/LimeSuite -DIIO_DIR=/opt/install/libiio -DCM256CC_DIR=/opt/install/cm256cc -DDSDCC_DIR=/opt/install/dsdcc -DSERIALDV_DIR=/opt/install/serialdv -DMBE_DIR=/opt/install/mbelib -DCODEC2_DIR=/opt/install/codec2 -DLIBSIGMF_DIR=/opt/install/libsigmf -DPERSEUS_DIR=/opt/install/libperseus -DXTRX_DIR=/opt/install/xtrx-images -DSOAPYSDR_DIR=/opt/install/SoapySDR -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
+RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=OFF \
+    -DMIRISDR_DIR=/opt/install/libmirisdr \
+    -DAIRSPY_DIR=/opt/install/libairspy \
+    -DAIRSPYHF_DIR=/opt/install/libairspyhf \
+    -DBLADERF_DIR=/opt/install/libbladeRF \
+    -DHACKRF_DIR=/opt/install/libhackrf \
+    -DRTLSDR_DIR=/opt/install/librtlsdr \
+    -DLIMESUITE_DIR=/opt/install/LimeSuite \
+    -DIIO_DIR=/opt/install/libiio \
+    -DCM256CC_DIR=/opt/install/cm256cc \
+    -DDSDCC_DIR=/opt/install/dsdcc \
+    -DSERIALDV_DIR=/opt/install/serialdv \
+    -DMBE_DIR=/opt/install/mbelib \
+    -DCODEC2_DIR=/opt/install/codec2 \
+    -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DPERSEUS_DIR=/opt/install/libperseus \
+    -DXTRX_DIR=/opt/install/xtrx-images \
+    -DSOAPYSDR_DIR=/opt/install/SoapySDR \
+    -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends

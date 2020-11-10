@@ -39,7 +39,19 @@ RUN sudo apk update && sudo apk add \
 RUN sudo apk update && sudo apk add \
     qt5-qtbase-dev \
     qt5-qtmultimedia-dev \
-    qt5-websockets-dev
+    qt5-websockets-dev \
+    libqt5quick5 \
+    qml-module-qtlocation \
+    qml-module-qtlocation \
+    qml-module-qtpositioning \
+    qml-module-qtquick-window2 \
+    qml-module-qtquick-dialogs \
+    qml-module-qtquick-controls \
+    qml-module-qtquick-layouts \
+    libqt5serialport5-dev \
+    qtdeclarative5-dev \
+    qtpositioning5-dev \
+    qtlocation5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apk update && sudo apk add \
