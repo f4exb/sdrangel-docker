@@ -141,6 +141,7 @@ WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libsigmf.git \
     && cd libsigmf \
     && git checkout "new-namespaces" \
+    && git reset --hard 8623f04c1e4e817ebcaacbe55265a7740da015a4 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. \
     && make -j${nb_cores} install
