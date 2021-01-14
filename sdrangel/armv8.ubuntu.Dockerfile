@@ -62,6 +62,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     qml-module-qtquick-controls \
     qml-module-qtquick-layouts \
     libqt5serialport5-dev \
+    libqt5charts5-dev \
     qtdeclarative5-dev \
     qtpositioning5-dev \
     qtlocation5-dev
