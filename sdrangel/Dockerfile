@@ -360,19 +360,6 @@ RUN git clone https://github.com/pothosware/SoapyRemote.git \
     && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
     && make -j${nb_cores} install
 
-# Soapy SDRplay
-FROM base AS soapy_sdrplay
-ARG nb_cores
-COPY --from=soapy --chown=sdr /opt/install /opt/install
-COPY --from=sdrplay --chown=sdr /opt/install /opt/install
-WORKDIR /opt/build
-RUN git clone https://github.com/pothosware/SoapySDRPlay.git \
-    && cd SoapySDRPlay \
-    && git reset --hard "soapy-sdrplay-0.2.0" \
-    && mkdir build; cd build \
-    && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DLIBSDRPLAY_INCLUDE_DIRS=/opt/install/libsdrplay/include -DLIBSDRPLAY_LIBRARIES=/opt/install/libsdrplay/lib/libmirsdrapi-rsp.so -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
-    && make -j${nb_cores} install
-
 # Soapy LimeSDR
 FROM base AS soapy_limesdr
 ARG nb_cores
@@ -430,7 +417,6 @@ COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
-COPY --from=soapy_sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
