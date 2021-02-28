@@ -52,7 +52,8 @@ RUN sudo apk update && sudo apk add \
     libqt5charts5-dev \
     qtdeclarative5-dev \
     qtpositioning5-dev \
-    qtlocation5-dev
+    qtlocation5-dev \
+    libqt5texttospeech5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apk update && sudo apk add \
