@@ -78,6 +78,17 @@ RUN sudo apk update && sudo apk add \
 RUN sudo mkdir /opt/build /opt/install \
     && sudo chown sdr:users /opt/build /opt/install
 
+# APTdec
+FROM base AS aptdec
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/srcejon/aptdec.git \
+    && cd aptdec \
+    && git checkout libaptdec \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/aptdec .. \
+    && make -j${nb_cores} install
+
 # CM256cc
 FROM base AS cm256cc
 ARG nb_cores
@@ -146,6 +157,16 @@ RUN git clone https://github.com/f4exb/libsigmf.git \
     && git reset --hard 8623f04c1e4e817ebcaacbe55265a7740da015a4 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libsigmf .. \
+    && make -j${nb_cores} install
+
+# SGP4
+FROM base AS sgp4
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/dnwrnr/sgp4.git \
+    && cd sgp4 \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. \
     && make -j${nb_cores} install
 
 WORKDIR /opt/build
@@ -331,12 +352,14 @@ RUN cd LimeSuite/builddir \
 
 # Create a base image plus dependencies
 FROM base AS base_deps
+COPY --from=aptdec --chown=sdr /opt/install /opt/install
 COPY --from=cm256cc --chown=sdr /opt/install /opt/install
 COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
 COPY --from=dsdcc --chown=sdr /opt/install /opt/install
 COPY --from=codec2 --chown=sdr /opt/install /opt/install
 COPY --from=libsigmf --chown=sdr /opt/install /opt/install
+COPY --from=sgp4 --chown=sdr /opt/install /opt/install
 COPY --from=airspy --chown=sdr /opt/install /opt/install
 COPY --from=rtlsdr --chown=sdr /opt/install /opt/install
 COPY --from=plutosdr --chown=sdr /opt/install /opt/install
@@ -381,12 +404,14 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx
     -DRTLSDR_DIR=/opt/install/librtlsdr \
     -DLIMESUITE_DIR=/opt/install/LimeSuite \
     -DIIO_DIR=/opt/install/libiio \
+    -DAPT_DIR=/opt/install/aptdec \
     -DCM256CC_DIR=/opt/install/cm256cc \
     -DDSDCC_DIR=/opt/install/dsdcc \
     -DSERIALDV_DIR=/opt/install/serialdv \
     -DMBE_DIR=/opt/install/mbelib \
     -DCODEC2_DIR=/opt/install/codec2 \
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DSGP4_DIR=/opt/install/sgp4 \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DUHD_DIR=/opt/install/uhd \
