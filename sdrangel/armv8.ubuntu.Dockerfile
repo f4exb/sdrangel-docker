@@ -484,6 +484,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx
     -DRTLSDR_DIR=/opt/install/librtlsdr \
     -DLIMESUITE_DIR=/opt/install/LimeSuite \
     -DIIO_DIR=/opt/install/libiio \
+    -DAPT_DIR=/opt/install/aptdec \
     -DCM256CC_DIR=/opt/install/cm256cc \
     -DDSDCC_DIR=/opt/install/dsdcc \
     -DSERIALDV_DIR=/opt/install/serialdv \
