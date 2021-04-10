@@ -28,7 +28,11 @@ When building images it is important that the image is built by the user that wi
   - Use the `build_linux_nvidia.sh` script to produce the `sdrangel/nvidia:latest` image. `latest` is the default but can be user defined with `-t` option.
   - Use the `run.sh` script with options `-g -f nvidia` to run the image
 
-As a prerequisite you have to download the driver appropriate to your system:
+Initially the build script will download the NVidia driver version corresponding to your system and copy it to `NVIDIA-DRIVER.run` in the `sdrangel` folder of the cloned repository (this folder). It will skip this step if `NVIDIA-DRIVER.run` is already present thus whenever there is a driver upgrade in your system you will have to delete this `NVIDIA-DRIVER.run` file so that the newer driver is fetched by the build script.
+
+You may also proceed manually for example to build an image for a system with a different driver version than the building host:
+
+Download the driver appropriate to your system using the browser:
 
   - First find out the driver currently in use in your system:
     - `glewinfo | grep Running` to make sure the NVidia card is active (on multi GPU systems)
