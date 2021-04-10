@@ -1,4 +1,4 @@
-FROM debian:buster AS base
+FROM debian:bullseye AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -45,8 +45,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
 
 # Install base build packages dependencies - Qt5
 RUN sudo apt-get update && sudo apt-get -y install \
-    qtbase5-dev \
-    qt5-default
+    qtbase5-dev
 RUN sudo apt-get update && sudo apt-get -y install \
     qtchooser \
     libqt5multimedia5-plugins \
@@ -255,7 +254,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
-    && git reset --hard "2019.07" \
+    && git reset --hard "2021.02" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
@@ -334,7 +333,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/EttusResearch/uhd.git \
     && cd uhd/host \
-    && git reset --hard v3.15.0.0 \
+    && git reset --hard v4.0.0.0 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd \
     -DENABLE_PYTHON_API=OFF \
@@ -394,19 +393,6 @@ RUN cd LimeSuite/builddir \
     && make -j${nb_cores} install \
     && cp /opt/install/LimeSuite/lib/SoapySDR/modules0.7/libLMS7Support.so /opt/install/SoapySDR/lib/SoapySDR/modules0.7
 
-# Soapy UHD
-FROM base AS soapy_uhd
-ARG nb_cores
-COPY --from=soapy --chown=sdr /opt/install /opt/install
-COPY --from=uhd --chown=sdr /opt/install /opt/install
-WORKDIR /opt/build
-RUN git clone https://github.com/pothosware/SoapyUHD.git \
-    && cd SoapyUHD \
-    && git reset --hard 2900fff \
-    && mkdir build; cd build \
-    && UHD_DIR=/opt/install/uhd cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
-    && make -j${nb_cores} install
-
 # Soapy Red Pitaya
 FROM base as soapy_redpitaya
 COPY --from=soapy --chown=sdr /opt/install /opt/install
@@ -443,8 +429,6 @@ COPY --from=uhd --chown=sdr /opt/install /opt/install
 COPY --from=soapy --chown=sdr /opt/install /opt/install
 COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
 COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
-COPY --from=soapy_uhd --chown=sdr /opt/install /opt/install
-COPY --from=soapy_uhd --chown=sdr /opt/install/uhd/lib/uhd /opt/install/uhd/lib/uhd
 # This is to allow sharing pulseaudio with the host
 COPY pulse-client.conf /etc/pulse/client.conf
 
