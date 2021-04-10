@@ -41,7 +41,7 @@ while getopts "h?ga:u:f:t:c:w:H:" opt; do
         show_help
         exit 0
         ;;
-    g)  gui_opts="-e DISPLAY=unix:0.0 -v=/tmp/.X11-unix:/tmp/.X11-unix:rw"
+    g)  gui_opts="-e DISPLAY=unix${DISPLAY} -v=/tmp/.X11-unix:/tmp/.X11-unix:rw"
         ;;
     a)  api_port="-p ${OPTARG}:8091"
         host_api_port=$OPTARG
