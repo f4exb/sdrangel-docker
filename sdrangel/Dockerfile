@@ -60,6 +60,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     qml-module-qtquick-window2 \
     qml-module-qtquick-dialogs \
     qml-module-qtquick-controls \
+    qml-module-qtquick-controls2 \
     qml-module-qtquick-layouts \
     libqt5serialport5-dev \
     libqt5charts5-dev \
@@ -88,7 +89,9 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libavcodec-dev \
     libavformat-dev \
     libopus-dev \
-    libavahi-client-dev
+    libavahi-client-dev \
+    libfaad-dev \
+    zlib1g-dev
 
 # Install compiled libraries dependencies
 # Codec2
@@ -126,6 +129,17 @@ RUN git clone https://github.com/f4exb/cm256cc.git \
     && git reset --hard c0e92b92aca3d1d36c990b642b937c64d363c559 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. \
+    && make -j${nb_cores} install
+
+# LibDAB
+FROM base AS libdab
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/f4exb/dab-cmdline \
+    && cd dab-cmdline/library \
+    && git checkout msvc \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. \
     && make -j${nb_cores} install
 
 # MBElib
@@ -408,6 +422,7 @@ RUN git clone https://github.com/pothosware/SoapyRedPitaya.git \
 FROM base AS base_deps
 COPY --from=aptdec --chown=sdr /opt/install /opt/install
 COPY --from=cm256cc --chown=sdr /opt/install /opt/install
+COPY --from=libdab --chown=sdr /opt/install /opt/install
 COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
 COPY --from=dsdcc --chown=sdr /opt/install /opt/install
@@ -465,6 +480,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF \
     -DMBE_DIR=/opt/install/mbelib \
     -DCODEC2_DIR=/opt/install/codec2 \
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DDAB_DIR=/opt/install/libdab \
     -DSGP4_DIR=/opt/install/sgp4 \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
@@ -517,6 +533,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=
     -DMBE_DIR=/opt/install/mbelib \
     -DCODEC2_DIR=/opt/install/codec2 \
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DDAB_DIR=/opt/install/libdab \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DSOAPYSDR_DIR=/opt/install/SoapySDR \

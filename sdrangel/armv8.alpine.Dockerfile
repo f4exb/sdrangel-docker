@@ -47,6 +47,7 @@ RUN sudo apk update && sudo apk add \
     qml-module-qtquick-window2 \
     qml-module-qtquick-dialogs \
     qml-module-qtquick-controls \
+    qml-module-qtquick-controls2 \
     qml-module-qtquick-layouts \
     libqt5serialport5-dev \
     libqt5charts5-dev \
@@ -72,7 +73,9 @@ RUN sudo apk update && sudo apk add \
     speexdsp-dev \
     libsamplerate-dev \
     py-cheetah \
-    py-mako
+    py-mako \
+    faad2-dev \
+    zlib-dev
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
@@ -98,6 +101,17 @@ RUN git clone https://github.com/f4exb/cm256cc.git \
     && git reset --hard c0e92b92aca3d1d36c990b642b937c64d363c559 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/cm256cc .. \
+    && make -j${nb_cores} install
+
+# LibDAB
+FROM base AS libdab
+ARG nb_cores
+WORKDIR /opt/build
+RUN git clone https://github.com/f4exb/dab-cmdline \
+    && cd dab-cmdline/library \
+    && git checkout msvc \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libdab .. \
     && make -j${nb_cores} install
 
 # MBElib
@@ -354,6 +368,7 @@ RUN cd LimeSuite/builddir \
 FROM base AS base_deps
 COPY --from=aptdec --chown=sdr /opt/install /opt/install
 COPY --from=cm256cc --chown=sdr /opt/install /opt/install
+COPY --from=libdab --chown=sdr /opt/install /opt/install
 COPY --from=mbelib --chown=sdr /opt/install /opt/install
 COPY --from=serialdv --chown=sdr /opt/install /opt/install
 COPY --from=dsdcc --chown=sdr /opt/install /opt/install
@@ -411,6 +426,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx
     -DMBE_DIR=/opt/install/mbelib \
     -DCODEC2_DIR=/opt/install/codec2 \
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
+    -DDAB_DIR=/opt/install/libdab \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DUHD_DIR=/opt/install/uhd \
