@@ -107,7 +107,7 @@ RUN git clone https://github.com/f4exb/cm256cc.git \
 FROM base AS libdab
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/f4exb/dab-cmdline \
+RUN git clone https://github.com/srcejon/dab-cmdline \
     && cd dab-cmdline/library \
     && git checkout msvc \
     && mkdir build; cd build \
