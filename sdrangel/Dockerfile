@@ -534,6 +534,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=
     -DCODEC2_DIR=/opt/install/codec2 \
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
     -DDAB_DIR=/opt/install/libdab \
+    -DSGP4_DIR=/opt/install/sgp4 \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DSOAPYSDR_DIR=/opt/install/SoapySDR \
