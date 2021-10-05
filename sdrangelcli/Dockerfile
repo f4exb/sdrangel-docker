@@ -23,7 +23,7 @@ RUN git clone https://github.com/f4exb/sdrangelcli.git -b ${branch} sdrangelcli 
     && echo "${clone_label}" > /dev/null
 WORKDIR /opt/build/sdrangelcli
 RUN npm install \
-    && ng build --prod \
+    && ng build --configuration production \
     && mv dist /opt/build \
     && rm -rf *
 
