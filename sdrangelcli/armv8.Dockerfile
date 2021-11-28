@@ -1,4 +1,4 @@
-FROM arm64v8/node:alpine as base
+FROM arm64v8/node:16-alpine as base
 
 # Install base packages
 RUN apk update && apk add sudo git
@@ -23,7 +23,7 @@ RUN git clone https://github.com/f4exb/sdrangelcli.git -b ${branch} sdrangelcli 
     && echo "${clone_label}" > /dev/null
 WORKDIR /opt/build/sdrangelcli
 RUN npm install \
-    && ng build --prod \
+    && ng build --configuration production \
     && mv dist /opt/build \
     && rm -rf *
 
