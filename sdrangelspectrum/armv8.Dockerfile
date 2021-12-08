@@ -1,4 +1,4 @@
-FROM arm64v8/node:alpine as base
+FROM arm64v8/node:16-alpine as base
 
 # Install base packages
 RUN apk update && apk add sudo git
