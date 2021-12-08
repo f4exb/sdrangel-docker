@@ -1,4 +1,4 @@
-FROM node:slim as base
+FROM node:16-slim as base
 
 # Install base packages
 RUN apt-get update && apt-get -y install sudo git
