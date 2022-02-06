@@ -89,7 +89,6 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libavcodec-dev \
     libavformat-dev \
     libopus-dev \
-    libavahi-client-dev \
     libfaad-dev \
     zlib1g-dev
 
@@ -355,40 +354,6 @@ RUN git clone https://github.com/f4exb/libmirisdr-4.git \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. \
     && make -j${nb_cores} install
 
-# Soapy main
-FROM base AS soapy
-ARG nb_cores
-WORKDIR /opt/build
-RUN git clone https://github.com/pothosware/SoapySDR.git \
-    && cd SoapySDR \
-    && git reset --hard "soapy-sdr-0.7.1" \
-    && mkdir build; cd build \
-    && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR .. \
-    && make -j${nb_cores} install
-
-# Soapy remote
-FROM base AS soapy_remote
-ARG nb_cores
-COPY --from=soapy --chown=sdr /opt/install /opt/install
-WORKDIR /opt/build
-RUN git clone https://github.com/pothosware/SoapyRemote.git \
-    && cd SoapyRemote \
-    && git reset --hard "soapy-remote-0.5.1" \
-    && mkdir build; cd build \
-    && cmake -DCMAKE_INSTALL_PREFIX=/opt/install/SoapySDR -DSOAPY_SDR_INCLUDE_DIR=/opt/install/SoapySDR/include -DSOAPY_SDR_LIBRARY=/opt/install/SoapySDR/lib/libSoapySDR.so .. \
-    && make -j${nb_cores} install
-
-# Soapy LimeSDR
-FROM base AS soapy_limesdr
-ARG nb_cores
-COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
-COPY --from=limesdr --chown=sdr /opt/build /opt/build
-WORKDIR /opt/build
-RUN cd LimeSuite/builddir \
-    && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite -DCMAKE_PREFIX_PATH=/opt/install/SoapySDR .. \
-    && make -j${nb_cores} install \
-    && cp /opt/install/LimeSuite/lib/SoapySDR/modules0.7/libLMS7Support.so /opt/install/SoapySDR/lib/SoapySDR/modules0.7
-
 # Create a base image plus dependencies
 FROM base AS base_deps
 COPY --from=aptdec --chown=sdr /opt/install /opt/install
@@ -411,9 +376,6 @@ COPY --from=perseus --chown=sdr /opt/install /opt/install
 COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=uhd --chown=sdr /opt/install /opt/install
-COPY --from=soapy --chown=sdr /opt/install /opt/install
-COPY --from=soapy_remote --chown=sdr /opt/install /opt/install
-COPY --from=soapy_limesdr --chown=sdr /opt/install /opt/install
 # This is to allow sharing pulseaudio with the host
 COPY pulse-client.conf /etc/pulse/client.conf
 
