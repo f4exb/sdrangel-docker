@@ -67,7 +67,9 @@ RUN sudo apt-get update && sudo apt-get -y install \
     qtdeclarative5-dev \
     qtpositioning5-dev \
     qtlocation5-dev \
-    libqt5texttospeech5-dev
+    libqt5texttospeech5-dev \
+    qtwebengine5-dev \
+    qtbase5-private-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
