@@ -19,11 +19,11 @@ RUN sudo ln -fs /usr/share/zoneinfo/$TZONE /etc/localtime \
 
 # Some essentials
 RUN sudo apt-get update && sudo apt-get -y install \
-	vim \
-	iputils-ping \
-	traceroute \
-	iproute2 \
-	nmap \
+    vim \
+    iputils-ping \
+    traceroute \
+    iproute2 \
+    nmap \
     net-tools \
     python3-requests \
     python3-flask
@@ -40,7 +40,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libfftw3-dev \
     libusb-1.0-0-dev \
     wget \
-    libusb-dev
+    libusb-dev \
+    libhidapi-dev
 
 # Install base build packages dependencies - Qt5
 RUN sudo apt-get update && sudo apt-get -y install \

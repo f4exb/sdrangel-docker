@@ -33,7 +33,8 @@ RUN sudo apk update && sudo apk add \
     automake \
     libtool \
     fftw-dev \
-    libusb-dev
+    libusb-dev \
+    libhidapi-dev
 
 # Install base build packages dependencies - Qt5
 RUN sudo apk update && sudo apk add \
