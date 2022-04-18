@@ -52,7 +52,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libqt5multimedia5-plugins \
     qtmultimedia5-dev \
     libqt5websockets5-dev
-RUN sudo apt-get update && sudo apt-get -y install \
+RUN sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y install \
     libqt5opengl5-dev \
     libqt5quick5 \
     qml-module-qtlocation \
