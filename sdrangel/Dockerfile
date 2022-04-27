@@ -370,6 +370,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/f4exb/libmirisdr-4.git \
     && cd libmirisdr-4 \
+    && git reset --hard v1.1.2 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. \
     && make -j${nb_cores} install
