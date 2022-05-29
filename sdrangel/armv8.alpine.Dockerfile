@@ -158,7 +158,7 @@ WORKDIR /opt/build
 RUN sudo apk update && sudo apk add subversion
 RUN git clone https://github.com/drowe67/codec2.git \
     && cd codec2 \
-    && git reset --hard "v0.9.2" \
+    && git reset --hard "v1.0.3" \
     && mkdir build_linux; cd build_linux \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
