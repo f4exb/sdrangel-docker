@@ -111,6 +111,6 @@ To speed up FFT plan allocations you can put a FFTW wisdom file in the `~/.confi
 
 When the program terminates it will drop to a shell in the container. This leaves the user with the opportunity to inspect the container from inside (ssh connection is also available) or restart the program with the `restart.sh` script found in the home directory of the `sdr` user (default location).
 
-To speed up starting time you have to create a so called FFT Wisdom file. This is critical for small armv8 machines lile the Raspberry-Pi. The typical command to execute is: `fftwf-wisdom -v -n -o ~/.config/sdrangel/fftw-wisdom 128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096`
+To speed up starting time you have to create a so called FFT Wisdom file. This is critical for small armv8 machines like the Raspberry Pi. The typical command to execute is: `fftwf-wisdom -v -n -o ~/.config/sdrangel/fftw-wisdom 128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096`
 
-If you intend to use audio you have to install `pulseaudio`on the host and restart it. This is needed even if you are planning to use only remote audio via UDP. Note that you need to keep a session open for your user. You may do this simply with the `tmux` utility (available in most distributions) with this command: `tmux new -s sdrangel -d` that creates a session and detaches it immediately.
+If you intend to use audio you have to install `pulseaudio` on the host and restart it. This is needed even if you are planning to use only remote audio via UDP. Note that you need to keep a session open for your user. You may do this simply with the `tmux` utility (available in most distributions) with this command: `tmux new -s sdrangel -d` that creates a session and detaches it immediately.
