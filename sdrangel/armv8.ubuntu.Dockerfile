@@ -252,7 +252,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
-    && git reset --hard "2019.07" \
+    && git reset --hard "2021.02" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
