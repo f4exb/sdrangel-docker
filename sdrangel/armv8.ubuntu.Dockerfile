@@ -329,7 +329,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/EttusResearch/uhd.git \
     && cd uhd/host \
-    && git reset --hard v3.15.0.0 \
+    && git reset --hard v4.3.0.0 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd \
     -DENABLE_PYTHON_API=OFF \
