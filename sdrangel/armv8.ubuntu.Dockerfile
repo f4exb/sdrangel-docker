@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:20.04 AS base
+FROM arm64v8/ubuntu:22.04 AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -46,8 +46,6 @@ RUN sudo apt-get update && sudo apt-get -y install \
 # Install base build packages dependencies - Qt5
 RUN sudo apt-get update && sudo apt-get -y install \
     qtbase5-dev \
-    qt5-default
-RUN sudo apt-get update && sudo apt-get -y install \
     qtchooser \
     libqt5multimedia5-plugins \
     qtmultimedia5-dev \
