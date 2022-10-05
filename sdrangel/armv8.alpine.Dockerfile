@@ -240,9 +240,9 @@ RUN mkdir /opt/install/libbladeRF/fpga \
 FROM base AS hackrf
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/mossmann/hackrf.git \
+RUN git clone https://github.com/greatscottgadgets/hackrf.git \
     && cd hackrf/host \
-    && git reset --hard "v2018.01.1" \
+    && git reset --hard "v2022.09.1" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libhackrf -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
