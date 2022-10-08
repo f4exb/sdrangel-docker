@@ -217,7 +217,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/airspy/host.git libairspy \
     && cd libairspy \
-    && git reset --hard bfb667080936ca5c2d23b3282f5893931ec38d3f \
+    && git reset --hard 37c768ce9997b32e7328eb48972a7fda0a1f8554 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libairspy .. \
     && make -j${nb_cores} install
@@ -292,7 +292,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/airspy/airspyhf \
     && cd airspyhf \
-    && git reset --hard "1.1.5" \
+    && git reset --hard 1af81c0ca18944b8c9897c3c98dc0a991815b686 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. \
     && make -j${nb_cores} install
