@@ -191,7 +191,7 @@ WORKDIR /opt/build
 FROM base AS airspy
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/airspy/host.git libairspy \
+RUN git clone https://github.com/airspy/airspyone_host.git libairspy \
     && cd libairspy \
     && git reset --hard 37c768ce9997b32e7328eb48972a7fda0a1f8554 \
     && mkdir build; cd build \
