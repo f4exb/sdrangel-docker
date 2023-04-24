@@ -67,6 +67,7 @@ RUN sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y instal
     qtpositioning5-dev \
     qtlocation5-dev \
     libqt5texttospeech5-dev \
+    libqt5gamepad5-dev \
     qtwebengine5-dev \
     qtbase5-private-dev
 
