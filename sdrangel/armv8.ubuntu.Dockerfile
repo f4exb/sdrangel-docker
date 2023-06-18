@@ -92,7 +92,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libavformat-dev \
     libopus-dev \
     libfaad-dev \
-    zlib1g-dev
+    zlib1g-dev \
+    libhamlib-dev
 
 # Install compiled libraries dependencies
 # Codec2

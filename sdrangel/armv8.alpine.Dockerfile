@@ -78,7 +78,8 @@ RUN sudo apk update && sudo apk add \
     py-cheetah \
     py-mako \
     faad2-dev \
-    zlib-dev
+    zlib-dev \
+    hamlib-dev
 
 # Prepare buiid and install environment
 RUN sudo mkdir /opt/build /opt/install \
