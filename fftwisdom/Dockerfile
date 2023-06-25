@@ -3,7 +3,7 @@ ARG uid
 
 # Create a user with sudo rights
 RUN apt-get update && apt-get -y install sudo
-RUN useradd -m sdr -u ${uid} && echo "sdr:sdr" | chpasswd \
+RUN useradd -o -m sdr -u ${uid} && echo "sdr:sdr" | chpasswd \
    && adduser sdr sudo \
    && usermod -a -G audio,dialout,plugdev sdr\
    && sudo usermod --shell /bin/bash sdr
