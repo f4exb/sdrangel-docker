@@ -14,6 +14,7 @@ The build command can control from which branch you are cloning the source of SD
     - You can specify the commit SHA1 so that a fresh copy will be taken only if a new commit took place
   - `-i` specifies the image name (default is `sdrangelcli`)
   - `-t` specifies the tag version image (default is `latest`)
+  - `-f` specifies an alternate Dockerfile, e.g. `armv8.Dockerfile` for ARM architectures like RPi 3 or 4 (default is `.` for `Dockerfile` in current directory)
 
 <h2>Run image</h2>
 
