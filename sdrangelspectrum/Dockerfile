@@ -19,11 +19,11 @@ WORKDIR /opt/build
 FROM base as sdrangelspectrum
 ARG branch
 ARG clone_label
-RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} sdrangelspectrum \
+RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} --single-branch sdrangelspectrum \
     && echo "${clone_label}" > /dev/null
 WORKDIR /opt/build/sdrangelspectrum
 RUN npm install \
-    && ng build --prod \
+    && ng build --configuration production \
     && mv dist /opt/build \
     && rm -rf *
 
