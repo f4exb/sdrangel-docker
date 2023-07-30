@@ -184,7 +184,7 @@ RUN git clone https://github.com/f4exb/dsdcc.git \
 FROM base AS codec2
 ARG nb_cores
 WORKDIR /opt/build
-RUN git clone https://github.com/drowe67/codec2-dev.git \
+RUN git clone https://github.com/drowe67/codec2-dev.git codec2 \
     && cd codec2 \
     && git reset --hard "v1.0.3" \
     && mkdir build_linux; cd build_linux \
