@@ -380,7 +380,7 @@ COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=uhd --chown=sdr /opt/install /opt/install
 # This is to allow sharing pulseaudio with the host
-COPY --chmod=755 pulse-client.conf /etc/pulse/client.conf
+COPY --chmod=644 pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
 ARG branch
