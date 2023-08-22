@@ -77,6 +77,6 @@ RUN DESTDIR="/opt/install/libfaketime" PREFIX="" make install
 FROM base as final
 COPY --from=wsjtx --chown=wsjtx /opt/install /opt/install
 COPY --from=libfaketime --chown=wsjtx /opt/install /opt/install
-COPY start.sh /start.sh
+COPY --chmod=755 start.sh /start.sh
 ENV LD_PRELOAD="/opt/install/libfaketime/lib/faketime/libfaketime.so.1"
 ENTRYPOINT ["/start.sh"]

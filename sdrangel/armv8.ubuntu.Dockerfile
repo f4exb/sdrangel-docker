@@ -380,7 +380,7 @@ COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=uhd --chown=sdr /opt/install /opt/install
 # This is to allow sharing pulseaudio with the host
-COPY pulse-client.conf /etc/pulse/client.conf
+COPY --chmod=755 pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
 ARG branch
@@ -432,8 +432,8 @@ RUN sudo sed -i '/X11Forwarding/c\X11Forwarding yes' /etc/ssh/sshd_config \
 # The final "vanilla" GUI version with no particular hardware dependencies
 FROM gui AS vanilla
 # Start SDRangel and some more services on which SDRangel depends
-COPY start_gui.sh /start.sh
-COPY restart_gui.sh /home/sdr/restart.sh
+COPY --chmod=755 start_gui.sh /start.sh
+COPY --chmod=755 restart_gui.sh /home/sdr/restart.sh
 WORKDIR /home/sdr
 ENTRYPOINT ["/start.sh"]
 
@@ -445,8 +445,8 @@ ADD NVIDIA-DRIVER.run /tmp/NVIDIA-DRIVER.run
 RUN sudo sh /tmp/NVIDIA-DRIVER.run -s --ui=none --no-kernel-module --install-libglvnd --no-questions
 RUN sudo rm /tmp/NVIDIA-DRIVER.run
 # Start SDRangel and some more services on which SDRangel depends
-COPY start_gui.sh /start.sh
-COPY restart_gui.sh /home/sdr/restart.sh
+COPY --chmod=755 start_gui.sh /start.sh
+COPY --chmod=755 restart_gui.sh /home/sdr/restart.sh
 WORKDIR /home/sdr
 ENTRYPOINT ["/start.sh"]
 
@@ -481,7 +481,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends
-COPY start_server.sh /start.sh
-COPY restart_server.sh /home/sdr/restart.sh
+COPY --chmod=755 start_server.sh /start.sh
+COPY --chmod=755 restart_server.sh /home/sdr/restart.sh
 WORKDIR /home/sdr
 ENTRYPOINT ["/start.sh"]
