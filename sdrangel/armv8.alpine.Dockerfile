@@ -357,7 +357,7 @@ COPY --from=xtrx --chown=sdr /opt/install /opt/install
 COPY --from=libmirisdr --chown=sdr /opt/install /opt/install
 COPY --from=uhd --chown=sdr /opt/install /opt/install
 # This is the first step to allow sharing pulseaudio with the host
-COPY pulse-client.conf /etc/pulse/client.conf
+COPY --chmod=644 pulse-client.conf /etc/pulse/client.conf
 
 FROM base AS sdrangel_clone
 WORKDIR /opt/build
@@ -402,7 +402,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DBUILD_TYPE=RELEASE -DRX_SAMPLE_24BIT=${rx
     && make -j${nb_cores} install
 COPY --from=bladerf --chown=sdr /opt/install/libbladeRF/fpga /opt/install/sdrangel
 # Start SDRangel and some more services on which SDRangel depends
-COPY start_server.armv8.sh /start.sh
-COPY restart_server.armv8.sh /home/sdr/restart.sh
+COPY --chmod=755 start_server.armv8.sh /start.sh
+COPY --chmod=755 restart_server.armv8.sh /home/sdr/restart.sh
 WORKDIR /home/sdr
 ENTRYPOINT ["/start.sh"]
