@@ -46,11 +46,11 @@ Although a set of shell scripts are there to help you build images and run conta
 
 <h2>GUI tools</h2>
 
-Optionnally you can install a GUI tool to manage and monitor Docker images and containers.
+Optionally you can install a GUI tool to manage and monitor Docker images and containers.
 
 <h3>Kitematic</h3>
 
-Kitematic is a GUI application to monitor and configure containers live. You can check the [home page here](https://kitematic.com/). Although flagged as "legacy" in Docekr documentation it still alive on Github.
+Kitematic is a GUI application to monitor and configure containers live. You can check the [home page here](https://kitematic.com/). Although flagged as "legacy" in Docker documentation it still alive on Github.
 
 You can check the [Github repository](https://github.com/docker/kitematic) where a .deb package is available. Arch users will find a package in the AUR.
 
