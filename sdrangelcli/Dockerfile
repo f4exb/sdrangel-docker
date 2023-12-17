@@ -1,4 +1,7 @@
-FROM node:16-slim as base
+FROM node:18-slim as base
+
+# Set environment variable for Node.js to use legacy OpenSSL provider
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Install base packages
 RUN apt-get update && apt-get -y install sudo git
@@ -22,10 +25,10 @@ ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangelcli.git -b ${branch} sdrangelcli \
     && echo "${clone_label}" > /dev/null
 WORKDIR /opt/build/sdrangelcli
-RUN npm install \
-    && ng build --configuration production \
-    && mv dist /opt/build \
-    && rm -rf *
+RUN npm install
+RUN ng build --configuration production
+RUN mv dist /opt/build
+RUN rm -rf *
 
 WORKDIR /opt/build/dist/sdrangelcli
 ENTRYPOINT [ "http-server" ]

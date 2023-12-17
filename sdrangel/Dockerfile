@@ -222,10 +222,11 @@ RUN mkdir -p /opt/install/libsdrplay/include \
     && mkdir -p /opt/install/libsdrplay/lib \
     && mkdir -p /opt/build/sdrplay
 RUN cd sdrplay \
-    && wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
     && export ARCH=`arch` \
-    && sh ./SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
-    && cp ${ARCH}/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/. \
+    && export CHECK_ARCH=$(if [ "$ARCH" = "aarch64" ]; then echo "ARM64"; else echo "Linux"; fi) \
+    && wget https://www.sdrplay.com/software/SDRplay_RSP_API-${CHECK_ARCH}-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
+    && sh ./SDRplay_RSP_API-${CHECK_ARCH}-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
+    && if [ "$CHECK_ARCH" = "Linux" ]; then cp ${ARCH}/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/.; else cp libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/.; fi \
     && chmod 644 /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} \
     && ln -s /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.2 \
     && ln -s /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.2 /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so \
