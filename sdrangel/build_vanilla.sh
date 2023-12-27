@@ -60,7 +60,7 @@ fi
 
 repo_hash=$(echo -n ${repo_url} | gzip -c | tail -c8 | hexdump -n4 -e '"%x"')
 IMAGE_NAME=sdrangel/vanilla:${image_tag}
-DOCKER_BUILDKIT=1 docker build ${no_cache} \
+docker buildx build ${no_cache} \
     --build-arg branch=${branch_name} \
     --build-arg sdrangel_tag=${sdrangel_tag} \
     --build-arg clone_label="${clone_label}" \
