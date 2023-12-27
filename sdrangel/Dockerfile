@@ -1,4 +1,4 @@
-FROM debian:bullseye AS base
+FROM debian:bookworm AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -111,6 +111,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
 RUN sudo mkdir /opt/build /opt/install \
     && sudo chown sdr:sdr /opt/build /opt/install
 
+# Fix Github bug
+RUN git config --global pack.window 1
 
 # APTdec
 FROM base AS aptdec
@@ -186,7 +188,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/drowe67/codec2-dev.git codec2 \
     && cd codec2 \
-    && git reset --hard "v1.0.3" \
+    && git reset --hard "v1.1.1" \
     && mkdir build_linux; cd build_linux \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/codec2 .. \
     && make -j${nb_cores} install
@@ -271,7 +273,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/Nuand/bladeRF.git \
     && cd bladeRF/host \
-    && git reset --hard "2021.02" \
+    && git reset --hard "2023.02" \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libbladeRF -DINSTALL_UDEV_RULES=OFF .. \
     && make -j${nb_cores} install
@@ -350,7 +352,7 @@ ARG nb_cores
 WORKDIR /opt/build
 RUN git clone https://github.com/EttusResearch/uhd.git \
     && cd uhd/host \
-    && git reset --hard v4.0.0.0 \
+    && git reset --hard v4.6.0.0 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/uhd \
     -DENABLE_PYTHON_API=OFF \
