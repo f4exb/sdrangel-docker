@@ -8,7 +8,7 @@ show_help() {
   Usage: ${0##*/} [-b branch] [-T tag] [-c label] [-t tag] [-f file] [-n] [-h]
   Build SDRangel image.
   -b name    Branch name (default master)
-  -T tag     Checkout tag or commit (default to branch name i.e. do nothing)
+  -T tag     Checkout tag or commit (default to branch name)
   -c label   Arbitrary clone label. Clone again if different from the last label (default current timestamp)
   -x         Use 24 bit samples for Rx
   -t tag     Docker image tag. Use git tag or commit hash (default latest)
@@ -65,7 +65,7 @@ if [ -z ${sdrangel_tag+x} ]; then
 fi
 
 IMAGE_NAME=sdrangel/server${rx_bits}:${image_tag}
-DOCKER_BUILDKIT=1 docker build ${no_cache} \
+docker buildx build --load  ${no_cache} \
     --build-arg branch=${branch_name} \
     --build-arg sdrangel_tag=${sdrangel_tag} \
     --build-arg clone_label="${clone_label}" \
