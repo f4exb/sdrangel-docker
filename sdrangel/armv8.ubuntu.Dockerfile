@@ -170,7 +170,13 @@ RUN git clone --depth 1 -b v4.3.0.0 https://github.com/EttusResearch/uhd.git
 RUN git clone https://github.com/f4exb/libmirisdr-4.git
 #   SDRangel
 ARG sdrangel_tag
-RUN git clone --depth 1 -b ${sdrangel_tag} https://github.com/f4exb/sdrangel.git sdrangel
+RUN mkdir sdrangel \
+    && cd sdrangel \
+    && git init \
+    && git remote add origin https://github.com/f4exb/sdrangel.git \
+    && git fetch --depth 1 origin ${sdrangel_tag} \
+    && git checkout FETCH_HEAD \
+    && cd ..
 
 # Compile...
 # APTdec
