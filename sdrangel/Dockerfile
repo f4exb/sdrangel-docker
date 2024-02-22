@@ -265,8 +265,9 @@ RUN cd sgp4 \
 
 # SDRplay special
 FROM base AS sdrplay
-ENV SDRPLAY_MAJ 2.13
-ENV SDRPLAY_MIN .1
+ENV SDRPLAY_MAJ 3.14
+ENV SDRPLAY_MIN .0
+ENV SDRPLAY_LIB libsdrplay_api
 WORKDIR /opt/build
 RUN mkdir -p /opt/install/libsdrplay/include \
     && mkdir -p /opt/install/libsdrplay/lib \
@@ -275,12 +276,12 @@ RUN cd sdrplay \
     && wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
     && export ARCH=`arch` \
     && sh ./SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
-    && cp ${ARCH}/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/. \
-    && chmod 644 /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} \
-    && ln -s /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.2 \
-    && ln -s /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so.2 /opt/install/libsdrplay/lib/libmirsdrapi-rsp.so \
-    && cp mirsdrapi-rsp.h /opt/install/libsdrplay/include/. \
-    && chmod 644 /opt/install/libsdrplay/include/mirsdrapi-rsp.h
+    && cp ${ARCH}/${SDRPLAY_LIB}.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/. \
+    && chmod 644 /opt/install/libsdrplay/lib/${SDRPLAY_LIB}.so.${SDRPLAY_MAJ} \
+    && ln -s /opt/install/libsdrplay/lib/${SDRPLAY_LIB}.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/${SDRPLAY_LIB}.so.3 \
+    && ln -s /opt/install/libsdrplay/lib/${SDRPLAY_LIB}.so.3 /opt/install/libsdrplay/lib/${SDRPLAY_LIB}.so \
+    && cp inc/* /opt/install/libsdrplay/include \
+    && chmod 644 /opt/install/libsdrplay/include/*
 
 # Airspy
 FROM base_clones AS airspy
