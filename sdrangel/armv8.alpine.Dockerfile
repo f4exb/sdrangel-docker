@@ -58,7 +58,8 @@ RUN sudo apk update && sudo apk add \
     libqt5texttospeech5-dev \
     libqt5gamepad5-dev \
     qtwebengine5-dev \
-    qtbase5-private-dev
+    qtbase5-private-dev \
+    libqt5svg5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apk update && sudo apk add \

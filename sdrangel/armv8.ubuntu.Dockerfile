@@ -69,7 +69,8 @@ RUN sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y instal
     libqt5texttospeech5-dev \
     libqt5gamepad5-dev \
     qtwebengine5-dev \
-    qtbase5-private-dev
+    qtbase5-private-dev \
+    libqt5svg5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
