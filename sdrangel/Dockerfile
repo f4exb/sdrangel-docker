@@ -137,6 +137,8 @@ RUN git clone --depth 1 -b new-namespaces https://github.com/f4exb/libsigmf.git 
     && cd ..
 #   SGP4
 RUN git clone --depth 1 https://github.com/dnwrnr/sgp4.git
+#   GGMorse
+RUN git clone --depth 1 https://github.com/f4exb/ggmorse.git
 #   Airspy
 RUN git clone --depth 1 https://github.com/airspy/airspyone_host.git libairspy
 #   RTL-SDR
@@ -262,6 +264,15 @@ WORKDIR /opt/build
 RUN cd sgp4 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/sgp4 .. \
+    && make -j${nb_cores} install
+
+# GGMorse
+FROM base_clones AS ggmorse
+ARG nb_cores
+WORKDIR /opt/build
+RUN cd ggmorse \
+    && mkdir build; cd build \
+    && cmake -Wno-dev -DGGMORSE_BUILD_TESTS=OFF -DGGMORSE_BUILD_EXAMPLES=OFF -DCMAKE_INSTALL_PREFIX=/opt/install/ggmorse .. \
     && make -j${nb_cores} install
 
 # SDRplay special
@@ -410,6 +421,7 @@ COPY --from=dsdcc --chown=sdr /opt/install /opt/install
 COPY --from=codec2 --chown=sdr /opt/install /opt/install
 COPY --from=libsigmf --chown=sdr /opt/install /opt/install
 COPY --from=sgp4 --chown=sdr /opt/install /opt/install
+COPY --from=ggmorse --chown=sdr /opt/install /opt/install
 COPY --from=sdrplay --chown=sdr /opt/install /opt/install
 COPY --from=airspy --chown=sdr /opt/install /opt/install
 COPY --from=rtlsdr --chown=sdr /opt/install /opt/install
@@ -455,6 +467,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=ON -DBUILD_SERVER=OFF \
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
     -DDAB_DIR=/opt/install/libdab \
     -DSGP4_DIR=/opt/install/sgp4 \
+    -DGGMORSE_DIR=/opt/install/ggmorse \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DUHD_DIR=/opt/install/uhd \
@@ -507,6 +520,7 @@ RUN cmake -Wno-dev -DDEBUG_OUTPUT=ON -DRX_SAMPLE_24BIT=${rx_24bits} -DBUILD_GUI=
     -DLIBSIGMF_DIR=/opt/install/libsigmf \
     -DDAB_DIR=/opt/install/libdab \
     -DSGP4_DIR=/opt/install/sgp4 \
+    -DGGMORSE_DIR=/opt/install/ggmorse \
     -DPERSEUS_DIR=/opt/install/libperseus \
     -DXTRX_DIR=/opt/install/xtrx-images \
     -DCMAKE_INSTALL_PREFIX=/opt/install/sdrangel .. \
