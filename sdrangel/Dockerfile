@@ -277,8 +277,8 @@ RUN cd ggmorse \
 
 # SDRplay special
 FROM base AS sdrplay
-ENV SDRPLAY_MAJ 3.14
-ENV SDRPLAY_MIN .0
+ENV SDRPLAY_MAJ 3.15
+ENV SDRPLAY_MIN .2
 ENV SDRPLAY_LIB libsdrplay_api
 WORKDIR /opt/build
 RUN mkdir -p /opt/install/libsdrplay/include \
@@ -286,7 +286,7 @@ RUN mkdir -p /opt/install/libsdrplay/include \
     && mkdir -p /opt/build/sdrplay
 RUN cd sdrplay \
     && wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run \
-    && export ARCH=`arch` \
+    && export ARCH=$(uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/) \
     && sh ./SDRplay_RSP_API-Linux-${SDRPLAY_MAJ}${SDRPLAY_MIN}.run --tar xvf \
     && cp ${ARCH}/${SDRPLAY_LIB}.so.${SDRPLAY_MAJ} /opt/install/libsdrplay/lib/. \
     && chmod 644 /opt/install/libsdrplay/lib/${SDRPLAY_LIB}.so.${SDRPLAY_MAJ} \
