@@ -79,6 +79,7 @@ RUN sudo apk update && sudo apk add \
     py-cheetah \
     py-mako \
     faad2-dev \
+    flac-dev \
     zlib-dev \
     hamlib-dev
 

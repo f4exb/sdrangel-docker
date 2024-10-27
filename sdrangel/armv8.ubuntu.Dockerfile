@@ -93,6 +93,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libavformat-dev \
     libopus-dev \
     libfaad-dev \
+    libflac-dev \
     zlib1g-dev \
     libhamlib-dev
 
