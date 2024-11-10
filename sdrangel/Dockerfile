@@ -71,7 +71,8 @@ RUN sudo apt-get update && sudo apt-get -y install \
     libqt5gamepad5-dev \
     qtwebengine5-dev \
     qtbase5-private-dev \
-    libqt5svg5-dev
+    libqt5svg5-dev \
+    libqt5webchannel5-dev
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
