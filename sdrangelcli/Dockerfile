@@ -1,7 +1,9 @@
-FROM node:16-slim as base
+FROM node:22-slim AS base
 
 # Install base packages
-RUN apt-get update && apt-get -y install sudo git
+RUN apt-get update \
+    && apt-get -y install sudo git \
+    && apt-get clean
 RUN npm install -g @angular/cli \
     && npm install -g http-server
 
@@ -16,7 +18,7 @@ RUN sudo mkdir /opt/build \
 WORKDIR /opt/build
 
 # Clone sdrangelcli and build final image
-FROM base as sdrangelcli
+FROM base AS sdrangelcli
 ARG branch
 ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangelcli.git -b ${branch} sdrangelcli \
@@ -25,7 +27,7 @@ WORKDIR /opt/build/sdrangelcli
 RUN npm install \
     && ng build --configuration production \
     && mv dist /opt/build \
-    && rm -rf *
+    && rm -rf ./*
 
 WORKDIR /opt/build/dist/sdrangelcli
 ENTRYPOINT [ "http-server" ]
