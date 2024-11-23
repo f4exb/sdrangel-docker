@@ -13,14 +13,14 @@ show_help() {
   -f name    FFT wisdom file name in ~/.config/sdrangel (default fftw-wisdom)
   -h         Print this help.
   Examples:
-    ./run.sh -s "128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096"
+    ./run.sh -s "128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096" # defaukt
     ./run.sh -s "128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096" -f fftw-wisdom-4k
 EOF
 }
 
 image_tag="latest"
 container_name="fftwindow"
-fft_sizes="128 256 512 1024 b128 b256 b512 b1024"
+fft_sizes="128 256 512 1024 2048 4096 b128 b256 b512 b1024 b2048 b4096"
 file_name="fftw-wisdom"
 USER_UID=$(id -u)
 
@@ -46,7 +46,7 @@ shift $((OPTIND-1))
 [ "${1:-}" = "--" ] && shift
 # End of get options
 
-mkdir -p /home/${USER}/.config/sdrangel 
+mkdir -p /home/${USER}/.config/sdrangel
 docker run -it --rm \
     --privileged \
     --name ${container_name} \

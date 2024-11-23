@@ -1,13 +1,11 @@
-FROM ubuntu:20.04 AS base
+FROM arm64v8/ubuntu:24.04 AS base
 ARG uid
 
 # Create a user with sudo rights
 RUN apt-get update && apt-get -y install sudo
-RUN useradd -m sdr -u ${uid} && echo "sdr:sdr" | chpasswd \
-   && adduser sdr sudo \
-   && usermod -a -G audio,dialout,plugdev sdr\
-   && sudo usermod --shell /bin/bash sdr
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN sed -i -e 's/\(sudo\tALL=(ALL:ALL) \)\(ALL\)/\1NOPASSWD:\2/' /etc/sudoers
+RUN usermod -m -d /home/sdr -l sdr ubuntu
+RUN groupmod --new-name sdr ubuntu
 USER sdr
 
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -16,4 +14,5 @@ RUN sudo apt-get update && sudo apt-get -y install \
 COPY --chown=sdr fftwisdom.sh /home/sdr/fftwisdom.sh
 WORKDIR /home/sdr
 
-CMD /home/sdr/fftwisdom.sh
+SHELL ["/bin/bash", "-c"]
+CMD "/home/sdr/fftwisdom.sh"

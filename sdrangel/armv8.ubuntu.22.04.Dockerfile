@@ -1,13 +1,15 @@
-FROM arm64v8/ubuntu:24.04 AS base
+FROM arm64v8/ubuntu:22.04 AS base
 ARG uid
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Create a user with sudo rights and NOPASSWD
+# Create a user with sudo rights
 RUN apt-get update && apt-get -y install sudo
-RUN sed -i -e 's/\(sudo\tALL=(ALL:ALL) \)\(ALL\)/\1NOPASSWD:\2/' /etc/sudoers
-RUN usermod -m -d /home/sdr -l sdr ubuntu
-RUN groupmod --new-name sdr ubuntu
+RUN useradd -m sdr -u ${uid} && echo "sdr:sdr" | chpasswd \
+   && adduser sdr sudo \
+   && usermod -a -G audio,dialout,plugdev sdr\
+   && sudo usermod --shell /bin/bash sdr
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER sdr
 
 # Configure tzdata manually before anything else
@@ -117,7 +119,7 @@ WORKDIR /opt/build
 #   APTdec
 RUN git clone --depth 1 -b libaptdec https://github.com/srcejon/aptdec.git
 #   CM256cc
-RUN git clone --depth 1 -b v1.1.1 https://github.com/f4exb/cm256cc.git
+RUN git clone --depth 1 -b v1.1.0 https://github.com/f4exb/cm256cc.git
 #   LibDAB
 RUN git clone --depth 1 -b msvc https://github.com/srcejon/dab-cmdline
 #   MBElib
@@ -145,16 +147,16 @@ RUN git clone --depth 1 -b v2.0.1 https://github.com/osmocom/rtl-sdr.git librtls
 #   PlutoSDR (libiio)
 RUN git clone --depth 1 -b v0.21 https://github.com/analogdevicesinc/libiio.git
 #   BladeRF
-RUN git clone --depth 1 -b 2023.02 https://github.com/Nuand/bladeRF.git \
+RUN git clone --depth 1 -b 2021.02 https://github.com/Nuand/bladeRF.git \
     && cd bladeRF \
     && git submodule init \
     && git submodule update --depth 1
 #   HackRF
 RUN git clone --depth 1 -b v2022.09.1 https://github.com/greatscottgadgets/hackrf.git
 #   LimeSDR
-RUN wget https://github.com/myriadrf/LimeSuite/archive/refs/tags/v23.11.0.tar.gz \
-    && tar -xf v23.11.0.tar.gz \
-    && ln -s LimeSuite-23.11.0 LimeSuite \
+RUN wget https://github.com/myriadrf/LimeSuite/archive/refs/tags/v22.09.0.tar.gz \
+    && tar -xf v22.09.0.tar.gz \
+    && ln -s LimeSuite-22.09.0 LimeSuite \
     && cd LimeSuite \
     && mkdir builddir
 #   Airspy HF
@@ -168,7 +170,7 @@ RUN git clone --depth 1 https://github.com/f4exb/images.git xtrx-images \
     && git submodule update --depth 1 \
     && cd ..
 #   UHD
-RUN git clone --depth 1 -b v4.7.0.0 https://github.com/EttusResearch/uhd.git
+RUN git clone --depth 1 -b v4.3.0.0 https://github.com/EttusResearch/uhd.git
 #   SDRPlay RSP1
 RUN git clone https://github.com/f4exb/libmirisdr-4.git
 #   SDRangel
