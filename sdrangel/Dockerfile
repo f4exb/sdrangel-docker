@@ -72,7 +72,9 @@ RUN sudo apt-get update && sudo apt-get -y install \
     qtwebengine5-dev \
     qtbase5-private-dev \
     libqt5svg5-dev \
+    libqt5gui5 \
     libqt5webchannel5-dev
+ENV QT_DEBUG_PLUGINS=1
 
 # Install base build packages dependencies - Boost
 RUN sudo apt-get update && sudo apt-get -y install \
@@ -115,7 +117,7 @@ RUN sudo mkdir /opt/build /opt/install \
     && sudo chown sdr:sdr /opt/build /opt/install
 
 # Clone repositories sequentially
-FROM base as base_clones
+FROM base AS base_clones
 WORKDIR /opt/build
 #   APTdec
 RUN git clone --depth 1 -b libaptdec https://github.com/srcejon/aptdec.git
@@ -279,9 +281,9 @@ RUN cd ggmorse \
 
 # SDRplay special
 FROM base AS sdrplay
-ENV SDRPLAY_MAJ 3.15
-ENV SDRPLAY_MIN .2
-ENV SDRPLAY_LIB libsdrplay_api
+ENV SDRPLAY_MAJ=3.15
+ENV SDRPLAY_MIN=.2
+ENV SDRPLAY_LIB=libsdrplay_api
 WORKDIR /opt/build
 RUN mkdir -p /opt/install/libsdrplay/include \
     && mkdir -p /opt/install/libsdrplay/lib \
@@ -348,7 +350,7 @@ RUN cd hackrf/host \
     && make -j${nb_cores} install
 
 # LimeSDR
-FROM base_clones as limesdr
+FROM base_clones AS limesdr
 ARG nb_cores
 RUN cd /opt/build/LimeSuite/builddir \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/LimeSuite .. \
