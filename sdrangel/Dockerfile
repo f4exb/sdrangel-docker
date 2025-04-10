@@ -115,7 +115,7 @@ RUN sudo mkdir /opt/build /opt/install \
     && sudo chown sdr:sdr /opt/build /opt/install
 
 # Clone repositories sequentially
-FROM base as base_clones
+FROM base AS base_clones
 WORKDIR /opt/build
 #   APTdec
 RUN git clone --depth 1 -b libaptdec https://github.com/srcejon/aptdec.git
