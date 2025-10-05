@@ -1,9 +1,9 @@
-FROM arm64v8/node:16-alpine as base
+FROM arm64v8/node:20-alpine AS base
 
 # Install base packages
 RUN apk update && apk add sudo git
 
-RUN npm install -g @angular/cli@9 \
+RUN npm install -g @angular/cli@15 \
     && npm install -g http-server
 
 # Give node user sudo rights and default to it
@@ -16,14 +16,14 @@ RUN sudo mkdir /opt/build \
 WORKDIR /opt/build
 
 # Clone sdrangelcli and build final image
-FROM base as sdrangelspectrum
+FROM base AS sdrangelspectrum
 ARG branch
 ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} sdrangelspectrum \
     && echo "${clone_label}" > /dev/null
 WORKDIR /opt/build/sdrangelspectrum
 RUN npm install \
-    && ng build --prod \
+    && ng build --configuration production \
     && mv dist /opt/build \
     && rm -rf *
 
