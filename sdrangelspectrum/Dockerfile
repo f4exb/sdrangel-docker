@@ -1,8 +1,8 @@
-FROM node:16-slim as base
+FROM node:20-slim AS base
 
 # Install base packages
 RUN apt-get update && apt-get -y install sudo git
-RUN npm install -g @angular/cli@9 \
+RUN npm install -g @angular/cli@15 \
      && npm install -g http-server
 
 # Give node user sudo rights and default to it
@@ -16,7 +16,7 @@ RUN sudo mkdir /opt/build \
 WORKDIR /opt/build
 
 # Clone sdrangelspectrum and build final image
-FROM base as sdrangelspectrum
+FROM base AS sdrangelspectrum
 ARG branch
 ARG clone_label
 RUN git clone https://github.com/f4exb/sdrangelspectrum.git -b ${branch} --single-branch sdrangelspectrum \
