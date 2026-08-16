@@ -359,7 +359,10 @@ RUN cd /opt/build/LimeSuite/builddir \
 FROM base_clones AS airspyhf
 ARG nb_cores
 WORKDIR /opt/build
+# Patch airspyhf's bundled FindUSB1.cmake: its FOUND_VAR name mismatches the
+# package name, which CMake >= 3.25 (as shipped in the base image) now treats as a hard error
 RUN cd airspyhf \
+    && sed -i 's/LIBUSB_FOUND/USB1_FOUND/g' libairspyhf/cmake/modules/FindUSB1.cmake \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libairspyhf .. \
     && make -j${nb_cores} install
