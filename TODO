@@ -1,0 +1,183 @@
+$Id$
+
+Stuff still to do:
+------------------
+
+Priority:
+. triliteration: cluster triangulate cellular, then move wifi to it
+   wigle: filter problems: 00:02:2D:01:73:91 00:02:2d:2f:41:d3 00:06:25:a1:2c:00
+   Deal with overloading bad data to throw triangulation off (pry just have
+   threshholds on current tri vs. what people are trying to input)
+. webmap: color gsm/cdma differently
+. webmap: allow users to color by different parameters
+
+Entire system:
+. wigle: API
+. Metadata attachments to points (free/commercial/whatever. wiki-like)
+. Generalize from plotting wireless to plotting whatever (added celluar)
+. Path finding (ouch, not for a long time)
+. wigle: track WPS
+
+WiGLE Web:
+. wigle: db verification script
+. Auto-fill the username with another cookie
+. Allow antenna and amplifier info to be put in on submission
+. Give new cookie every page to lessen replay attack possibility
+. webmap: allow users to turn off labels
+. webmap: filter nets with no ssid
+. allow update of email, or use phpbb's email
+
+WiGLE Web Re-skin tasks:
+. update forum to improve forum skin, check in 
+. make an 'about us page' (maybe merge with FAQ/images)
+. image page
+. "bounce" on autoposition
+. fix anchors in urls for stats/search pages
+. restore FB like button
+. restore/refit OSM map functionality
+. map tile visual cleanup, density thresholds, and label positioning fixes
+
+Off the Table:
+--------------
+WiGLE Web:
+. wigle: add more stats for users (manufacturer, densest locations somehow)
+. wigle: long-lived connections for rigled to hopefully improve response time
+. Fix duplicate entry messages when posting files
+. Change comments to be in their own table (and have a link on a result page,
+   perhaps displaying first few words)
+. Start a seperate IP address table
+. Speed up silver lining '00:e0:03:05:4f:a8' '00:04:e2:29:36:e6'
+
+JiGLE Application:
+. jigle: command line for connecting to kismet
+. jigle: reconnect for kismet
+. jigle: status on http connections
+. jigle: auto-downloading of map trees
+. jigle: Finish Netstumbler integration for JiGLE
+. jigle: outgoingCacheFile elimination
+. jigle: zoom in/out with different mouse buttons
+. Fix text overlap
+. Be able to load kismet files (text and xml)
+. Lower giant (>100MB) memory footprint, even in vectors (how?)
+. Convert sexigesimal from local wi-scan data from NetStumbler
+. Be able to load MapPacks with UTM instead of lat/long
+. s/File/URL/g
+
+Done
+----
+
+JiGLE Application:
+. Have app do a webquery to get it's data
+. MIP mapping
+. Double buffering
+. Update things via the web interface
+. Keep a local store on disk, only 
+   querying for updates since it last checked in (doing the disk caching only 
+   if it's in application mode, not applet)
+. Be able to turn off labels to just see all points
+. Colour of station based on "Quality of Service"
+. Can resize
+. Alphabetize the dropdown MapPack chooser
+. If over 1000 stations start up with text off
+. Be able to show poly's for locations network was seen at
+    (nearly done, need transparency)
+. Be able to load NetStumbler binary files (.ns1)
+. Do gpsd integration on linux for JiGLE
+. new screenshots (with poly, gpsd, etc)
+. menus and status bar
+. WiGLE client java api [sort of, used by squigle]
+. add last-requested metadata to wigledata. based on Date header from wigle.
+. Kismet integration for JiGLE
+. squigle backed jigle
+. authenticated jigle
+. add state to name of county on jigle dropdown
+. jigle: gui for connecting to gpsd
+
+
+WiGLE Web:
+. Genericize the backend db and querying for random data
+. Triangulation performance project
+. glue: make prod ready
+. glue: fix text cutoff
+. db: new location configuration
+. tree: finish conversion to svn, fix builds/cvs dependencies
+. Need to be able to enter in networks and locations on the web, not just 
+   through the files (especially so that the app can do additions as well)
+. Create register page
+. Add back in authentication
+. Add gps vs. non-gps to stats (confirmfile, about)
+. Need to be able to do queries on lat/long and lastupdate.
+. Add transaction id for easy rollbacks (Hugh's idea)
+. Add "remove my host" function (added as email)
+. Defend file post better (too large, binary, etc)
+. Add opt-in free network submission and add to query
+. Need to be able to update the network comments (other fields?) on the web
+. Map with mapquest from results page
+. Add md5 hash for confirmfile to prevent spoofing
+. Add DHCP field and add it to query
+. Figure out why the web pages are so slow (4+ second response time)
+. Stats page use db count(*) so it's a lot faster
+. "News" section (perhaps to the right on the main page?)
+. Only do triangulation on new things, not whole db
+. "Quality of Service" (how many days we've seen it, different people seeing it
+   maybe other factors, qos field, 0-7)
+. "Discussion lists" section
+. Fix discssion list threading
+. Pluggable mapping architecture (tm)
+. Dynamically grab/make maps to limit liability, and cover the whole 
+   country
+. Make hit stats into a cgi (made a page available for internal use)
+. Shows all MapPacks available for a given state
+. Cookie based auth (login/logout)
+. Parse Kismet (CWGD) files
+. Post compressed (gzip'd) files
+. Be able to view discussions by date (changed it so latest thread is first,
+   calling it good enough)
+. Tape backup cron job (weekly cron to backup everything to a tarball)
+. Prevent large db queries (mod_perl never frees memory back to OS)
+. Specialty map support (ie Las Vegas)
+. Be able to query for the locations for a netid
+. Do stats from a seperate table
+. <body> tag focusing
+. Integrate phpbb registration/login/logout
+. front page news from phpbb
+. fix joined date for users
+. Parse NetStumbler binary files (.ns1)
+. mirror drive going
+. add regions to rigled
+. RSS feed
+. upload file return instantly, user page for upload info, maybe stats
+. add more stats for users (daily goo, % good locations)
+. WIKI
+. improve webmaps interface
+. put meta-apache logs in db for online stats action, and many other stats
+	(number of online maps rendered, files posted, etc) (taken care of: analog)
+. Start using translog table for transaction logging (started on)
+. "Sort by" on query (radio button, couple sets in a row)
+. Updates to Location with new info for Network should be stored in network
+. Run triangulate, stats, and silver lining for everything
+. front page maps use running vmap
+. Address Geocoding
+. Squigle webmaps
+. add group and event
+. add "time to parse" on uploads screen
+. add "percent complete" on uploads screen
+
+RiGLE:
+. rigle: draw city streets even further out
+. Have WiGLE logo in lower right corner
+. Aspect ratio is now fixed
+. Get GIS data from database, not flat files (lots of work done, but needs a 
+   lot of optimization work still)
+. Specialty map support (ie Las Vegas)
+. Logging
+. Europe map
+. thread pooling for rigled to hopefully reduce the jvm memory leak
+. density colours for vmap
+. RiGLE daemon mode / real-time maps
+
+GiGLE graphing generation:
+. Move to http://www.jfree.org/jfreechart/
+
+SquiGLE
+. squigle: use TreeNode to allow for web queries
