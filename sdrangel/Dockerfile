@@ -93,6 +93,7 @@ RUN sudo apt-get update && sudo apt-get -y install \
     ffmpeg \
     libavcodec-dev \
     libavformat-dev \
+    libavfilter-dev \
     libopus-dev \
     libfaad-dev \
     libflac-dev \
