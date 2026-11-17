@@ -175,7 +175,7 @@ RUN git clone --depth 1 https://github.com/f4exb/images.git xtrx-images \
 #   UHD
 RUN git clone --depth 1 -b v4.3.0.0 https://github.com/EttusResearch/uhd.git
 #   SDRPlay RSP1
-RUN git clone https://github.com/f4exb/libmirisdr-4.git
+RUN git clone --depth 1 -b v1.2.0 https://github.com/BertoldVdb/libmirisdr-6.git
 #   SDRangel
 ARG sdrangel_tag
 RUN mkdir sdrangel \
