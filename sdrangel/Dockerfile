@@ -389,7 +389,7 @@ RUN /opt/install/uhd/lib/uhd/utils/uhd_images_downloader.py -t b2xx
 FROM base_clones AS libmirisdr
 ARG nb_cores
 WORKDIR /opt/build
-RUN cd libmirisdr-4 \
+RUN cd libmirisdr-6 \
     && mkdir build; cd build \
     && cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/opt/install/libmirisdr .. \
     && make -j${nb_cores} install
